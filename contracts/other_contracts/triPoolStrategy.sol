@@ -21,7 +21,6 @@ interface Minter {
     function mint(address) external;
 }
 
-
 interface FeeDistributor{
     function claim() external;
 }
@@ -87,7 +86,8 @@ contract TriPoolStrategy {
         FeeDistributor _feeDistributor,
         IERC20[3] memory _coins,
         UniswapV2Router _uniswapRouter,
-        address _poolOwner
+        address _poolOwner,
+        uint256 _crvLockPercent,
         
     ){
         poolAddress = _poolAddress;
@@ -100,6 +100,7 @@ contract TriPoolStrategy {
         uniswapRouter = _uniswapRouter; 
         poolOwner = _poolOwner;
         poolToken = _poolToken;
+        crvLockPercent = _crvLockPercent;
     }
 
 /****POOLOWNER FUNCTIONS****/
@@ -144,14 +145,14 @@ contract TriPoolStrategy {
         uint256 unstakeAmount = gauge.balanceOf(address(this));
         unStake(unstakeAmount);
         poolAddress.remove_liquidity_imbalance(updatedAmounts,unstakeAmount);
-        coins[coinIndex].transfer(msg.sender, coins[coinIndex].balanceOf(address(this)));
+        coins[coinIndex].transfer(poolOwner, coins[coinIndex].balanceOf(address(this)));
         stake();
     }
     
 /****INTERNAL FUNCTIONS****/
 
     function stake() internal {
-        uint256 stakeAmount = oolToken.balanceOf(address(this)) ;
+        uint256 stakeAmount = poolToken.balanceOf(address(this)) ;
         poolToken.approve(address(gauge), stakeAmount);
         gauge.deposit(stakeAmount);  
     }
@@ -161,7 +162,7 @@ contract TriPoolStrategy {
     }
 
 /****OPEN FUNCTIONS****/
-
+ 
     function claimCRV() external returns(uint256){
         uint256 oldBalance = crvToken.balanceOf(address(this));
         Minter(minter).mint(address(gauge));
@@ -233,8 +234,5 @@ contract TriPoolStrategy {
         coins[rewardCoin].transfer(poolOwner, tokenReceived);
         return tokenReceived;
     }
-
-
-
 
 }

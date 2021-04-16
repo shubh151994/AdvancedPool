@@ -5,8 +5,8 @@ import './SafeMath.sol';
 import './IERC20.sol';
 
 interface DepositStrategy{
-    function deposit(uint256[] memory amounts) external returns(uint256);
-    function withdraw(uint256[] memory amounts) external returns(uint256);
+    function deposit(uint256[10] memory amounts) external returns(uint256);
+    function withdraw(uint256[10] memory amounts) external returns(uint256);
     function setRewardCoin(address rewardCoin) external returns(bool);
 }
 
@@ -80,8 +80,10 @@ contract AdvancePool {
         depositFees = _depositFees;
         depositStrategies = _depositStrategies;
         for(uint256 i = 0; i < _strategyForCoin.length; i++){
-            coinsPositionInStrategy[i] = _coinsPositionInStrategy[i];
             strategyForCoin[i] = _strategyForCoin[i];
+        }
+        for(uint256 i = 0; i < _coinsPositionInStrategy.length; i++){
+            coinsPositionInStrategy[i] = _coinsPositionInStrategy[i];
         }
     }
     
@@ -89,7 +91,7 @@ contract AdvancePool {
     // amount will be in coins precision
     function stake(uint256 coinIndex, uint256 amount) external notLocked() returns(uint256){
         poolBalances[coinIndex] = poolBalances[coinIndex].add(amount);
-        totalStaked = totalStaked.add(amount.mul(PRECISION).div(10*coins[coinIndex].decimal()));
+        totalStaked = totalStaked.add(amount.mul(PRECISION).div(10**coins[coinIndex].decimals()));
         uint256 mintAmount = calculatePoolTokens(amount, coinIndex);
         coins[coinIndex].transferFrom(msg.sender, address(this), amount);
         poolToken.mint(msg.sender, mintAmount);
@@ -103,7 +105,7 @@ contract AdvancePool {
         require(amount <= maxBurnAllowed(coinIndex), "Dont have enough fund, Please try later!!");
         uint256 tokenAmount = calculateStableCoins(amount, coinIndex);
         poolBalances[coinIndex] = poolBalances[coinIndex].sub(tokenAmount);
-        totalStaked = totalStaked.sub(tokenAmount.mul(PRECISION).div(10*coins[coinIndex].decimal()));
+        totalStaked = totalStaked.sub(tokenAmount.mul(PRECISION).div(10**coins[coinIndex].decimals()));
         coins[coinIndex].transfer(msg.sender, tokenAmount);
         poolToken.burn(msg.sender, amount);  
         emit userWithdrawal(msg.sender,amount);
@@ -146,7 +148,7 @@ contract AdvancePool {
         require(amount > 0 , "Nothing to deposit");
         coinsDepositInStrategy[coinIndex] = coinsDepositInStrategy[coinIndex].add(amount);
         uint256 strategyIndex = strategyForCoin[coinIndex];
-        uint256[] memory amounts;
+        uint256[10] memory amounts;
         for(uint256 i = 0; i < coinsPositionInStrategy[strategyIndex].length; i++ ){
             if(coinsPositionInStrategy[strategyIndex][i] == coinIndex){
                 amounts[coinsPositionInStrategy[strategyIndex][i]] = amount;
@@ -167,7 +169,7 @@ contract AdvancePool {
         require(amount > 0 , "Nothing to withdraw");
         coinsDepositInStrategy[coinIndex] = coinsDepositInStrategy[coinIndex].sub(amount);
         uint256 strategyIndex = strategyForCoin[coinIndex];
-        uint256[] memory amounts;
+        uint256[10] memory amounts;
         for(uint256 i = 0; i < coinsPositionInStrategy[strategyIndex].length; i++ ){
             if(coinsPositionInStrategy[strategyIndex][i] == coinIndex){
                 amounts[coinsPositionInStrategy[strategyIndex][i]] = amount;
@@ -185,8 +187,8 @@ contract AdvancePool {
     
     //TOKEN MUST BE SENT IN COINS PRECISION
     function calculatePoolTokens(uint256 amountOfStableCoins, uint256 coinIndex) public view returns(uint256){
-        amountOfStableCoins = amountOfStableCoins.mul(PRECISION).div(10*coins[coinIndex].decimal());
-        return amountOfStableCoins * stableCoinPrice();
+        amountOfStableCoins = amountOfStableCoins.mul(PRECISION).div(10**coins[coinIndex].decimals());
+        return amountOfStableCoins * stableCoinPrice() / PRECISION;
     }
     
     //Returning in pool token PRECISION
@@ -196,8 +198,8 @@ contract AdvancePool {
     
        //RETURNING IN COIN PRECISION
     function calculateStableCoins(uint256 amountOfPoolToken, uint256 coinIndex) public view returns(uint256){
-        amountOfPoolToken = amountOfPoolToken * poolTokenPrice();
-        return amountOfPoolToken.mul(10 * coins[coinIndex].decimal()).div(PRECISION);
+        amountOfPoolToken = amountOfPoolToken * poolTokenPrice() / PRECISION;
+        return amountOfPoolToken.mul(10 ** coins[coinIndex].decimals()).div(PRECISION);
     }
     
      function poolTokenPrice() public view returns(uint256){
@@ -208,7 +210,7 @@ contract AdvancePool {
     // returning max number of pool token that can be burnt
     // if min is also less than actual
     function maxBurnAllowed(uint256 coinIndex) public view returns(uint256){
-        uint256 maxTokenAmount = minLiquidityToMaintainInPool(coinIndex)/2
+        uint256 maxTokenAmount = minLiquidityToMaintainInPool(coinIndex)/2;
         return calculatePoolTokens(maxTokenAmount, coinIndex);
     }
     

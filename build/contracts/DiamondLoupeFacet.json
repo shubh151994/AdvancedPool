@@ -24,7 +24,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -43,7 +44,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -56,7 +58,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -75,7 +78,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -94,7 +98,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_functionSelector\",\"type\":\"bytes4\"}],\"name\":\"facetAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"facetAddress_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"facetAddresses\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"facetAddresses_\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_facet\",\"type\":\"address\"}],\"name\":\"facetFunctionSelectors\",\"outputs\":[{\"internalType\":\"bytes4[]\",\"name\":\"_facetFunctionSelectors\",\"type\":\"bytes4[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"facets\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"facetAddress\",\"type\":\"address\"},{\"internalType\":\"bytes4[]\",\"name\":\"functionSelectors\",\"type\":\"bytes4[]\"}],\"internalType\":\"struct IDiamondLoupe.Facet[]\",\"name\":\"facets_\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"_interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/facets/DiamondLoupeFacet.sol\":\"DiamondLoupeFacet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/facets/DiamondLoupeFacet.sol\":{\"keccak256\":\"0x1627e84f2667c6bff36e8a87bc439ad3bd360c303ce917b0e050b7d034a01b7e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://81e7f6786001d7c2cbdd8ed67810df08dadaa3c53f07e615d6662db19f68b12d\",\"dweb:/ipfs/QmYE6738QYXj1HtbUaShgzreYxoYmDPYfEkkv5XVowiHrD\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IDiamondCut.sol\":{\"keccak256\":\"0xac9abc5bb15ca8ee2bded34ceef6fe49866658bd8fbb0638b7d7e99fb066c403\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3f0dfe4f383ed6cd8d974ef7a6e5664317cb21d05916c59861a9258cf3246dca\",\"dweb:/ipfs/QmXcuW6yjGGDjMLM5hZqEaLQJPHvEA3yRjcxAZVxQ5b9Bm\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IDiamondLoupe.sol\":{\"keccak256\":\"0x624324452c76c8e3c4316ee90c8d78be4642f40032e7c4d1a9a61cb74f923e9a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1db7061a3103404a3d5b8dc5ed448b88bb5a0840fb5bcd8741b34712d2b3dcfa\",\"dweb:/ipfs/QmUVxxLTeCi28Xrfg52W8CQ9qF1EnB7HsWmPhoVV22RyxK\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xe9647e503260ef6684cc4d7903f8fb0551635033e9b27499cb38e171abb04fee\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://568116983673da8ecaeda55c42edb24f19ee4b0180712601bbab8a59d617d390\",\"dweb:/ipfs/QmRSUxs5SxoD3T8kzKKjmREdmF58tWtvGzEGpk258ew74w\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/libraries/LibDiamond.sol\":{\"keccak256\":\"0xda58d04a89c4610908e1130c14b4ab87f8a41eaf70dae36ca24bfed9662ad1f7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d18a8fa6b9db7df7e9461fe060d9d129d076e513d234ac5eceb8937e76a074c7\",\"dweb:/ipfs/Qmd2695iTbmHixdnYWJgdKBcTm5VsnpL2J2MgLe7Qqv8tq\"]}},\"version\":1}",
@@ -15311,9 +15316,23 @@
     "name": "solc",
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x1c81368f25ceA5CbD933C7d4a34ca1bA6a6E83fF",
+      "transactionHash": "0x140b91f99cdf49caefa7d081c7433126398c1f7e587b3cd5f8a83c50fc00cc6a"
+    },
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xe5159D729D3e99FAB83dD71FA19239d8a79286f3",
+      "transactionHash": "0xd8fb6a715ea659cb708d5d061cb23a89ebd26dad607a0bcb43e190e535d426e7"
+    }
+  },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-15T16:12:50.541Z",
+  "updatedAt": "2021-04-18T15:45:36.988Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

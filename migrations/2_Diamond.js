@@ -1,14 +1,11 @@
 /* eslint-disable prefer-const */
 /* global artifacts */
-
-const { Console } = require("console")
 const config = require("./../config.js");
 const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const DADBridgePart1 = artifacts.require('DADBridgePart1')
-const DADBridgePart2 = artifacts.require('DADBridgePart2')
+const TriPoolStrategy = artifacts.require('TriPoolStrategy')
 
 const FacetCutAction = {
   Add: 0,
@@ -30,8 +27,7 @@ function getSelectors (contract) {
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
 
-  deployer.deploy(DADBridgePart1)
-  deployer.deploy(DADBridgePart2)
+  deployer.deploy(TriPoolStrategy)
   deployer.deploy(DiamondCutFacet)
   deployer.deploy(DiamondLoupeFacet)
   deployer.deploy(OwnershipFacet).then(() => {

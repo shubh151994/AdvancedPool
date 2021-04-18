@@ -15,6 +15,18 @@ module.exports = {
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true  ,   // Skip dry run before migrations? (default: false for public nets )
     },
+    rinkeby: {
+      networkCheckTimeout: 1000000,
+      provider: () => new HDWalletProvider(config.mnemomics, config.nodeURL.rinkeby, 0,2),
+      from: config.publicKey.rinkeby,
+      network_id: config.networkId.rinkeby,       // Ropsten's id
+      gasPrice:  1e11,
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true  ,   // Skip dry run before migrations? (default: false for public nets )
+    },
+   
    
   },
 

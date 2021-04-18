@@ -5,8 +5,8 @@ import './SafeMath.sol';
 import './IERC20.sol';
 
 interface DepositStrategy{
-    function deposit(uint256[10] memory amounts) external returns(uint256);
-    function withdraw(uint256[10] memory amounts) external returns(uint256);
+    function deposit(uint256[10] memory amounts) external;
+    function withdraw(uint256[10] memory amounts) external;
     function setRewardCoin(address rewardCoin) external returns(bool);
 }
 
@@ -90,9 +90,11 @@ contract AdvancePool {
 /*****USERS FUNCTIONS****/
     // amount will be in coins precision
     function stake(uint256 coinIndex, uint256 amount) external notLocked() returns(uint256){
+        uint256 feeAmount = amount * depositFees / DENOMINATOR;
+        feesCollected[coinIndex] = feesCollected[coinIndex] +feeAmount;
         poolBalances[coinIndex] = poolBalances[coinIndex].add(amount);
         totalStaked = totalStaked.add(amount.mul(PRECISION).div(10**coins[coinIndex].decimals()));
-        uint256 mintAmount = calculatePoolTokens(amount, coinIndex);
+        uint256 mintAmount = calculatePoolTokens(amount - feeAmount, coinIndex);
         coins[coinIndex].transferFrom(msg.sender, address(this), amount);
         poolToken.mint(msg.sender, mintAmount);
         emit userDeposits(msg.sender,amount);
@@ -104,12 +106,14 @@ contract AdvancePool {
         require(amount <= poolToken.balanceOf(msg.sender), "You dont have enough pool token!!");
         require(amount <= maxBurnAllowed(coinIndex), "Dont have enough fund, Please try later!!");
         uint256 tokenAmount = calculateStableCoins(amount, coinIndex);
-        poolBalances[coinIndex] = poolBalances[coinIndex].sub(tokenAmount);
-        totalStaked = totalStaked.sub(tokenAmount.mul(PRECISION).div(10**coins[coinIndex].decimals()));
-        coins[coinIndex].transfer(msg.sender, tokenAmount);
+        uint256 feeAmount = tokenAmount * withdrawFees/ DENOMINATOR;
+        feesCollected[coinIndex] = feesCollected[coinIndex] + feeAmount;
+        poolBalances[coinIndex] = poolBalances[coinIndex].sub(tokenAmount - feeAmount);
+        totalStaked = totalStaked.sub((tokenAmount - feeAmount).mul(PRECISION).div(10**coins[coinIndex].decimals()));
+        coins[coinIndex].transfer(msg.sender, tokenAmount - feeAmount);
         poolToken.burn(msg.sender, amount);  
-        emit userWithdrawal(msg.sender,amount);
-        return tokenAmount;
+        emit userWithdrawal(msg.sender, amount);
+        return tokenAmount - feeAmount;
     }
     
 /****ADMIN FUNCTIONS*****/

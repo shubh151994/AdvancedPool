@@ -49,7 +49,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
 
 /****POOLOWNER FUNCTIONS****/
 
-    function transferOwnership(address newOwner) external onlyPoolOnwer() returns(bool){
+    function updateOwner(address newOwner) external onlyPoolOnwer() returns(bool){
         StrategyStorage storage ss = strategyStorage();
         ss.poolOwner = newOwner;
         return true;
@@ -73,7 +73,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
             updatedAmounts[i] = amounts[i];
             if(amounts[i] > 0){
                 ss.coins[i].transferFrom(msg.sender, address(this), amounts[i]);
-                // ss.coins[i].approve(address(ss.poolAddress), amounts[i]);
+                ss.coins[i].approve(address(ss.poolAddress), amounts[i]);
             }
         }
         ss.poolAddress.add_liquidity(updatedAmounts, 0);
@@ -102,7 +102,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
     function stake() internal {
         StrategyStorage storage ss = strategyStorage();
         uint256 stakeAmount = ss.poolToken.balanceOf(address(this)) ;
-        // ss.poolToken.approve(address(ss.gauge), stakeAmount);
+        ss.poolToken.approve(address(ss.gauge), stakeAmount);
         ss.gauge.deposit(stakeAmount);  
     }
     
@@ -129,7 +129,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
         StrategyStorage storage ss = strategyStorage();
         require(_value <= ss.availableCRVToLock, 'Insufficient CRV' );
         ss.availableCRVToLock = ss.availableCRVToLock.sub(_value);
-        // ss.crvToken.approve(address(ss.votingEscrow), _value);
+        ss.crvToken.approve(address(ss.votingEscrow), _value);
         VotingEscrow(ss.votingEscrow).create_lock(_value, _unlockTime);
     } 
     
@@ -148,7 +148,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
         StrategyStorage storage ss = strategyStorage();
         require(_value <= ss.availableCRVToLock, 'Insufficient CRV' );
         ss.availableCRVToLock = ss.availableCRVToLock.sub(_value);
-        // ss.crvToken.approve(address(ss.votingEscrow), _value);
+        ss.crvToken.approve(address(ss.votingEscrow), _value);
         VotingEscrow(ss.votingEscrow).increase_amount(_value);
     }
    
@@ -171,7 +171,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
         require(amount <= ss.availableCRVToSwap, "insufficient token");
         ss.availableCRVToSwap = ss.availableCRVToSwap.sub(amount);
         uint256 oldBalance = ss.coins[ss.rewardCoin].balanceOf(address(this));
-        // ss.crvToken.approve(address(ss.uniswapRouter), amount);
+        ss.crvToken.approve(address(ss.uniswapRouter), amount);
         address[] memory path = new address[](3);
         path[0] = address(ss.crvToken);
         path[1] = ss.uniswapRouter.WETH();

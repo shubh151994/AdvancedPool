@@ -45,3 +45,7 @@ def burn(_value: uint256) -> bool:
     self.balanceOf[msg.sender] -= _value
     self.total_supply -= _value
     return True
+
+@external
+def approve(_spender : address, _value : uint256) -> bool:
+    return True

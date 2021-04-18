@@ -4,13 +4,13 @@
 
 const Web3 = require('web3');
 const config = require('./../config.js');
-const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.ropsten));
+const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
 const TX = require('ethereumjs-tx').Transaction;
 
-const privateKey = Buffer.from(config.privateKey.ropsten,'hex');
+const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x50Ad2135d67fcE105475Fa40F0f31FF1a1717952";
-const deployerAddress = config.publicKey.ropsten;
+const DiamondContractAddress = "0x2aA2d29d3f312F2508aBDa55b40e2805D4312207";
+const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
   {
@@ -96,457 +96,66 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const EosToEthPart1ABI =   [
+const TriPoolStrategyABI =   [
   {
-    "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "bytes",
-        "name": "reason",
-        "type": "bytes"
-      }
-    ],
-    "name": "Failure",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "recipient",
+        "internalType": "contract Pool",
+        "name": "_poolAddress",
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes",
-        "name": "reason",
-        "type": "bytes"
-      }
-    ],
-    "name": "Receipt",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "recipient",
+        "internalType": "contract Gauge",
+        "name": "_gauge",
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
+        "internalType": "contract Minter",
+        "name": "_minter",
+        "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "bytes",
-        "name": "reason",
-        "type": "bytes"
-      }
-    ],
-    "name": "Refund",
-    "type": "event"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
+        "internalType": "contract IERC20",
+        "name": "_crvToken",
+        "type": "address"
       },
       {
-        "internalType": "bytes",
-        "name": "_message",
-        "type": "bytes"
-      }
-    ],
-    "name": "pushInboundMessage",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "stateMutability": "payable",
-    "type": "receive",
-    "payable": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
+        "internalType": "contract IERC20",
+        "name": "_poolToken",
+        "type": "address"
       },
       {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendToken",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "claimGas",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "payable",
-    "type": "function",
-    "payable": true
-  }
-]
-
-const EosToEthPart2ABI =  [
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "bytes",
-        "name": "reason",
-        "type": "bytes"
-      }
-    ],
-    "name": "Failure",
-    "type": "event"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address[]",
-        "name": "_owners",
-        "type": "address[]"
+        "internalType": "contract VotingEscrow",
+        "name": "_votingEscrow",
+        "type": "address"
       },
       {
-        "internalType": "uint8[2]",
-        "name": "thresholds",
-        "type": "uint8[2]"
+        "internalType": "contract FeeDistributor",
+        "name": "_feeDistributor",
+        "type": "address"
       },
       {
-        "internalType": "address[]",
-        "name": "_token_contracts",
-        "type": "address[]"
+        "internalType": "contract IERC20[3]",
+        "name": "_coins",
+        "type": "address[3]"
       },
       {
-        "internalType": "uint256[]",
-        "name": "_EOS_precision",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_ethereum_precision",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "address",
+        "internalType": "contract UniswapV2Router",
         "name": "_uniswapRouter",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_ethToEosBridge",
+        "name": "_poolOwner",
         "type": "address"
       },
       {
-        "internalType": "uint256[]",
-        "name": "_max_mint_period_amount",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_max_mint_period",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_max_mint_allowed",
-        "type": "uint256[]"
-      },
-      {
         "internalType": "uint256",
-        "name": "_min_eth_required",
+        "name": "_crvLockPercent",
         "type": "uint256"
       }
     ],
     "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "tokenConfigs",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "max_mint_allowed",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "max_mint_period_amount",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "max_mint_period",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "EOS_precision",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "ethereum_precision",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct BridgeStorageV1.Config",
-        "name": "tokenConfig",
-        "type": "tuple"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "contractParams",
-    "outputs": [
-      {
-        "internalType": "uint256[6]",
-        "name": "counters",
-        "type": "uint256[6]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "isOwner",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "result",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "isLocked",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "result",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "currentWithdrawalAmount",
-    "outputs": [
-      {
-        "internalType": "uint256[2]",
-        "name": "result",
-        "type": "uint256[2]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "contractOwner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "result",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_token_address",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_max_mint_period_amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_max_mint_period",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_max_mint_allowed",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_EOS_precision",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_ethereum_precision",
-        "type": "uint256"
-      }
-    ],
-    "name": "addNewToken",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint64",
-        "name": "batch_id",
-        "type": "uint64"
-      }
-    ],
-    "name": "getBatch",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
-      },
-      {
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
-      },
-      {
-        "internalType": "uint256",
-        "name": "block_num",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "approvePoolBalance",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address payable",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "sendEther",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "changeLockByOwner",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -560,6 +169,44 @@ const EosToEthPart2ABI =  [
       }
     ],
     "name": "updateOwner",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "_rewardCoin",
+        "type": "address"
+      }
+    ],
+    "name": "setRewardCoin",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[10]",
+        "name": "amounts",
+        "type": "uint256[10]"
+      }
+    ],
+    "name": "deposit",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -567,50 +214,102 @@ const EosToEthPart2ABI =  [
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
+        "internalType": "uint256[10]",
+        "name": "amounts",
+        "type": "uint256[10]"
       }
     ],
-    "name": "dspGasUsed",
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimCRV",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "result",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "address[]",
-        "name": "_owners",
-        "type": "address[]"
-      },
-      {
         "internalType": "uint256",
-        "name": "required",
+        "name": "_value",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "required_secure",
+        "name": "_unlockTime",
         "type": "uint256"
       }
     ],
-    "name": "modifyConsensus",
+    "name": "createLock",
     "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "releaseLock",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_value",
+        "type": "uint256"
+      }
+    ],
+    "name": "increaseLockAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimAndConvert3CRV",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "convertCRV",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   }
 ]
 
-const EosToEthPart1Addr = "0x76013d346fe69f4B69EA9d90735f627aa64A3524";
-const EosToEthPart2Addr = "0xba83840849d04352352E7480cacb854743207E32";
+const TriPoolStrategyAddr = "0x03b1cc08d707ecAD7A7471Ed1a978dE773ab2B5c";
 
 const FacetCutAction = {
   Add: 0,
@@ -632,7 +331,7 @@ const transact = async (data, value) => {
                 data: data, 
                 value: value
             }
-            var transaction = new TX(txData,{chain:'ropsten', hardfork:'petersburg'});
+            var transaction = new TX(txData,{chain:'rinkeby', hardfork:'petersburg'});
             transaction.sign(privateKey);
             var serialisedTransaction = transaction.serialize().toString('hex');
     
@@ -665,16 +364,13 @@ async function addFacet(){
   try{
   console.log("1111111111")
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract(EosToEthPart1ABI, EosToEthPart1Addr)
-  const Part2Call = new web3.eth.Contract(EosToEthPart2ABI, EosToEthPart2Addr)
+  const Part1Call = new web3.eth.Contract(TriPoolStrategyABI, TriPoolStrategyAddr)
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  let selectorspart2 = getSelectors(Part2Call._jsonInterface);
   
-
-   console.log("33333333333333333",selectorspart1,"ddd",selectorspart2)
+  console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
-      .diamondCut([ [EosToEthPart1Addr, FacetCutAction.Add, selectorspart1 ] ,[EosToEthPart1Addr, FacetCutAction.Add, selectorspart2 ]], zeroAddress, '0x').encodeABI();
+      .diamondCut([ [TriPoolStrategyAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
@@ -701,35 +397,35 @@ async function addFacet(){
 // };
 
 
-async function initializeTokenpeg(){
+async function initializeTriPoolStrategy(){
   try{
-  const owners = [config.publicKey.ropsten,"0x14944Cf5Ff68161F7d047938Dc2ec4B18BA54e59","0x676956B7E476bc51d2676A48a5E3F81742fe8fC5"]
-  const thresholds = [1,1];
-  const token_contract = ["0x2c90e72766607c45D2113D0BbE911cd48102fCb5"]
-  const _EOS_precision = [4]
-  const _eth_pre = [4]
-  const _uniswapRouter = "0x7a250d5630b4cf539739df2c5dacb4c659f2488d"
-  const ethToEosBridge = "0xAf11176d5D03d8587CDaF884c2f800AaE82C9aD2"
-  const _max_mint_period_amount = ["500000000"]
-  const _max_mint_period = [2]
-  const _max_mint_allowed = ["100000000"]
-  const _min_eth_required = "1000000000000000000"
+  const poolAddress = "0x2CC463cc7818d6f582a28444c8E9565942110667"
+  const gauge = "0x6834a4381Dd06e4a7ea27d8C879E368a879d2104";
+  const minter = "0x2c90e72766607c45D2113D0BbE911cd48102fCb5"
+  const crv = "0xaDcb0EAe0227bD76Ea914f0744af4AD6e7c1563e"
+  const poolToken = "0xc6FefF33f57242451F104d842E3D86Eef81C6E1B"
+  const veCRV = "0x2183D62Cf4811081A42E6cE19ef64e10F150BbC8"
+  const feeDistributor = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
+  const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
+  const uniswap = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
+  const poolOwner = config.publicKey.rinkeby
+  const crvLockPercent = "2000"
   
   console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart2ABI, DiamondContractAddress);
-  const functCall = await bridgeCall.methods
+  const diamondCall = new web3.eth.Contract(TriPoolStrategyABI, DiamondContractAddress);
+  const functCall = await diamondCall.methods
       .initialize(
-        owners, 
-        thresholds,
-        token_contract, 
-        _EOS_precision,
-        _eth_pre,
-        _uniswapRouter,
-        ethToEosBridge,
-        _max_mint_period_amount,
-        _max_mint_period,
-        _max_mint_allowed,
-        _min_eth_required
+        poolAddress, 
+        gauge,
+        minter, 
+        crv,
+        poolToken,
+        veCRV,
+        feeDistributor,
+        coins,
+        uniswap,
+        poolOwner,
+        crvLockPercent
       ).encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
@@ -783,4 +479,4 @@ async function sendToken(){
 
 };
 
-sendToken()
+initializeTriPoolStrategy()

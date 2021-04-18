@@ -2,7 +2,7 @@
 pragma solidity ^0.7.6;
 pragma experimental ABIEncoderV2;
 import "../storage/PoolStorage.sol";
-contract AdvancePool is PoolStorageV1 {
+contract AdvancedPool is PoolStorageV1 {
     
 /****VARIABLES*****/
     using SafeMath for uint256;
@@ -64,9 +64,11 @@ contract AdvancePool is PoolStorageV1 {
     // amount will be in coins precision
     function stake(uint256 coinIndex, uint256 amount) external notLocked() returns(uint256){
         PoolStorage storage ps = poolStorage();
+        uint256 feeAmount = amount * ps.depositFees / ps.DENOMINATOR;
+        ps.feesCollected[coinIndex] = ps.feesCollected[coinIndex] + feeAmount;
         ps.poolBalances[coinIndex] = ps.poolBalances[coinIndex].add(amount);
+        uint256 mintAmount = calculatePoolTokens(amount - feeAmount, coinIndex);
         ps.totalStaked = ps.totalStaked.add(amount.mul(ps.PRECISION).div(10**ps.coins[coinIndex].decimals()));
-        uint256 mintAmount = calculatePoolTokens(amount, coinIndex);
         ps.coins[coinIndex].transferFrom(msg.sender, address(this), amount);
         ps.poolToken.mint(msg.sender, mintAmount);
         emit userDeposits(msg.sender,amount);
@@ -79,12 +81,14 @@ contract AdvancePool is PoolStorageV1 {
         require(amount <= ps.poolToken.balanceOf(msg.sender), "You dont have enough pool token!!");
         require(amount <= maxBurnAllowed(coinIndex), "Dont have enough fund, Please try later!!");
         uint256 tokenAmount = calculateStableCoins(amount, coinIndex);
-        ps.poolBalances[coinIndex] = ps.poolBalances[coinIndex].sub(tokenAmount);
-        ps.totalStaked = ps.totalStaked.sub(tokenAmount.mul(ps.PRECISION).div(10**ps.coins[coinIndex].decimals()));
-        ps.coins[coinIndex].transfer(msg.sender, tokenAmount);
+        uint256 feeAmount = tokenAmount * ps.withdrawFees/ ps.DENOMINATOR;
+        ps.feesCollected[coinIndex] = ps.feesCollected[coinIndex] + feeAmount;
+        ps.poolBalances[coinIndex] = ps.poolBalances[coinIndex].sub(tokenAmount - feeAmount);
+        ps.totalStaked = ps.totalStaked.sub((tokenAmount - feeAmount).mul(ps.PRECISION).div(10**ps.coins[coinIndex].decimals()));
+        ps.coins[coinIndex].transfer(msg.sender, tokenAmount - feeAmount);
         ps.poolToken.burn(msg.sender, amount);  
         emit userWithdrawal(msg.sender,amount);
-        return tokenAmount;
+        return tokenAmount - feeAmount;
     }
     
 /****ADMIN FUNCTIONS*****/
@@ -109,7 +113,7 @@ contract AdvancePool is PoolStorageV1 {
         return ps.locked;
     }
     
-    function transferOwnership(address newOwner) external onlyOnwer() returns(bool){
+    function updateOwner(address newOwner) external onlyOnwer() returns(bool){
         PoolStorage storage ps = poolStorage();
         ps.owner = newOwner;
         return true;
@@ -200,6 +204,11 @@ contract AdvancePool is PoolStorageV1 {
         return calculatePoolTokens(maxTokenAmount, coinIndex);
     }
     
+    function feesCollected(uint256 coinIndex) public view returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        return ps.feesCollected[coinIndex];
+    }
+
     function currentLiquidity(uint256 coinIndex) public view returns(uint256){
         PoolStorage storage ps = poolStorage();
         return ps.poolBalances[coinIndex] - ps.coinsDepositInStrategy[coinIndex];

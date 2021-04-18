@@ -39,11 +39,13 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "constructor"
+      "type": "constructor",
+      "payable": true
     },
     {
       "stateMutability": "payable",
-      "type": "fallback"
+      "type": "fallback",
+      "payable": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"facetAddress\",\"type\":\"address\"},{\"internalType\":\"enum IDiamondCut.FacetCutAction\",\"name\":\"action\",\"type\":\"uint8\"},{\"internalType\":\"bytes4[]\",\"name\":\"functionSelectors\",\"type\":\"bytes4[]\"}],\"internalType\":\"struct IDiamondCut.FacetCut[]\",\"name\":\"_diamondCut\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"internalType\":\"struct Diamond.DiamondArgs\",\"name\":\"_args\",\"type\":\"tuple\"}],\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/Diamond.sol\":\"Diamond\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/Diamond.sol\":{\"keccak256\":\"0x85333349f4752e2d2a2073961819962cc709da20215d8937b1719826034eea66\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://de5b6482c24c532959b5429c80ede79e69ad2ba6ae73be7c87d4634244090d29\",\"dweb:/ipfs/QmdShL8AhT4wUhYCpqT984TquTGc1jJXKggMYa4RBS9czj\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IDiamondCut.sol\":{\"keccak256\":\"0xac9abc5bb15ca8ee2bded34ceef6fe49866658bd8fbb0638b7d7e99fb066c403\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3f0dfe4f383ed6cd8d974ef7a6e5664317cb21d05916c59861a9258cf3246dca\",\"dweb:/ipfs/QmXcuW6yjGGDjMLM5hZqEaLQJPHvEA3yRjcxAZVxQ5b9Bm\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IDiamondLoupe.sol\":{\"keccak256\":\"0x624324452c76c8e3c4316ee90c8d78be4642f40032e7c4d1a9a61cb74f923e9a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1db7061a3103404a3d5b8dc5ed448b88bb5a0840fb5bcd8741b34712d2b3dcfa\",\"dweb:/ipfs/QmUVxxLTeCi28Xrfg52W8CQ9qF1EnB7HsWmPhoVV22RyxK\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC165.sol\":{\"keccak256\":\"0xe9647e503260ef6684cc4d7903f8fb0551635033e9b27499cb38e171abb04fee\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://568116983673da8ecaeda55c42edb24f19ee4b0180712601bbab8a59d617d390\",\"dweb:/ipfs/QmRSUxs5SxoD3T8kzKKjmREdmF58tWtvGzEGpk258ew74w\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC173.sol\":{\"keccak256\":\"0xb9dc1abf9448a3ae52352660defe9995c21b89ac6fdd8fc70a21545abc8ec898\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ef88837935bc8c578809c4c5e255c6addc928eeca6315f43da8e18b71575e5ec\",\"dweb:/ipfs/QmZfMnmuvTzwu8WqHxduVko6hZQoC5MYSwujSeKkUMQF9B\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/libraries/LibDiamond.sol\":{\"keccak256\":\"0xda58d04a89c4610908e1130c14b4ab87f8a41eaf70dae36ca24bfed9662ad1f7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d18a8fa6b9db7df7e9461fe060d9d129d076e513d234ac5eceb8937e76a074c7\",\"dweb:/ipfs/Qmd2695iTbmHixdnYWJgdKBcTm5VsnpL2J2MgLe7Qqv8tq\"]}},\"version\":1}",
@@ -25862,9 +25864,17 @@
     "name": "solc",
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x4008f27fD04f90fb527B92430199Ad649c77D962",
+      "transactionHash": "0xb85551e06040f2e667e0454897642a8d23701af46e8710a322431e8a33d60d27"
+    }
+  },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-15T16:12:50.464Z",
+  "updatedAt": "2021-04-18T18:52:05.982Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

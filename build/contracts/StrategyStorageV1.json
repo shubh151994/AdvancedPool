@@ -15,42 +15,42 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/storage/StrategyStorage.sol",
     "exportedSymbols": {
       "Controller": [
-        1164
+        1161
       ],
       "FeeDistributor": [
-        1427
+        1424
       ],
       "Gauge": [
-        1417
+        1414
       ],
       "IERC20": [
-        1346
+        1343
       ],
       "Minter": [
-        1423
+        1420
       ],
       "Pool": [
-        1387
+        1384
       ],
       "SafeMath": [
-        2398
+        2395
       ],
       "StrategyStorageV1": [
-        2446
+        2443
       ],
       "UniswapV2Router": [
-        1506
+        1503
       ],
       "VotingEscrow": [
-        1453
+        1450
       ]
     },
-    "id": 2447,
+    "id": 2444,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2400,
+        "id": 2397,
         "literals": [
           "solidity",
           ">",
@@ -63,10 +63,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/libraries/SafeMath.sol",
         "file": "../libraries/SafeMath.sol",
-        "id": 2401,
+        "id": 2398,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 2399,
+        "scope": 2444,
+        "sourceUnit": 2396,
         "src": "66:35:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -74,10 +74,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC20.sol",
         "file": "../interfaces/IERC20.sol",
-        "id": 2402,
+        "id": 2399,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1347,
+        "scope": 2444,
+        "sourceUnit": 1344,
         "src": "103:34:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -85,10 +85,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/Controller.sol",
         "file": "../interfaces/Controller.sol",
-        "id": 2403,
+        "id": 2400,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1165,
+        "scope": 2444,
+        "sourceUnit": 1162,
         "src": "140:38:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -96,10 +96,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/TriPool.sol",
         "file": "../interfaces/TriPool.sol",
-        "id": 2404,
+        "id": 2401,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1454,
+        "scope": 2444,
+        "sourceUnit": 1451,
         "src": "181:35:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -107,10 +107,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/UniswapRouter.sol",
         "file": "../interfaces/UniswapRouter.sol",
-        "id": 2405,
+        "id": 2402,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1507,
+        "scope": 2444,
+        "sourceUnit": 1504,
         "src": "218:41:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -121,20 +121,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2446,
+        "id": 2443,
         "linearizedBaseContracts": [
-          2446
+          2443
         ],
         "name": "StrategyStorageV1",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 2410,
+            "id": 2407,
             "mutability": "constant",
             "name": "STRATGEY_STORAGE_POSITION",
             "nodeType": "VariableDeclaration",
-            "scope": 2446,
+            "scope": 2443,
             "src": "305:91:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -143,7 +143,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 2406,
+              "id": 2403,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "305:7:16",
@@ -156,7 +156,7 @@
               "arguments": [
                 {
                   "hexValue": "6469616d6f6e642e7374616e646172642e73747261746567792e73746f72616765",
-                  "id": 2408,
+                  "id": 2405,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -178,7 +178,7 @@
                     "typeString": "literal_string \"diamond.standard.strategy.storage\""
                   }
                 ],
-                "id": 2407,
+                "id": 2404,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -189,7 +189,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 2409,
+              "id": 2406,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -207,22 +207,22 @@
             "visibility": "internal"
           },
           {
-            "id": 2413,
+            "id": 2410,
             "libraryName": {
-              "id": 2411,
+              "id": 2408,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2398,
+              "referencedDeclaration": 2395,
               "src": "411:8:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$2398",
+                "typeIdentifier": "t_contract$_SafeMath_$2395",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
             "src": "405:27:16",
             "typeName": {
-              "id": 2412,
+              "id": 2409,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "424:7:16",
@@ -234,15 +234,15 @@
           },
           {
             "canonicalName": "StrategyStorageV1.StrategyStorage",
-            "id": 2434,
+            "id": 2431,
             "members": [
               {
                 "constant": false,
-                "id": 2415,
+                "id": 2412,
                 "mutability": "mutable",
                 "name": "initialized",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "474:16:16",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -251,7 +251,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2414,
+                  "id": 2411,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "474:4:16",
@@ -264,34 +264,34 @@
               },
               {
                 "constant": false,
-                "id": 2419,
+                "id": 2416,
                 "mutability": "mutable",
                 "name": "coins",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "507:15:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_contract$_IERC20_$1346_$3_storage_ptr",
+                  "typeIdentifier": "t_array$_t_contract$_IERC20_$1343_$3_storage_ptr",
                   "typeString": "contract IERC20[3]"
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2416,
+                    "id": 2413,
                     "name": "IERC20",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1346,
+                    "referencedDeclaration": 1343,
                     "src": "507:6:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$1346",
+                      "typeIdentifier": "t_contract$_IERC20_$1343",
                       "typeString": "contract IERC20"
                     }
                   },
-                  "id": 2418,
+                  "id": 2415,
                   "length": {
                     "hexValue": "33",
-                    "id": 2417,
+                    "id": 2414,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -308,7 +308,7 @@
                   "nodeType": "ArrayTypeName",
                   "src": "507:9:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_IERC20_$1346_$3_storage_ptr",
+                    "typeIdentifier": "t_array$_t_contract$_IERC20_$1343_$3_storage_ptr",
                     "typeString": "contract IERC20[3]"
                   }
                 },
@@ -316,26 +316,26 @@
               },
               {
                 "constant": false,
-                "id": 2421,
+                "id": 2418,
                 "mutability": "mutable",
                 "name": "crvToken",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "533:15:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$1346",
+                  "typeIdentifier": "t_contract$_IERC20_$1343",
                   "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "id": 2420,
+                  "id": 2417,
                   "name": "IERC20",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1346,
+                  "referencedDeclaration": 1343,
                   "src": "533:6:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$1346",
+                    "typeIdentifier": "t_contract$_IERC20_$1343",
                     "typeString": "contract IERC20"
                   }
                 },
@@ -343,26 +343,26 @@
               },
               {
                 "constant": false,
-                "id": 2423,
+                "id": 2420,
                 "mutability": "mutable",
                 "name": "poolToken",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "559:16:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$1346",
+                  "typeIdentifier": "t_contract$_IERC20_$1343",
                   "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "id": 2422,
+                  "id": 2419,
                   "name": "IERC20",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1346,
+                  "referencedDeclaration": 1343,
                   "src": "559:6:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$1346",
+                    "typeIdentifier": "t_contract$_IERC20_$1343",
                     "typeString": "contract IERC20"
                   }
                 },
@@ -370,26 +370,26 @@
               },
               {
                 "constant": false,
-                "id": 2425,
+                "id": 2422,
                 "mutability": "mutable",
                 "name": "poolAddress",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "592:16:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_Pool_$1387",
+                  "typeIdentifier": "t_contract$_Pool_$1384",
                   "typeString": "contract Pool"
                 },
                 "typeName": {
-                  "id": 2424,
+                  "id": 2421,
                   "name": "Pool",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1387,
+                  "referencedDeclaration": 1384,
                   "src": "592:4:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Pool_$1387",
+                    "typeIdentifier": "t_contract$_Pool_$1384",
                     "typeString": "contract Pool"
                   }
                 },
@@ -397,26 +397,26 @@
               },
               {
                 "constant": false,
-                "id": 2427,
+                "id": 2424,
                 "mutability": "mutable",
                 "name": "uniswapRouter",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "632:29:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_UniswapV2Router_$1506",
+                  "typeIdentifier": "t_contract$_UniswapV2Router_$1503",
                   "typeString": "contract UniswapV2Router"
                 },
                 "typeName": {
-                  "id": 2426,
+                  "id": 2423,
                   "name": "UniswapV2Router",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1506,
+                  "referencedDeclaration": 1503,
                   "src": "632:15:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_UniswapV2Router_$1506",
+                    "typeIdentifier": "t_contract$_UniswapV2Router_$1503",
                     "typeString": "contract UniswapV2Router"
                   }
                 },
@@ -424,26 +424,26 @@
               },
               {
                 "constant": false,
-                "id": 2429,
+                "id": 2426,
                 "mutability": "mutable",
                 "name": "controller",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "674:21:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_Controller_$1164",
+                  "typeIdentifier": "t_contract$_Controller_$1161",
                   "typeString": "contract Controller"
                 },
                 "typeName": {
-                  "id": 2428,
+                  "id": 2425,
                   "name": "Controller",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1164,
+                  "referencedDeclaration": 1161,
                   "src": "674:10:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Controller_$1164",
+                    "typeIdentifier": "t_contract$_Controller_$1161",
                     "typeString": "contract Controller"
                   }
                 },
@@ -451,11 +451,11 @@
               },
               {
                 "constant": false,
-                "id": 2431,
+                "id": 2428,
                 "mutability": "mutable",
                 "name": "poolOwner",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "716:17:16",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -464,7 +464,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2430,
+                  "id": 2427,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "716:7:16",
@@ -478,11 +478,11 @@
               },
               {
                 "constant": false,
-                "id": 2433,
+                "id": 2430,
                 "mutability": "mutable",
                 "name": "coinIndex",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "744:17:16",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -491,7 +491,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2432,
+                  "id": 2429,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "744:7:16",
@@ -505,28 +505,28 @@
             ],
             "name": "StrategyStorage",
             "nodeType": "StructDefinition",
-            "scope": 2446,
+            "scope": 2443,
             "src": "440:330:16",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2444,
+              "id": 2441,
               "nodeType": "Block",
               "src": "856:127:16",
               "statements": [
                 {
                   "assignments": [
-                    2440
+                    2437
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2440,
+                      "id": 2437,
                       "mutability": "mutable",
                       "name": "position",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2444,
+                      "scope": 2441,
                       "src": "867:16:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -535,7 +535,7 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 2439,
+                        "id": 2436,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
                         "src": "867:7:16",
@@ -547,13 +547,13 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2442,
+                  "id": 2439,
                   "initialValue": {
-                    "id": 2441,
+                    "id": 2438,
                     "name": "STRATGEY_STORAGE_POSITION",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 2410,
+                    "referencedDeclaration": 2407,
                     "src": "886:25:16",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
@@ -589,14 +589,14 @@
                   "evmVersion": "istanbul",
                   "externalReferences": [
                     {
-                      "declaration": 2440,
+                      "declaration": 2437,
                       "isOffset": false,
                       "isSlot": false,
                       "src": "957:8:16",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 2437,
+                      "declaration": 2434,
                       "isOffset": false,
                       "isSlot": true,
                       "src": "946:7:16",
@@ -604,50 +604,50 @@
                       "valueSize": 1
                     }
                   ],
-                  "id": 2443,
+                  "id": 2440,
                   "nodeType": "InlineAssembly",
                   "src": "922:54:16"
                 }
               ]
             },
-            "id": 2445,
+            "id": 2442,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "strategyStorage",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2435,
+              "id": 2432,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "802:2:16"
             },
             "returnParameters": {
-              "id": 2438,
+              "id": 2435,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2437,
+                  "id": 2434,
                   "mutability": "mutable",
                   "name": "ss",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2445,
+                  "scope": 2442,
                   "src": "828:26:16",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_StrategyStorage_$2434_storage_ptr",
+                    "typeIdentifier": "t_struct$_StrategyStorage_$2431_storage_ptr",
                     "typeString": "struct StrategyStorageV1.StrategyStorage"
                   },
                   "typeName": {
-                    "id": 2436,
+                    "id": 2433,
                     "name": "StrategyStorage",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2434,
+                    "referencedDeclaration": 2431,
                     "src": "828:15:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_StrategyStorage_$2434_storage_ptr",
+                      "typeIdentifier": "t_struct$_StrategyStorage_$2431_storage_ptr",
                       "typeString": "struct StrategyStorageV1.StrategyStorage"
                     }
                   },
@@ -656,14 +656,14 @@
               ],
               "src": "827:28:16"
             },
-            "scope": 2446,
+            "scope": 2443,
             "src": "778:205:16",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 2447,
+        "scope": 2444,
         "src": "265:723:16"
       }
     ],
@@ -673,42 +673,42 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/storage/StrategyStorage.sol",
     "exportedSymbols": {
       "Controller": [
-        1164
+        1161
       ],
       "FeeDistributor": [
-        1427
+        1424
       ],
       "Gauge": [
-        1417
+        1414
       ],
       "IERC20": [
-        1346
+        1343
       ],
       "Minter": [
-        1423
+        1420
       ],
       "Pool": [
-        1387
+        1384
       ],
       "SafeMath": [
-        2398
+        2395
       ],
       "StrategyStorageV1": [
-        2446
+        2443
       ],
       "UniswapV2Router": [
-        1506
+        1503
       ],
       "VotingEscrow": [
-        1453
+        1450
       ]
     },
-    "id": 2447,
+    "id": 2444,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2400,
+        "id": 2397,
         "literals": [
           "solidity",
           ">",
@@ -721,10 +721,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/libraries/SafeMath.sol",
         "file": "../libraries/SafeMath.sol",
-        "id": 2401,
+        "id": 2398,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 2399,
+        "scope": 2444,
+        "sourceUnit": 2396,
         "src": "66:35:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -732,10 +732,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC20.sol",
         "file": "../interfaces/IERC20.sol",
-        "id": 2402,
+        "id": 2399,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1347,
+        "scope": 2444,
+        "sourceUnit": 1344,
         "src": "103:34:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -743,10 +743,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/Controller.sol",
         "file": "../interfaces/Controller.sol",
-        "id": 2403,
+        "id": 2400,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1165,
+        "scope": 2444,
+        "sourceUnit": 1162,
         "src": "140:38:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -754,10 +754,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/TriPool.sol",
         "file": "../interfaces/TriPool.sol",
-        "id": 2404,
+        "id": 2401,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1454,
+        "scope": 2444,
+        "sourceUnit": 1451,
         "src": "181:35:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -765,10 +765,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/UniswapRouter.sol",
         "file": "../interfaces/UniswapRouter.sol",
-        "id": 2405,
+        "id": 2402,
         "nodeType": "ImportDirective",
-        "scope": 2447,
-        "sourceUnit": 1507,
+        "scope": 2444,
+        "sourceUnit": 1504,
         "src": "218:41:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -779,20 +779,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2446,
+        "id": 2443,
         "linearizedBaseContracts": [
-          2446
+          2443
         ],
         "name": "StrategyStorageV1",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 2410,
+            "id": 2407,
             "mutability": "constant",
             "name": "STRATGEY_STORAGE_POSITION",
             "nodeType": "VariableDeclaration",
-            "scope": 2446,
+            "scope": 2443,
             "src": "305:91:16",
             "stateVariable": true,
             "storageLocation": "default",
@@ -801,7 +801,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 2406,
+              "id": 2403,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "305:7:16",
@@ -814,7 +814,7 @@
               "arguments": [
                 {
                   "hexValue": "6469616d6f6e642e7374616e646172642e73747261746567792e73746f72616765",
-                  "id": 2408,
+                  "id": 2405,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -836,7 +836,7 @@
                     "typeString": "literal_string \"diamond.standard.strategy.storage\""
                   }
                 ],
-                "id": 2407,
+                "id": 2404,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -847,7 +847,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 2409,
+              "id": 2406,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -865,22 +865,22 @@
             "visibility": "internal"
           },
           {
-            "id": 2413,
+            "id": 2410,
             "libraryName": {
-              "id": 2411,
+              "id": 2408,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2398,
+              "referencedDeclaration": 2395,
               "src": "411:8:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$2398",
+                "typeIdentifier": "t_contract$_SafeMath_$2395",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
             "src": "405:27:16",
             "typeName": {
-              "id": 2412,
+              "id": 2409,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "424:7:16",
@@ -892,15 +892,15 @@
           },
           {
             "canonicalName": "StrategyStorageV1.StrategyStorage",
-            "id": 2434,
+            "id": 2431,
             "members": [
               {
                 "constant": false,
-                "id": 2415,
+                "id": 2412,
                 "mutability": "mutable",
                 "name": "initialized",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "474:16:16",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -909,7 +909,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2414,
+                  "id": 2411,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "474:4:16",
@@ -922,34 +922,34 @@
               },
               {
                 "constant": false,
-                "id": 2419,
+                "id": 2416,
                 "mutability": "mutable",
                 "name": "coins",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "507:15:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_contract$_IERC20_$1346_$3_storage_ptr",
+                  "typeIdentifier": "t_array$_t_contract$_IERC20_$1343_$3_storage_ptr",
                   "typeString": "contract IERC20[3]"
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2416,
+                    "id": 2413,
                     "name": "IERC20",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1346,
+                    "referencedDeclaration": 1343,
                     "src": "507:6:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$1346",
+                      "typeIdentifier": "t_contract$_IERC20_$1343",
                       "typeString": "contract IERC20"
                     }
                   },
-                  "id": 2418,
+                  "id": 2415,
                   "length": {
                     "hexValue": "33",
-                    "id": 2417,
+                    "id": 2414,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -966,7 +966,7 @@
                   "nodeType": "ArrayTypeName",
                   "src": "507:9:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_IERC20_$1346_$3_storage_ptr",
+                    "typeIdentifier": "t_array$_t_contract$_IERC20_$1343_$3_storage_ptr",
                     "typeString": "contract IERC20[3]"
                   }
                 },
@@ -974,26 +974,26 @@
               },
               {
                 "constant": false,
-                "id": 2421,
+                "id": 2418,
                 "mutability": "mutable",
                 "name": "crvToken",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "533:15:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$1346",
+                  "typeIdentifier": "t_contract$_IERC20_$1343",
                   "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "id": 2420,
+                  "id": 2417,
                   "name": "IERC20",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1346,
+                  "referencedDeclaration": 1343,
                   "src": "533:6:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$1346",
+                    "typeIdentifier": "t_contract$_IERC20_$1343",
                     "typeString": "contract IERC20"
                   }
                 },
@@ -1001,26 +1001,26 @@
               },
               {
                 "constant": false,
-                "id": 2423,
+                "id": 2420,
                 "mutability": "mutable",
                 "name": "poolToken",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "559:16:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$1346",
+                  "typeIdentifier": "t_contract$_IERC20_$1343",
                   "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "id": 2422,
+                  "id": 2419,
                   "name": "IERC20",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1346,
+                  "referencedDeclaration": 1343,
                   "src": "559:6:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$1346",
+                    "typeIdentifier": "t_contract$_IERC20_$1343",
                     "typeString": "contract IERC20"
                   }
                 },
@@ -1028,26 +1028,26 @@
               },
               {
                 "constant": false,
-                "id": 2425,
+                "id": 2422,
                 "mutability": "mutable",
                 "name": "poolAddress",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "592:16:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_Pool_$1387",
+                  "typeIdentifier": "t_contract$_Pool_$1384",
                   "typeString": "contract Pool"
                 },
                 "typeName": {
-                  "id": 2424,
+                  "id": 2421,
                   "name": "Pool",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1387,
+                  "referencedDeclaration": 1384,
                   "src": "592:4:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Pool_$1387",
+                    "typeIdentifier": "t_contract$_Pool_$1384",
                     "typeString": "contract Pool"
                   }
                 },
@@ -1055,26 +1055,26 @@
               },
               {
                 "constant": false,
-                "id": 2427,
+                "id": 2424,
                 "mutability": "mutable",
                 "name": "uniswapRouter",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "632:29:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_UniswapV2Router_$1506",
+                  "typeIdentifier": "t_contract$_UniswapV2Router_$1503",
                   "typeString": "contract UniswapV2Router"
                 },
                 "typeName": {
-                  "id": 2426,
+                  "id": 2423,
                   "name": "UniswapV2Router",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1506,
+                  "referencedDeclaration": 1503,
                   "src": "632:15:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_UniswapV2Router_$1506",
+                    "typeIdentifier": "t_contract$_UniswapV2Router_$1503",
                     "typeString": "contract UniswapV2Router"
                   }
                 },
@@ -1082,26 +1082,26 @@
               },
               {
                 "constant": false,
-                "id": 2429,
+                "id": 2426,
                 "mutability": "mutable",
                 "name": "controller",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "674:21:16",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_Controller_$1164",
+                  "typeIdentifier": "t_contract$_Controller_$1161",
                   "typeString": "contract Controller"
                 },
                 "typeName": {
-                  "id": 2428,
+                  "id": 2425,
                   "name": "Controller",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1164,
+                  "referencedDeclaration": 1161,
                   "src": "674:10:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Controller_$1164",
+                    "typeIdentifier": "t_contract$_Controller_$1161",
                     "typeString": "contract Controller"
                   }
                 },
@@ -1109,11 +1109,11 @@
               },
               {
                 "constant": false,
-                "id": 2431,
+                "id": 2428,
                 "mutability": "mutable",
                 "name": "poolOwner",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "716:17:16",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -1122,7 +1122,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2430,
+                  "id": 2427,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "716:7:16",
@@ -1136,11 +1136,11 @@
               },
               {
                 "constant": false,
-                "id": 2433,
+                "id": 2430,
                 "mutability": "mutable",
                 "name": "coinIndex",
                 "nodeType": "VariableDeclaration",
-                "scope": 2434,
+                "scope": 2431,
                 "src": "744:17:16",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -1149,7 +1149,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2432,
+                  "id": 2429,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "744:7:16",
@@ -1163,28 +1163,28 @@
             ],
             "name": "StrategyStorage",
             "nodeType": "StructDefinition",
-            "scope": 2446,
+            "scope": 2443,
             "src": "440:330:16",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2444,
+              "id": 2441,
               "nodeType": "Block",
               "src": "856:127:16",
               "statements": [
                 {
                   "assignments": [
-                    2440
+                    2437
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2440,
+                      "id": 2437,
                       "mutability": "mutable",
                       "name": "position",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2444,
+                      "scope": 2441,
                       "src": "867:16:16",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1193,7 +1193,7 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 2439,
+                        "id": 2436,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
                         "src": "867:7:16",
@@ -1205,13 +1205,13 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2442,
+                  "id": 2439,
                   "initialValue": {
-                    "id": 2441,
+                    "id": 2438,
                     "name": "STRATGEY_STORAGE_POSITION",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 2410,
+                    "referencedDeclaration": 2407,
                     "src": "886:25:16",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
@@ -1247,14 +1247,14 @@
                   "evmVersion": "istanbul",
                   "externalReferences": [
                     {
-                      "declaration": 2440,
+                      "declaration": 2437,
                       "isOffset": false,
                       "isSlot": false,
                       "src": "957:8:16",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 2437,
+                      "declaration": 2434,
                       "isOffset": false,
                       "isSlot": true,
                       "src": "946:7:16",
@@ -1262,50 +1262,50 @@
                       "valueSize": 1
                     }
                   ],
-                  "id": 2443,
+                  "id": 2440,
                   "nodeType": "InlineAssembly",
                   "src": "922:54:16"
                 }
               ]
             },
-            "id": 2445,
+            "id": 2442,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "strategyStorage",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2435,
+              "id": 2432,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "802:2:16"
             },
             "returnParameters": {
-              "id": 2438,
+              "id": 2435,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2437,
+                  "id": 2434,
                   "mutability": "mutable",
                   "name": "ss",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2445,
+                  "scope": 2442,
                   "src": "828:26:16",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_StrategyStorage_$2434_storage_ptr",
+                    "typeIdentifier": "t_struct$_StrategyStorage_$2431_storage_ptr",
                     "typeString": "struct StrategyStorageV1.StrategyStorage"
                   },
                   "typeName": {
-                    "id": 2436,
+                    "id": 2433,
                     "name": "StrategyStorage",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2434,
+                    "referencedDeclaration": 2431,
                     "src": "828:15:16",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_StrategyStorage_$2434_storage_ptr",
+                      "typeIdentifier": "t_struct$_StrategyStorage_$2431_storage_ptr",
                       "typeString": "struct StrategyStorageV1.StrategyStorage"
                     }
                   },
@@ -1314,14 +1314,14 @@
               ],
               "src": "827:28:16"
             },
-            "scope": 2446,
+            "scope": 2443,
             "src": "778:205:16",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 2447,
+        "scope": 2444,
         "src": "265:723:16"
       }
     ],
@@ -1333,7 +1333,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-19T11:46:10.599Z",
+  "updatedAt": "2021-04-19T12:23:40.962Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

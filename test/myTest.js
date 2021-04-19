@@ -9,7 +9,7 @@ const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x2aA2d29d3f312F2508aBDa55b40e2805D4312207";
+const DiamondContractAddress = "0xbECD7339E5FF0d3A5493A0e6d1F019A4486E4fa0";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -96,22 +96,12 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const TriPoolStrategyABI =   [
+const TriPoolStrategyABI =    [
   {
     "inputs": [
       {
         "internalType": "contract Pool",
         "name": "_poolAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "contract Gauge",
-        "name": "_gauge",
-        "type": "address"
-      },
-      {
-        "internalType": "contract Minter",
-        "name": "_minter",
         "type": "address"
       },
       {
@@ -122,16 +112,6 @@ const TriPoolStrategyABI =   [
       {
         "internalType": "contract IERC20",
         "name": "_poolToken",
-        "type": "address"
-      },
-      {
-        "internalType": "contract VotingEscrow",
-        "name": "_votingEscrow",
-        "type": "address"
-      },
-      {
-        "internalType": "contract FeeDistributor",
-        "name": "_feeDistributor",
         "type": "address"
       },
       {
@@ -150,8 +130,13 @@ const TriPoolStrategyABI =   [
         "type": "address"
       },
       {
+        "internalType": "contract Controller",
+        "name": "_controller",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
-        "name": "_crvLockPercent",
+        "name": "_coinIndex",
         "type": "uint256"
       }
     ],
@@ -182,109 +167,13 @@ const TriPoolStrategyABI =   [
   {
     "inputs": [
       {
-        "internalType": "contract IERC20",
-        "name": "_rewardCoin",
-        "type": "address"
-      }
-    ],
-    "name": "setRewardCoin",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256[10]",
-        "name": "amounts",
-        "type": "uint256[10]"
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "name": "deposit",
     "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256[10]",
-        "name": "amounts",
-        "type": "uint256[10]"
-      }
-    ],
-    "name": "withdraw",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "claimCRV",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_value",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_unlockTime",
-        "type": "uint256"
-      }
-    ],
-    "name": "createLock",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "releaseLock",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_value",
-        "type": "uint256"
-      }
-    ],
-    "name": "increaseLockAmount",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "claimAndConvert3CRV",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -296,7 +185,14 @@ const TriPoolStrategyABI =   [
         "type": "uint256"
       }
     ],
-    "name": "convertCRV",
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimAndConverCRV",
     "outputs": [
       {
         "internalType": "uint256",
@@ -309,7 +205,7 @@ const TriPoolStrategyABI =   [
   }
 ]
 
-const TriPoolStrategyAddr = "0x03b1cc08d707ecAD7A7471Ed1a978dE773ab2B5c";
+const TriPoolStrategyAddr = "0x96cAbacCaA96750D5F5BD9f2A0a3d781667629bc";
 
 const FacetCutAction = {
   Add: 0,
@@ -400,32 +296,26 @@ async function addFacet(){
 async function initializeTriPoolStrategy(){
   try{
   const poolAddress = "0x2CC463cc7818d6f582a28444c8E9565942110667"
-  const gauge = "0x6834a4381Dd06e4a7ea27d8C879E368a879d2104";
-  const minter = "0x2c90e72766607c45D2113D0BbE911cd48102fCb5"
   const crv = "0xaDcb0EAe0227bD76Ea914f0744af4AD6e7c1563e"
   const poolToken = "0xc6FefF33f57242451F104d842E3D86Eef81C6E1B"
-  const veCRV = "0x2183D62Cf4811081A42E6cE19ef64e10F150BbC8"
-  const feeDistributor = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
   const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
   const uniswap = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
   const poolOwner = config.publicKey.rinkeby
-  const crvLockPercent = "2000"
+  const controller = config.publicKey.rinkeby
+  const coinIndex = 1
   
   console.log("1111111111")
   const diamondCall = new web3.eth.Contract(TriPoolStrategyABI, DiamondContractAddress);
   const functCall = await diamondCall.methods
       .initialize(
         poolAddress, 
-        gauge,
-        minter, 
         crv,
         poolToken,
-        veCRV,
-        feeDistributor,
         coins,
         uniswap,
         poolOwner,
-        crvLockPercent
+        controller,
+        coinIndex
       ).encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)

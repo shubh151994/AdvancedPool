@@ -54,7 +54,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
         ss.coins[ss.coinIndex].transferFrom(msg.sender, address(this), amount);
         ss.coins[ss.coinIndex].approve(address(ss.poolAddress), amount);
         ss.poolAddress.add_liquidity(amountArray, 0);
-        stakeOnController();
+       // stakeOnController();
     }
     
     function withdraw(uint256 amount) external onlyPoolOnwer(){

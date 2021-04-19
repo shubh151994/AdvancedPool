@@ -14,27 +14,23 @@ contract PoolStorageV1 {
     struct PoolStorage {
         bool initialized;
     
-        IERC20[] coins;
+        IERC20 coin;
         IERC20 poolToken;
         
-        DepositStrategy[] depositStrategies;
+        DepositStrategy depositStrategy;
         
         uint256 DENOMINATOR;
-        uint256 PRECISION;
-    
+
         uint256 depositFees;
         uint256 withdrawFees;
         uint256 minLiquidity;
         uint256 maxLiquidity;
         uint256 adminGasUsed;
-        uint256 totalStaked; //IN POOL TOKEN PRECISION
-        
-        mapping(uint256 => uint256[]) coinsPositionInStrategy;//strategyId => []
-        mapping(uint256 => uint256) strategyForCoin;  //coinIndex => strategyId
-        mapping(uint256 => uint256) poolBalances; //IN COIN PRECISION   //coinIndex => balance // total coins staked in this pool irrespective of the strategy
-        mapping(uint256 => uint256) coinsDepositInStrategy; // IN COIN PRECISION    //coinIndex => amount
-        mapping(uint256 => uint256) feesCollected;
-        
+        uint256 poolBalance; // coin Precision
+        uint256 feesCollected;
+        uint256 strategyDeposit;
+        uint256 maxWithdrawalAllowed; //coin Precision
+           
         bool  locked;
         address  owner;
     }

@@ -1,38 +1,38 @@
 {
   "contractName": "PoolStorageV1",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/storage/PoolStorage.sol\":\"PoolStorageV1\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xf867a71e1bc63a4dbdbf79d94ed8491aff7216f7169efc595664cc03b607d48a\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://314c675c610e17e07f6ec6cdd9f3d67283c5e1943b98bd19ecea229e06ae3a1d\",\"dweb:/ipfs/QmcmY49nm4sz3bvKbz6GEuBviykoDznRn9EJrfYx4uRVLF\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0xa1b6638cca4f679f9945b9ed2e670dbf1dce6ab58f71aa92d11563b03c350787\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://0b274d13550ec46cefe23819f5d7e6d6535a343cce9eb324907937a3fabf02df\",\"dweb:/ipfs/QmR8nJXCohjayBKvuaupn92pSxGQUuHVn6tJJZ3yVeravt\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/libraries/SafeMath.sol\":{\"keccak256\":\"0x127498b7bbef003b1f6ebda3d3f9f5f65fc7c1cb0e2463301797f28de304dfd5\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://73828136b611ac79407c6071ce1be24fc00e255430b2f14ec342ca9aa8621652\",\"dweb:/ipfs/QmSKCZxpFChox35prPnUBHKkBfYamYDqBAcWZVcBbTb4rs\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/storage/PoolStorage.sol\":{\"keccak256\":\"0x7685cfc430fa1019fa0512362bab82829ba7c9338152627cb58497b8c9f8f0a2\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://95c63fcf89e9a10ef5a2fbeca5f673394f73ba6389dc604b1292b61066f6c278\",\"dweb:/ipfs/Qmd1sEkTBCqUMJCtQmq8Mjx5ghbhkEX7WqnWpzs1ei6CyM\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212203f043c866d3c5d2f63bb42206c473156d18ef341553a2930ac026fce38954db664736f6c63430007060033",
-  "deployedBytecode": "0x6080604052600080fdfea26469706673582212203f043c866d3c5d2f63bb42206c473156d18ef341553a2930ac026fce38954db664736f6c63430007060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/storage/PoolStorage.sol\":\"PoolStorageV1\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xa0a379c0832f5d2ce1f49e0b4d329f7ffc8bda34914fed56254da6f49db03608\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://031898a27a8ffa3e94dd40263607307ed068b6bc62e9ed7e232f3a9034050f21\",\"dweb:/ipfs/QmYKsqUFvkca82DZ6kdBtVPSweLmDBsuvkcoRL3YRywBnc\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0xa1b6638cca4f679f9945b9ed2e670dbf1dce6ab58f71aa92d11563b03c350787\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://0b274d13550ec46cefe23819f5d7e6d6535a343cce9eb324907937a3fabf02df\",\"dweb:/ipfs/QmR8nJXCohjayBKvuaupn92pSxGQUuHVn6tJJZ3yVeravt\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/libraries/SafeMath.sol\":{\"keccak256\":\"0x127498b7bbef003b1f6ebda3d3f9f5f65fc7c1cb0e2463301797f28de304dfd5\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://73828136b611ac79407c6071ce1be24fc00e255430b2f14ec342ca9aa8621652\",\"dweb:/ipfs/QmSKCZxpFChox35prPnUBHKkBfYamYDqBAcWZVcBbTb4rs\"]},\"/E/New Desktop/Projects/AdvancedPool/contracts/storage/PoolStorage.sol\":{\"keccak256\":\"0xf6dbf3446085fbace3d0f2fb4f84002a51413056d95cd3b67f7d8b39bfe608b2\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://4cd09a44768056ee10a9448d1f4142203e489b1199d73692434625c6f6ee06ca\",\"dweb:/ipfs/QmesmBr4U4e5PnTcRsgJbgiUDXygZzHJMbm2SJBaeQDeQE\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220240d318885200da2c2f8e6b576d881a4ac39c98b06787af2406064824017ddf864736f6c63430007060033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220240d318885200da2c2f8e6b576d881a4ac39c98b06787af2406064824017ddf864736f6c63430007060033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "189:1395:15:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "189:1395:15:-:0;;;;;",
-  "source": "\r\n//SPDX-License-Identifier: UNLICENSED\r\npragma solidity >0.6.0;\r\nimport \"../libraries/SafeMath.sol\";\r\nimport \"../interfaces/IERC20.sol\"; \r\nimport \"../interfaces/DepositStrategy.sol\";\r\n\r\n\r\ncontract PoolStorageV1 {\r\n    \r\n    bytes32 constant ADVANCED_POOL_STORAGE_POSITION = keccak256(\"diamond.standard.advancedPool.storage\");\r\n\r\n    using SafeMath for uint256;\r\n    struct PoolStorage {\r\n        bool initialized;\r\n    \r\n        IERC20[] coins;\r\n        IERC20 poolToken;\r\n        \r\n        DepositStrategy[] depositStrategies;\r\n        \r\n        uint256 DENOMINATOR;\r\n        uint256 PRECISION;\r\n    \r\n        uint256 depositFees;\r\n        uint256 withdrawFees;\r\n        uint256 minLiquidity;\r\n        uint256 maxLiquidity;\r\n        uint256 adminGasUsed;\r\n        uint256 totalStaked; //IN POOL TOKEN PRECISION\r\n        \r\n        mapping(uint256 => uint256[]) coinsPositionInStrategy;//strategyId => []\r\n        mapping(uint256 => uint256) strategyForCoin;  //coinIndex => strategyId\r\n        mapping(uint256 => uint256) poolBalances; //IN COIN PRECISION   //coinIndex => balance // total coins staked in this pool irrespective of the strategy\r\n        mapping(uint256 => uint256) coinsDepositInStrategy; // IN COIN PRECISION    //coinIndex => amount\r\n        mapping(uint256 => uint256) feesCollected;\r\n        \r\n        bool  locked;\r\n        address  owner;\r\n    }\r\n\r\n    function poolStorage() internal pure returns (PoolStorage storage ps) {\r\n        bytes32 position = ADVANCED_POOL_STORAGE_POSITION;\r\n        assembly {\r\n            ps.slot := position\r\n        }\r\n    }\r\n\r\n}",
+  "sourceMap": "189:981:15:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "189:981:15:-:0;;;;;",
+  "source": "\r\n//SPDX-License-Identifier: UNLICENSED\r\npragma solidity >0.6.0;\r\nimport \"../libraries/SafeMath.sol\";\r\nimport \"../interfaces/IERC20.sol\"; \r\nimport \"../interfaces/DepositStrategy.sol\";\r\n\r\n\r\ncontract PoolStorageV1 {\r\n    \r\n    bytes32 constant ADVANCED_POOL_STORAGE_POSITION = keccak256(\"diamond.standard.advancedPool.storage\");\r\n\r\n    using SafeMath for uint256;\r\n    struct PoolStorage {\r\n        bool initialized;\r\n    \r\n        IERC20 coin;\r\n        IERC20 poolToken;\r\n        \r\n        DepositStrategy depositStrategy;\r\n        \r\n        uint256 DENOMINATOR;\r\n\r\n        uint256 depositFees;\r\n        uint256 withdrawFees;\r\n        uint256 minLiquidity;\r\n        uint256 maxLiquidity;\r\n        uint256 adminGasUsed;\r\n        uint256 poolBalance; // coin Precision\r\n        uint256 feesCollected;\r\n        uint256 strategyDeposit;\r\n        uint256 maxWithdrawalAllowed; //coin Precision\r\n           \r\n        bool  locked;\r\n        address  owner;\r\n    }\r\n\r\n    function poolStorage() internal pure returns (PoolStorage storage ps) {\r\n        bytes32 position = ADVANCED_POOL_STORAGE_POSITION;\r\n        assembly {\r\n            ps.slot := position\r\n        }\r\n    }\r\n\r\n}",
   "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\contracts\\storage\\PoolStorage.sol",
   "ast": {
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/storage/PoolStorage.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        1998
+        1620
       ],
       "IERC20": [
-        2180
+        1802
       ],
       "PoolStorageV1": [
-        3185
+        2788
       ],
       "SafeMath": [
-        3108
+        2730
       ]
     },
-    "id": 3186,
+    "id": 2789,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3110,
+        "id": 2732,
         "literals": [
           "solidity",
           ">",
@@ -45,10 +45,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/libraries/SafeMath.sol",
         "file": "../libraries/SafeMath.sol",
-        "id": 3111,
+        "id": 2733,
         "nodeType": "ImportDirective",
-        "scope": 3186,
-        "sourceUnit": 3109,
+        "scope": 2789,
+        "sourceUnit": 2731,
         "src": "66:35:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -56,10 +56,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC20.sol",
         "file": "../interfaces/IERC20.sol",
-        "id": 3112,
+        "id": 2734,
         "nodeType": "ImportDirective",
-        "scope": 3186,
-        "sourceUnit": 2181,
+        "scope": 2789,
+        "sourceUnit": 1803,
         "src": "103:34:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -67,10 +67,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
         "file": "../interfaces/DepositStrategy.sol",
-        "id": 3113,
+        "id": 2735,
         "nodeType": "ImportDirective",
-        "scope": 3186,
-        "sourceUnit": 1999,
+        "scope": 2789,
+        "sourceUnit": 1621,
         "src": "140:43:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -81,20 +81,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 3185,
+        "id": 2788,
         "linearizedBaseContracts": [
-          3185
+          2788
         ],
         "name": "PoolStorageV1",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 3118,
+            "id": 2740,
             "mutability": "constant",
             "name": "ADVANCED_POOL_STORAGE_POSITION",
             "nodeType": "VariableDeclaration",
-            "scope": 3185,
+            "scope": 2788,
             "src": "225:100:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -103,7 +103,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 3114,
+              "id": 2736,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "225:7:15",
@@ -116,7 +116,7 @@
               "arguments": [
                 {
                   "hexValue": "6469616d6f6e642e7374616e646172642e616476616e636564506f6f6c2e73746f72616765",
-                  "id": 3116,
+                  "id": 2738,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -138,7 +138,7 @@
                     "typeString": "literal_string \"diamond.standard.advancedPool.storage\""
                   }
                 ],
-                "id": 3115,
+                "id": 2737,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -149,7 +149,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 3117,
+              "id": 2739,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -167,22 +167,22 @@
             "visibility": "internal"
           },
           {
-            "id": 3121,
+            "id": 2743,
             "libraryName": {
-              "id": 3119,
+              "id": 2741,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3108,
+              "referencedDeclaration": 2730,
               "src": "340:8:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$3108",
+                "typeIdentifier": "t_contract$_SafeMath_$2730",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
             "src": "334:27:15",
             "typeName": {
-              "id": 3120,
+              "id": 2742,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "353:7:15",
@@ -194,15 +194,15 @@
           },
           {
             "canonicalName": "PoolStorageV1.PoolStorage",
-            "id": 3173,
+            "id": 2776,
             "members": [
               {
                 "constant": false,
-                "id": 3123,
+                "id": 2745,
                 "mutability": "mutable",
                 "name": "initialized",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
+                "scope": 2776,
                 "src": "397:16:15",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -211,7 +211,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 3122,
+                  "id": 2744,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "397:4:15",
@@ -224,62 +224,26 @@
               },
               {
                 "constant": false,
-                "id": 3126,
+                "id": 2747,
                 "mutability": "mutable",
-                "name": "coins",
+                "name": "coin",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "430:14:15",
+                "scope": 2776,
+                "src": "430:11:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_contract$_IERC20_$2180_$dyn_storage_ptr",
-                  "typeString": "contract IERC20[]"
-                },
-                "typeName": {
-                  "baseType": {
-                    "id": 3124,
-                    "name": "IERC20",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2180,
-                    "src": "430:6:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$2180",
-                      "typeString": "contract IERC20"
-                    }
-                  },
-                  "id": 3125,
-                  "nodeType": "ArrayTypeName",
-                  "src": "430:8:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_IERC20_$2180_$dyn_storage_ptr",
-                    "typeString": "contract IERC20[]"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3128,
-                "mutability": "mutable",
-                "name": "poolToken",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "455:16:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$2180",
+                  "typeIdentifier": "t_contract$_IERC20_$1802",
                   "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "id": 3127,
+                  "id": 2746,
                   "name": "IERC20",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 2180,
-                  "src": "455:6:15",
+                  "referencedDeclaration": 1802,
+                  "src": "430:6:15",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$2180",
+                    "typeIdentifier": "t_contract$_IERC20_$1802",
                     "typeString": "contract IERC20"
                   }
                 },
@@ -287,48 +251,66 @@
               },
               {
                 "constant": false,
-                "id": 3131,
+                "id": 2749,
                 "mutability": "mutable",
-                "name": "depositStrategies",
+                "name": "poolToken",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "492:35:15",
+                "scope": 2776,
+                "src": "452:16:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_contract$_DepositStrategy_$1998_$dyn_storage_ptr",
-                  "typeString": "contract DepositStrategy[]"
+                  "typeIdentifier": "t_contract$_IERC20_$1802",
+                  "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "baseType": {
-                    "id": 3129,
-                    "name": "DepositStrategy",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1998,
-                    "src": "492:15:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_DepositStrategy_$1998",
-                      "typeString": "contract DepositStrategy"
-                    }
-                  },
-                  "id": 3130,
-                  "nodeType": "ArrayTypeName",
-                  "src": "492:17:15",
+                  "id": 2748,
+                  "name": "IERC20",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1802,
+                  "src": "452:6:15",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_DepositStrategy_$1998_$dyn_storage_ptr",
-                    "typeString": "contract DepositStrategy[]"
+                    "typeIdentifier": "t_contract$_IERC20_$1802",
+                    "typeString": "contract IERC20"
                   }
                 },
                 "visibility": "internal"
               },
               {
                 "constant": false,
-                "id": 3133,
+                "id": 2751,
+                "mutability": "mutable",
+                "name": "depositStrategy",
+                "nodeType": "VariableDeclaration",
+                "scope": 2776,
+                "src": "489:31:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_DepositStrategy_$1620",
+                  "typeString": "contract DepositStrategy"
+                },
+                "typeName": {
+                  "id": 2750,
+                  "name": "DepositStrategy",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1620,
+                  "src": "489:15:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_DepositStrategy_$1620",
+                    "typeString": "contract DepositStrategy"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2753,
                 "mutability": "mutable",
                 "name": "DENOMINATOR",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "548:19:15",
+                "scope": 2776,
+                "src": "541:19:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -336,10 +318,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3132,
+                  "id": 2752,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "548:7:15",
+                  "src": "541:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -349,38 +331,12 @@
               },
               {
                 "constant": false,
-                "id": 3135,
-                "mutability": "mutable",
-                "name": "PRECISION",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "578:17:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 3134,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "578:7:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3137,
+                "id": 2755,
                 "mutability": "mutable",
                 "name": "depositFees",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "612:19:15",
+                "scope": 2776,
+                "src": "573:19:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -388,10 +344,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3136,
+                  "id": 2754,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "612:7:15",
+                  "src": "573:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -401,12 +357,12 @@
               },
               {
                 "constant": false,
-                "id": 3139,
+                "id": 2757,
                 "mutability": "mutable",
                 "name": "withdrawFees",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "642:20:15",
+                "scope": 2776,
+                "src": "603:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -414,10 +370,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3138,
+                  "id": 2756,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "642:7:15",
+                  "src": "603:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -427,12 +383,12 @@
               },
               {
                 "constant": false,
-                "id": 3141,
+                "id": 2759,
                 "mutability": "mutable",
                 "name": "minLiquidity",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "673:20:15",
+                "scope": 2776,
+                "src": "634:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -440,10 +396,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3140,
+                  "id": 2758,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "673:7:15",
+                  "src": "634:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -453,12 +409,12 @@
               },
               {
                 "constant": false,
-                "id": 3143,
+                "id": 2761,
                 "mutability": "mutable",
                 "name": "maxLiquidity",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "704:20:15",
+                "scope": 2776,
+                "src": "665:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -466,10 +422,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3142,
+                  "id": 2760,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "704:7:15",
+                  "src": "665:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -479,12 +435,12 @@
               },
               {
                 "constant": false,
-                "id": 3145,
+                "id": 2763,
                 "mutability": "mutable",
                 "name": "adminGasUsed",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "735:20:15",
+                "scope": 2776,
+                "src": "696:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -492,10 +448,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3144,
+                  "id": 2762,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "735:7:15",
+                  "src": "696:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -505,12 +461,12 @@
               },
               {
                 "constant": false,
-                "id": 3147,
+                "id": 2765,
                 "mutability": "mutable",
-                "name": "totalStaked",
+                "name": "poolBalance",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "766:19:15",
+                "scope": 2776,
+                "src": "727:19:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -518,10 +474,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3146,
+                  "id": 2764,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "766:7:15",
+                  "src": "727:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -531,246 +487,90 @@
               },
               {
                 "constant": false,
-                "id": 3152,
-                "mutability": "mutable",
-                "name": "coinsPositionInStrategy",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "832:53:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_uint256_$dyn_storage_$",
-                  "typeString": "mapping(uint256 => uint256[])"
-                },
-                "typeName": {
-                  "id": 3151,
-                  "keyType": {
-                    "id": 3148,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "840:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "832:29:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_uint256_$dyn_storage_$",
-                    "typeString": "mapping(uint256 => uint256[])"
-                  },
-                  "valueType": {
-                    "baseType": {
-                      "id": 3149,
-                      "name": "uint256",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "851:7:15",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "id": 3150,
-                    "nodeType": "ArrayTypeName",
-                    "src": "851:9:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
-                      "typeString": "uint256[]"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3156,
-                "mutability": "mutable",
-                "name": "strategyForCoin",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "914:43:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
-                },
-                "typeName": {
-                  "id": 3155,
-                  "keyType": {
-                    "id": 3153,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "922:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "914:27:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3154,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "933:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3160,
-                "mutability": "mutable",
-                "name": "poolBalances",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "995:40:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
-                },
-                "typeName": {
-                  "id": 3159,
-                  "keyType": {
-                    "id": 3157,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1003:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "995:27:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3158,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1014:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3164,
-                "mutability": "mutable",
-                "name": "coinsDepositInStrategy",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1155:50:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
-                },
-                "typeName": {
-                  "id": 3163,
-                  "keyType": {
-                    "id": 3161,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1163:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "1155:27:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3162,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1174:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3168,
+                "id": 2767,
                 "mutability": "mutable",
                 "name": "feesCollected",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1262:41:15",
+                "scope": 2776,
+                "src": "775:21:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3167,
-                  "keyType": {
-                    "id": 3165,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1270:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "1262:27:15",
+                  "id": 2766,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "775:7:15",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3166,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1281:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
               },
               {
                 "constant": false,
-                "id": 3170,
+                "id": 2769,
+                "mutability": "mutable",
+                "name": "strategyDeposit",
+                "nodeType": "VariableDeclaration",
+                "scope": 2776,
+                "src": "807:23:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2768,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "807:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2771,
+                "mutability": "mutable",
+                "name": "maxWithdrawalAllowed",
+                "nodeType": "VariableDeclaration",
+                "scope": 2776,
+                "src": "841:28:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2770,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "841:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2773,
                 "mutability": "mutable",
                 "name": "locked",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1324:12:15",
+                "scope": 2776,
+                "src": "910:12:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -778,10 +578,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 3169,
+                  "id": 2772,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1324:4:15",
+                  "src": "910:4:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -791,12 +591,12 @@
               },
               {
                 "constant": false,
-                "id": 3172,
+                "id": 2775,
                 "mutability": "mutable",
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1347:14:15",
+                "scope": 2776,
+                "src": "933:14:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -804,10 +604,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 3171,
+                  "id": 2774,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1347:7:15",
+                  "src": "933:7:15",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -819,29 +619,29 @@
             ],
             "name": "PoolStorage",
             "nodeType": "StructDefinition",
-            "scope": 3185,
-            "src": "367:1002:15",
+            "scope": 2788,
+            "src": "367:588:15",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 3183,
+              "id": 2786,
               "nodeType": "Block",
-              "src": "1447:132:15",
+              "src": "1033:132:15",
               "statements": [
                 {
                   "assignments": [
-                    3179
+                    2782
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 3179,
+                      "id": 2782,
                       "mutability": "mutable",
                       "name": "position",
                       "nodeType": "VariableDeclaration",
-                      "scope": 3183,
-                      "src": "1458:16:15",
+                      "scope": 2786,
+                      "src": "1044:16:15",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -849,10 +649,10 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 3178,
+                        "id": 2781,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1458:7:15",
+                        "src": "1044:7:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -861,40 +661,40 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 3181,
+                  "id": 2784,
                   "initialValue": {
-                    "id": 3180,
+                    "id": 2783,
                     "name": "ADVANCED_POOL_STORAGE_POSITION",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 3118,
-                    "src": "1477:30:15",
+                    "referencedDeclaration": 2740,
+                    "src": "1063:30:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1458:49:15"
+                  "src": "1044:49:15"
                 },
                 {
                   "AST": {
                     "nodeType": "YulBlock",
-                    "src": "1527:45:15",
+                    "src": "1113:45:15",
                     "statements": [
                       {
                         "nodeType": "YulAssignment",
-                        "src": "1542:19:15",
+                        "src": "1128:19:15",
                         "value": {
                           "name": "position",
                           "nodeType": "YulIdentifier",
-                          "src": "1553:8:15"
+                          "src": "1139:8:15"
                         },
                         "variableNames": [
                           {
                             "name": "ps.slot",
                             "nodeType": "YulIdentifier",
-                            "src": "1542:7:15"
+                            "src": "1128:7:15"
                           }
                         ]
                       }
@@ -903,108 +703,108 @@
                   "evmVersion": "istanbul",
                   "externalReferences": [
                     {
-                      "declaration": 3179,
+                      "declaration": 2782,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "1553:8:15",
+                      "src": "1139:8:15",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 3176,
+                      "declaration": 2779,
                       "isOffset": false,
                       "isSlot": true,
-                      "src": "1542:7:15",
+                      "src": "1128:7:15",
                       "suffix": "slot",
                       "valueSize": 1
                     }
                   ],
-                  "id": 3182,
+                  "id": 2785,
                   "nodeType": "InlineAssembly",
-                  "src": "1518:54:15"
+                  "src": "1104:54:15"
                 }
               ]
             },
-            "id": 3184,
+            "id": 2787,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "poolStorage",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3174,
+              "id": 2777,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1397:2:15"
+              "src": "983:2:15"
             },
             "returnParameters": {
-              "id": 3177,
+              "id": 2780,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3176,
+                  "id": 2779,
                   "mutability": "mutable",
                   "name": "ps",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3184,
-                  "src": "1423:22:15",
+                  "scope": 2787,
+                  "src": "1009:22:15",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_PoolStorage_$3173_storage_ptr",
+                    "typeIdentifier": "t_struct$_PoolStorage_$2776_storage_ptr",
                     "typeString": "struct PoolStorageV1.PoolStorage"
                   },
                   "typeName": {
-                    "id": 3175,
+                    "id": 2778,
                     "name": "PoolStorage",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 3173,
-                    "src": "1423:11:15",
+                    "referencedDeclaration": 2776,
+                    "src": "1009:11:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PoolStorage_$3173_storage_ptr",
+                      "typeIdentifier": "t_struct$_PoolStorage_$2776_storage_ptr",
                       "typeString": "struct PoolStorageV1.PoolStorage"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "1422:24:15"
+              "src": "1008:24:15"
             },
-            "scope": 3185,
-            "src": "1377:202:15",
+            "scope": 2788,
+            "src": "963:202:15",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 3186,
-        "src": "189:1395:15"
+        "scope": 2789,
+        "src": "189:981:15"
       }
     ],
-    "src": "41:1543:15"
+    "src": "41:1129:15"
   },
   "legacyAST": {
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/storage/PoolStorage.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        1998
+        1620
       ],
       "IERC20": [
-        2180
+        1802
       ],
       "PoolStorageV1": [
-        3185
+        2788
       ],
       "SafeMath": [
-        3108
+        2730
       ]
     },
-    "id": 3186,
+    "id": 2789,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3110,
+        "id": 2732,
         "literals": [
           "solidity",
           ">",
@@ -1017,10 +817,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/libraries/SafeMath.sol",
         "file": "../libraries/SafeMath.sol",
-        "id": 3111,
+        "id": 2733,
         "nodeType": "ImportDirective",
-        "scope": 3186,
-        "sourceUnit": 3109,
+        "scope": 2789,
+        "sourceUnit": 2731,
         "src": "66:35:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1028,10 +828,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/IERC20.sol",
         "file": "../interfaces/IERC20.sol",
-        "id": 3112,
+        "id": 2734,
         "nodeType": "ImportDirective",
-        "scope": 3186,
-        "sourceUnit": 2181,
+        "scope": 2789,
+        "sourceUnit": 1803,
         "src": "103:34:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1039,10 +839,10 @@
       {
         "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
         "file": "../interfaces/DepositStrategy.sol",
-        "id": 3113,
+        "id": 2735,
         "nodeType": "ImportDirective",
-        "scope": 3186,
-        "sourceUnit": 1999,
+        "scope": 2789,
+        "sourceUnit": 1621,
         "src": "140:43:15",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1053,20 +853,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 3185,
+        "id": 2788,
         "linearizedBaseContracts": [
-          3185
+          2788
         ],
         "name": "PoolStorageV1",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 3118,
+            "id": 2740,
             "mutability": "constant",
             "name": "ADVANCED_POOL_STORAGE_POSITION",
             "nodeType": "VariableDeclaration",
-            "scope": 3185,
+            "scope": 2788,
             "src": "225:100:15",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1075,7 +875,7 @@
               "typeString": "bytes32"
             },
             "typeName": {
-              "id": 3114,
+              "id": 2736,
               "name": "bytes32",
               "nodeType": "ElementaryTypeName",
               "src": "225:7:15",
@@ -1088,7 +888,7 @@
               "arguments": [
                 {
                   "hexValue": "6469616d6f6e642e7374616e646172642e616476616e636564506f6f6c2e73746f72616765",
-                  "id": 3116,
+                  "id": 2738,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -1110,7 +910,7 @@
                     "typeString": "literal_string \"diamond.standard.advancedPool.storage\""
                   }
                 ],
-                "id": 3115,
+                "id": 2737,
                 "name": "keccak256",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
@@ -1121,7 +921,7 @@
                   "typeString": "function (bytes memory) pure returns (bytes32)"
                 }
               },
-              "id": 3117,
+              "id": 2739,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -1139,22 +939,22 @@
             "visibility": "internal"
           },
           {
-            "id": 3121,
+            "id": 2743,
             "libraryName": {
-              "id": 3119,
+              "id": 2741,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3108,
+              "referencedDeclaration": 2730,
               "src": "340:8:15",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$3108",
+                "typeIdentifier": "t_contract$_SafeMath_$2730",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
             "src": "334:27:15",
             "typeName": {
-              "id": 3120,
+              "id": 2742,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "353:7:15",
@@ -1166,15 +966,15 @@
           },
           {
             "canonicalName": "PoolStorageV1.PoolStorage",
-            "id": 3173,
+            "id": 2776,
             "members": [
               {
                 "constant": false,
-                "id": 3123,
+                "id": 2745,
                 "mutability": "mutable",
                 "name": "initialized",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
+                "scope": 2776,
                 "src": "397:16:15",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -1183,7 +983,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 3122,
+                  "id": 2744,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "397:4:15",
@@ -1196,62 +996,26 @@
               },
               {
                 "constant": false,
-                "id": 3126,
+                "id": 2747,
                 "mutability": "mutable",
-                "name": "coins",
+                "name": "coin",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "430:14:15",
+                "scope": 2776,
+                "src": "430:11:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_contract$_IERC20_$2180_$dyn_storage_ptr",
-                  "typeString": "contract IERC20[]"
-                },
-                "typeName": {
-                  "baseType": {
-                    "id": 3124,
-                    "name": "IERC20",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2180,
-                    "src": "430:6:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$2180",
-                      "typeString": "contract IERC20"
-                    }
-                  },
-                  "id": 3125,
-                  "nodeType": "ArrayTypeName",
-                  "src": "430:8:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_IERC20_$2180_$dyn_storage_ptr",
-                    "typeString": "contract IERC20[]"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3128,
-                "mutability": "mutable",
-                "name": "poolToken",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "455:16:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$2180",
+                  "typeIdentifier": "t_contract$_IERC20_$1802",
                   "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "id": 3127,
+                  "id": 2746,
                   "name": "IERC20",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 2180,
-                  "src": "455:6:15",
+                  "referencedDeclaration": 1802,
+                  "src": "430:6:15",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$2180",
+                    "typeIdentifier": "t_contract$_IERC20_$1802",
                     "typeString": "contract IERC20"
                   }
                 },
@@ -1259,48 +1023,66 @@
               },
               {
                 "constant": false,
-                "id": 3131,
+                "id": 2749,
                 "mutability": "mutable",
-                "name": "depositStrategies",
+                "name": "poolToken",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "492:35:15",
+                "scope": 2776,
+                "src": "452:16:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_contract$_DepositStrategy_$1998_$dyn_storage_ptr",
-                  "typeString": "contract DepositStrategy[]"
+                  "typeIdentifier": "t_contract$_IERC20_$1802",
+                  "typeString": "contract IERC20"
                 },
                 "typeName": {
-                  "baseType": {
-                    "id": 3129,
-                    "name": "DepositStrategy",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1998,
-                    "src": "492:15:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_DepositStrategy_$1998",
-                      "typeString": "contract DepositStrategy"
-                    }
-                  },
-                  "id": 3130,
-                  "nodeType": "ArrayTypeName",
-                  "src": "492:17:15",
+                  "id": 2748,
+                  "name": "IERC20",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1802,
+                  "src": "452:6:15",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_contract$_DepositStrategy_$1998_$dyn_storage_ptr",
-                    "typeString": "contract DepositStrategy[]"
+                    "typeIdentifier": "t_contract$_IERC20_$1802",
+                    "typeString": "contract IERC20"
                   }
                 },
                 "visibility": "internal"
               },
               {
                 "constant": false,
-                "id": 3133,
+                "id": 2751,
+                "mutability": "mutable",
+                "name": "depositStrategy",
+                "nodeType": "VariableDeclaration",
+                "scope": 2776,
+                "src": "489:31:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_DepositStrategy_$1620",
+                  "typeString": "contract DepositStrategy"
+                },
+                "typeName": {
+                  "id": 2750,
+                  "name": "DepositStrategy",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1620,
+                  "src": "489:15:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_DepositStrategy_$1620",
+                    "typeString": "contract DepositStrategy"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2753,
                 "mutability": "mutable",
                 "name": "DENOMINATOR",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "548:19:15",
+                "scope": 2776,
+                "src": "541:19:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1308,10 +1090,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3132,
+                  "id": 2752,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "548:7:15",
+                  "src": "541:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1321,38 +1103,12 @@
               },
               {
                 "constant": false,
-                "id": 3135,
-                "mutability": "mutable",
-                "name": "PRECISION",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "578:17:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 3134,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "578:7:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3137,
+                "id": 2755,
                 "mutability": "mutable",
                 "name": "depositFees",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "612:19:15",
+                "scope": 2776,
+                "src": "573:19:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1360,10 +1116,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3136,
+                  "id": 2754,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "612:7:15",
+                  "src": "573:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1373,12 +1129,12 @@
               },
               {
                 "constant": false,
-                "id": 3139,
+                "id": 2757,
                 "mutability": "mutable",
                 "name": "withdrawFees",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "642:20:15",
+                "scope": 2776,
+                "src": "603:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1386,10 +1142,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3138,
+                  "id": 2756,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "642:7:15",
+                  "src": "603:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1399,12 +1155,12 @@
               },
               {
                 "constant": false,
-                "id": 3141,
+                "id": 2759,
                 "mutability": "mutable",
                 "name": "minLiquidity",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "673:20:15",
+                "scope": 2776,
+                "src": "634:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1412,10 +1168,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3140,
+                  "id": 2758,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "673:7:15",
+                  "src": "634:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1425,12 +1181,12 @@
               },
               {
                 "constant": false,
-                "id": 3143,
+                "id": 2761,
                 "mutability": "mutable",
                 "name": "maxLiquidity",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "704:20:15",
+                "scope": 2776,
+                "src": "665:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1438,10 +1194,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3142,
+                  "id": 2760,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "704:7:15",
+                  "src": "665:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1451,12 +1207,12 @@
               },
               {
                 "constant": false,
-                "id": 3145,
+                "id": 2763,
                 "mutability": "mutable",
                 "name": "adminGasUsed",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "735:20:15",
+                "scope": 2776,
+                "src": "696:20:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1464,10 +1220,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3144,
+                  "id": 2762,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "735:7:15",
+                  "src": "696:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1477,12 +1233,12 @@
               },
               {
                 "constant": false,
-                "id": 3147,
+                "id": 2765,
                 "mutability": "mutable",
-                "name": "totalStaked",
+                "name": "poolBalance",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "766:19:15",
+                "scope": 2776,
+                "src": "727:19:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1490,10 +1246,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3146,
+                  "id": 2764,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "766:7:15",
+                  "src": "727:7:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1503,246 +1259,90 @@
               },
               {
                 "constant": false,
-                "id": 3152,
-                "mutability": "mutable",
-                "name": "coinsPositionInStrategy",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "832:53:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_uint256_$dyn_storage_$",
-                  "typeString": "mapping(uint256 => uint256[])"
-                },
-                "typeName": {
-                  "id": 3151,
-                  "keyType": {
-                    "id": 3148,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "840:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "832:29:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_array$_t_uint256_$dyn_storage_$",
-                    "typeString": "mapping(uint256 => uint256[])"
-                  },
-                  "valueType": {
-                    "baseType": {
-                      "id": 3149,
-                      "name": "uint256",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "851:7:15",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "id": 3150,
-                    "nodeType": "ArrayTypeName",
-                    "src": "851:9:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
-                      "typeString": "uint256[]"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3156,
-                "mutability": "mutable",
-                "name": "strategyForCoin",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "914:43:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
-                },
-                "typeName": {
-                  "id": 3155,
-                  "keyType": {
-                    "id": 3153,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "922:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "914:27:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3154,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "933:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3160,
-                "mutability": "mutable",
-                "name": "poolBalances",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "995:40:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
-                },
-                "typeName": {
-                  "id": 3159,
-                  "keyType": {
-                    "id": 3157,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1003:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "995:27:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3158,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1014:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3164,
-                "mutability": "mutable",
-                "name": "coinsDepositInStrategy",
-                "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1155:50:15",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
-                },
-                "typeName": {
-                  "id": 3163,
-                  "keyType": {
-                    "id": 3161,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1163:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "1155:27:15",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3162,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1174:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 3168,
+                "id": 2767,
                 "mutability": "mutable",
                 "name": "feesCollected",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1262:41:15",
+                "scope": 2776,
+                "src": "775:21:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                  "typeString": "mapping(uint256 => uint256)"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 3167,
-                  "keyType": {
-                    "id": 3165,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1270:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "Mapping",
-                  "src": "1262:27:15",
+                  "id": 2766,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "775:7:15",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
-                    "typeString": "mapping(uint256 => uint256)"
-                  },
-                  "valueType": {
-                    "id": 3166,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1281:7:15",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
               },
               {
                 "constant": false,
-                "id": 3170,
+                "id": 2769,
+                "mutability": "mutable",
+                "name": "strategyDeposit",
+                "nodeType": "VariableDeclaration",
+                "scope": 2776,
+                "src": "807:23:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2768,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "807:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2771,
+                "mutability": "mutable",
+                "name": "maxWithdrawalAllowed",
+                "nodeType": "VariableDeclaration",
+                "scope": 2776,
+                "src": "841:28:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2770,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "841:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2773,
                 "mutability": "mutable",
                 "name": "locked",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1324:12:15",
+                "scope": 2776,
+                "src": "910:12:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1750,10 +1350,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 3169,
+                  "id": 2772,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1324:4:15",
+                  "src": "910:4:15",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1763,12 +1363,12 @@
               },
               {
                 "constant": false,
-                "id": 3172,
+                "id": 2775,
                 "mutability": "mutable",
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
-                "scope": 3173,
-                "src": "1347:14:15",
+                "scope": 2776,
+                "src": "933:14:15",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1776,10 +1376,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 3171,
+                  "id": 2774,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1347:7:15",
+                  "src": "933:7:15",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1791,29 +1391,29 @@
             ],
             "name": "PoolStorage",
             "nodeType": "StructDefinition",
-            "scope": 3185,
-            "src": "367:1002:15",
+            "scope": 2788,
+            "src": "367:588:15",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 3183,
+              "id": 2786,
               "nodeType": "Block",
-              "src": "1447:132:15",
+              "src": "1033:132:15",
               "statements": [
                 {
                   "assignments": [
-                    3179
+                    2782
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 3179,
+                      "id": 2782,
                       "mutability": "mutable",
                       "name": "position",
                       "nodeType": "VariableDeclaration",
-                      "scope": 3183,
-                      "src": "1458:16:15",
+                      "scope": 2786,
+                      "src": "1044:16:15",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1821,10 +1421,10 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 3178,
+                        "id": 2781,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1458:7:15",
+                        "src": "1044:7:15",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1833,40 +1433,40 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 3181,
+                  "id": 2784,
                   "initialValue": {
-                    "id": 3180,
+                    "id": 2783,
                     "name": "ADVANCED_POOL_STORAGE_POSITION",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 3118,
-                    "src": "1477:30:15",
+                    "referencedDeclaration": 2740,
+                    "src": "1063:30:15",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1458:49:15"
+                  "src": "1044:49:15"
                 },
                 {
                   "AST": {
                     "nodeType": "YulBlock",
-                    "src": "1527:45:15",
+                    "src": "1113:45:15",
                     "statements": [
                       {
                         "nodeType": "YulAssignment",
-                        "src": "1542:19:15",
+                        "src": "1128:19:15",
                         "value": {
                           "name": "position",
                           "nodeType": "YulIdentifier",
-                          "src": "1553:8:15"
+                          "src": "1139:8:15"
                         },
                         "variableNames": [
                           {
                             "name": "ps.slot",
                             "nodeType": "YulIdentifier",
-                            "src": "1542:7:15"
+                            "src": "1128:7:15"
                           }
                         ]
                       }
@@ -1875,85 +1475,85 @@
                   "evmVersion": "istanbul",
                   "externalReferences": [
                     {
-                      "declaration": 3179,
+                      "declaration": 2782,
                       "isOffset": false,
                       "isSlot": false,
-                      "src": "1553:8:15",
+                      "src": "1139:8:15",
                       "valueSize": 1
                     },
                     {
-                      "declaration": 3176,
+                      "declaration": 2779,
                       "isOffset": false,
                       "isSlot": true,
-                      "src": "1542:7:15",
+                      "src": "1128:7:15",
                       "suffix": "slot",
                       "valueSize": 1
                     }
                   ],
-                  "id": 3182,
+                  "id": 2785,
                   "nodeType": "InlineAssembly",
-                  "src": "1518:54:15"
+                  "src": "1104:54:15"
                 }
               ]
             },
-            "id": 3184,
+            "id": 2787,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "poolStorage",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3174,
+              "id": 2777,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1397:2:15"
+              "src": "983:2:15"
             },
             "returnParameters": {
-              "id": 3177,
+              "id": 2780,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3176,
+                  "id": 2779,
                   "mutability": "mutable",
                   "name": "ps",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3184,
-                  "src": "1423:22:15",
+                  "scope": 2787,
+                  "src": "1009:22:15",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_PoolStorage_$3173_storage_ptr",
+                    "typeIdentifier": "t_struct$_PoolStorage_$2776_storage_ptr",
                     "typeString": "struct PoolStorageV1.PoolStorage"
                   },
                   "typeName": {
-                    "id": 3175,
+                    "id": 2778,
                     "name": "PoolStorage",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 3173,
-                    "src": "1423:11:15",
+                    "referencedDeclaration": 2776,
+                    "src": "1009:11:15",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PoolStorage_$3173_storage_ptr",
+                      "typeIdentifier": "t_struct$_PoolStorage_$2776_storage_ptr",
                       "typeString": "struct PoolStorageV1.PoolStorage"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "1422:24:15"
+              "src": "1008:24:15"
             },
-            "scope": 3185,
-            "src": "1377:202:15",
+            "scope": 2788,
+            "src": "963:202:15",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 3186,
-        "src": "189:1395:15"
+        "scope": 2789,
+        "src": "189:981:15"
       }
     ],
-    "src": "41:1543:15"
+    "src": "41:1129:15"
   },
   "compiler": {
     "name": "solc",
@@ -1961,7 +1561,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-18T18:48:01.658Z",
+  "updatedAt": "2021-04-19T11:03:41.312Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

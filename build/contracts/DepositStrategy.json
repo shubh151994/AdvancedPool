@@ -4,9 +4,9 @@
     {
       "inputs": [
         {
-          "internalType": "uint256[10]",
-          "name": "amounts",
-          "type": "uint256[10]"
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
       "name": "deposit",
@@ -17,37 +17,18 @@
     {
       "inputs": [
         {
-          "internalType": "uint256[10]",
-          "name": "amounts",
-          "type": "uint256[10]"
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
       "name": "withdraw",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "rewardCoin",
-          "type": "address"
-        }
-      ],
-      "name": "setRewardCoin",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256[10]\",\"name\":\"amounts\",\"type\":\"uint256[10]\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"rewardCoin\",\"type\":\"address\"}],\"name\":\"setRewardCoin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256[10]\",\"name\":\"amounts\",\"type\":\"uint256[10]\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":\"DepositStrategy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xf867a71e1bc63a4dbdbf79d94ed8491aff7216f7169efc595664cc03b607d48a\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://314c675c610e17e07f6ec6cdd9f3d67283c5e1943b98bd19ecea229e06ae3a1d\",\"dweb:/ipfs/QmcmY49nm4sz3bvKbz6GEuBviykoDznRn9EJrfYx4uRVLF\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":\"DepositStrategy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xa0a379c0832f5d2ce1f49e0b4d329f7ffc8bda34914fed56254da6f49db03608\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://031898a27a8ffa3e94dd40263607307ed068b6bc62e9ed7e232f3a9034050f21\",\"dweb:/ipfs/QmYKsqUFvkca82DZ6kdBtVPSweLmDBsuvkcoRL3YRywBnc\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -55,21 +36,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\ninterface DepositStrategy{\r\n    function deposit(uint256[10] memory amounts) external;\r\n    function withdraw(uint256[10] memory amounts) external;\r\n    function setRewardCoin(address rewardCoin) external returns(bool);\r\n}",
+  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\ninterface DepositStrategy{\r\n    function deposit(uint256 amount) external;\r\n    function withdraw(uint256 amount) external;\r\n}",
   "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\contracts\\interfaces\\DepositStrategy.sol",
   "ast": {
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        1998
+        1620
       ]
     },
-    "id": 1999,
+    "id": 1621,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1976,
+        "id": 1609,
         "literals": [
           "solidity",
           "^",
@@ -85,270 +66,139 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1998,
+        "id": 1620,
         "linearizedBaseContracts": [
-          1998
+          1620
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "a9834c6d",
-            "id": 1983,
+            "functionSelector": "b6b55f25",
+            "id": 1614,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1981,
+              "id": 1612,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1980,
+                  "id": 1611,
                   "mutability": "mutable",
-                  "name": "amounts",
+                  "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1983,
-                  "src": "115:26:6",
+                  "scope": 1614,
+                  "src": "115:14:6",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint256_$10_memory_ptr",
-                    "typeString": "uint256[10]"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
-                    "baseType": {
-                      "id": 1977,
-                      "name": "uint256",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "115:7:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "id": 1979,
-                    "length": {
-                      "hexValue": "3130",
-                      "id": 1978,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "123:2:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_10_by_1",
-                        "typeString": "int_const 10"
-                      },
-                      "value": "10"
-                    },
-                    "nodeType": "ArrayTypeName",
-                    "src": "115:11:6",
+                    "id": 1610,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:6",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint256_$10_storage_ptr",
-                      "typeString": "uint256[10]"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "114:28:6"
+              "src": "114:16:6"
             },
             "returnParameters": {
-              "id": 1982,
+              "id": 1613,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "151:0:6"
+              "src": "139:0:6"
             },
-            "scope": 1998,
-            "src": "98:54:6",
+            "scope": 1620,
+            "src": "98:42:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "45ce0360",
-            "id": 1990,
+            "functionSelector": "2e1a7d4d",
+            "id": 1619,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1988,
+              "id": 1617,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1987,
+                  "id": 1616,
                   "mutability": "mutable",
-                  "name": "amounts",
+                  "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1990,
-                  "src": "176:26:6",
+                  "scope": 1619,
+                  "src": "164:14:6",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint256_$10_memory_ptr",
-                    "typeString": "uint256[10]"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
-                    "baseType": {
-                      "id": 1984,
-                      "name": "uint256",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "176:7:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "id": 1986,
-                    "length": {
-                      "hexValue": "3130",
-                      "id": 1985,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "184:2:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_10_by_1",
-                        "typeString": "int_const 10"
-                      },
-                      "value": "10"
-                    },
-                    "nodeType": "ArrayTypeName",
-                    "src": "176:11:6",
+                    "id": 1615,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "164:7:6",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint256_$10_storage_ptr",
-                      "typeString": "uint256[10]"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "175:28:6"
+              "src": "163:16:6"
             },
             "returnParameters": {
-              "id": 1989,
+              "id": 1618,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "212:0:6"
+              "src": "188:0:6"
             },
-            "scope": 1998,
-            "src": "158:55:6",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
-            "functionSelector": "b7fdf784",
-            "id": 1997,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "setRewardCoin",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 1993,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1992,
-                  "mutability": "mutable",
-                  "name": "rewardCoin",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 1997,
-                  "src": "242:18:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 1991,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "242:7:6",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "241:20:6"
-            },
-            "returnParameters": {
-              "id": 1996,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1995,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 1997,
-                  "src": "279:4:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 1994,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "279:4:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "278:6:6"
-            },
-            "scope": 1998,
-            "src": "219:66:6",
+            "scope": 1620,
+            "src": "146:43:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1999,
-        "src": "66:222:6"
+        "scope": 1621,
+        "src": "66:126:6"
       }
     ],
-    "src": "39:249:6"
+    "src": "39:153:6"
   },
   "legacyAST": {
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        1998
+        1620
       ]
     },
-    "id": 1999,
+    "id": 1621,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1976,
+        "id": 1609,
         "literals": [
           "solidity",
           "^",
@@ -364,256 +214,125 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1998,
+        "id": 1620,
         "linearizedBaseContracts": [
-          1998
+          1620
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "a9834c6d",
-            "id": 1983,
+            "functionSelector": "b6b55f25",
+            "id": 1614,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1981,
+              "id": 1612,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1980,
+                  "id": 1611,
                   "mutability": "mutable",
-                  "name": "amounts",
+                  "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1983,
-                  "src": "115:26:6",
+                  "scope": 1614,
+                  "src": "115:14:6",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint256_$10_memory_ptr",
-                    "typeString": "uint256[10]"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
-                    "baseType": {
-                      "id": 1977,
-                      "name": "uint256",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "115:7:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "id": 1979,
-                    "length": {
-                      "hexValue": "3130",
-                      "id": 1978,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "123:2:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_10_by_1",
-                        "typeString": "int_const 10"
-                      },
-                      "value": "10"
-                    },
-                    "nodeType": "ArrayTypeName",
-                    "src": "115:11:6",
+                    "id": 1610,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:6",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint256_$10_storage_ptr",
-                      "typeString": "uint256[10]"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "114:28:6"
+              "src": "114:16:6"
             },
             "returnParameters": {
-              "id": 1982,
+              "id": 1613,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "151:0:6"
+              "src": "139:0:6"
             },
-            "scope": 1998,
-            "src": "98:54:6",
+            "scope": 1620,
+            "src": "98:42:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "45ce0360",
-            "id": 1990,
+            "functionSelector": "2e1a7d4d",
+            "id": 1619,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1988,
+              "id": 1617,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1987,
+                  "id": 1616,
                   "mutability": "mutable",
-                  "name": "amounts",
+                  "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1990,
-                  "src": "176:26:6",
+                  "scope": 1619,
+                  "src": "164:14:6",
                   "stateVariable": false,
-                  "storageLocation": "memory",
+                  "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint256_$10_memory_ptr",
-                    "typeString": "uint256[10]"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   },
                   "typeName": {
-                    "baseType": {
-                      "id": 1984,
-                      "name": "uint256",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "176:7:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "id": 1986,
-                    "length": {
-                      "hexValue": "3130",
-                      "id": 1985,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "184:2:6",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_10_by_1",
-                        "typeString": "int_const 10"
-                      },
-                      "value": "10"
-                    },
-                    "nodeType": "ArrayTypeName",
-                    "src": "176:11:6",
+                    "id": 1615,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "164:7:6",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint256_$10_storage_ptr",
-                      "typeString": "uint256[10]"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
                 }
               ],
-              "src": "175:28:6"
+              "src": "163:16:6"
             },
             "returnParameters": {
-              "id": 1989,
+              "id": 1618,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "212:0:6"
+              "src": "188:0:6"
             },
-            "scope": 1998,
-            "src": "158:55:6",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
-            "functionSelector": "b7fdf784",
-            "id": 1997,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "setRewardCoin",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 1993,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1992,
-                  "mutability": "mutable",
-                  "name": "rewardCoin",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 1997,
-                  "src": "242:18:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 1991,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "242:7:6",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "241:20:6"
-            },
-            "returnParameters": {
-              "id": 1996,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1995,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 1997,
-                  "src": "279:4:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 1994,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "279:4:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "278:6:6"
-            },
-            "scope": 1998,
-            "src": "219:66:6",
+            "scope": 1620,
+            "src": "146:43:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1999,
-        "src": "66:222:6"
+        "scope": 1621,
+        "src": "66:126:6"
       }
     ],
-    "src": "39:249:6"
+    "src": "39:153:6"
   },
   "compiler": {
     "name": "solc",
@@ -621,7 +340,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-18T18:48:01.599Z",
+  "updatedAt": "2021-04-19T11:03:41.252Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

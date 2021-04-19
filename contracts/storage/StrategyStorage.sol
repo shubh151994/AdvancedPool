@@ -3,6 +3,7 @@
 pragma solidity >0.6.0;
 import "../libraries/SafeMath.sol";
 import "../interfaces/IERC20.sol"; 
+import "../interfaces/Controller.sol"; 
 import "../interfaces/TriPool.sol";
 import "../interfaces/UniswapRouter.sol";
 
@@ -21,26 +22,13 @@ contract StrategyStorageV1 {
         IERC20 poolToken;
     
         Pool poolAddress;
-        
-        Gauge gauge;
-        
-        Minter minter;
-        
-        VotingEscrow votingEscrow;
-    
-        FeeDistributor feeDistributor;
-        
+           
         UniswapV2Router uniswapRouter;
+
+        Controller controller;
         
         address poolOwner;
-        
-        uint256 availableCRVToSwap;
-        uint256 crvLockPercent;
-        uint256 availableCRVToLock;
-        uint256 rewardCoin;
-    
-        uint256 DENOMINATOR;
-
+        uint256 coinIndex; 
     }
 
     function strategyStorage() internal pure returns (StrategyStorage storage ss) {

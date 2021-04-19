@@ -18,32 +18,24 @@ contract TriPoolStrategy is StrategyStorageV1 {
 /****CONSTRUCTOR****/
     function initialize(
         Pool _poolAddress,
-        Gauge _gauge, 
-        Minter _minter, 
         IERC20 _crvToken, 
         IERC20 _poolToken,
-        VotingEscrow _votingEscrow,
-        FeeDistributor _feeDistributor,
         IERC20[3] memory _coins,
         UniswapV2Router _uniswapRouter,
         address _poolOwner,
-        uint256 _crvLockPercent
-        
+        Controller _controller,
+        uint256 _coinIndex
     ) public{
         StrategyStorage storage ss = strategyStorage();
         require(!ss.initialized, 'Already initialized');
         ss.poolAddress = _poolAddress;
-        ss.gauge = _gauge;
-        ss.minter = _minter;
         ss.crvToken = _crvToken;
-        ss.votingEscrow = _votingEscrow;
-        ss.feeDistributor = _feeDistributor;
         ss.coins = _coins;
         ss.uniswapRouter = _uniswapRouter; 
         ss.poolOwner = _poolOwner;
         ss.poolToken = _poolToken;
-        ss.crvLockPercent = _crvLockPercent;
-        ss.DENOMINATOR = 10000;
+        ss.controller = _controller;
+        ss.coinIndex = _coinIndex;
         ss.initialized = true;
     }
 
@@ -55,139 +47,64 @@ contract TriPoolStrategy is StrategyStorageV1 {
         return true;
     } 
     
-    function setRewardCoin(IERC20 _rewardCoin) external onlyPoolOnwer() returns(bool){
+    function deposit(uint256 amount) external onlyPoolOnwer(){
         StrategyStorage storage ss = strategyStorage();
-        for(uint256 i = 0; i < ss.coins.length; i++){
-            if(ss.coins[i] == _rewardCoin){
-                ss.rewardCoin = i;
-                break;
-            }
-        }
-        return true;
+        uint256[3] memory amountArray;
+        amountArray[ss.coinIndex] = amount;
+        ss.coins[ss.coinIndex].transferFrom(msg.sender, address(this), amount);
+        ss.coins[ss.coinIndex].approve(address(ss.poolAddress), amount);
+        ss.poolAddress.add_liquidity(amountArray, 0);
+        stakeOnController();
     }
     
-    function deposit(uint256[10] memory amounts) external onlyPoolOnwer(){
+    function withdraw(uint256 amount) external onlyPoolOnwer(){
         StrategyStorage storage ss = strategyStorage();
-        uint256[3] memory updatedAmounts;
-        for(uint8 i = 0 ; i < updatedAmounts.length; i++){
-            updatedAmounts[i] = amounts[i];
-            if(amounts[i] > 0){
-                ss.coins[i].transferFrom(msg.sender, address(this), amounts[i]);
-                ss.coins[i].approve(address(ss.poolAddress), amounts[i]);
-            }
-        }
-        ss.poolAddress.add_liquidity(updatedAmounts, 0);
-        stake();
-    }
-    
-    function withdraw(uint256[10] memory amounts) external onlyPoolOnwer(){
-        StrategyStorage storage ss = strategyStorage();
-        uint coinIndex;
-        uint256[3] memory updatedAmounts;
-        for(uint256 i = 0 ; i < updatedAmounts.length; i++){
-            updatedAmounts[i] = amounts[i];
-            if(updatedAmounts[i] > 0 ){
-                coinIndex = i;
-            }
-        }
-        uint256 unstakeAmount = ss.gauge.balanceOf(address(this));
-        unStake(unstakeAmount);
-        ss.poolAddress.remove_liquidity_imbalance(updatedAmounts,unstakeAmount);
-        ss.coins[coinIndex].transfer(ss.poolOwner, ss.coins[coinIndex].balanceOf(address(this)));
-        stake();
+        uint256[3] memory amountArray;
+        amountArray[ss.coinIndex] = amount;
+        uint256 unstakedAmount = unStakeFromController();
+        ss.poolAddress.remove_liquidity_imbalance(amountArray, unstakedAmount);
+        ss.coins[ss.coinIndex].transfer(ss.poolOwner, ss.coins[ss.coinIndex].balanceOf(address(this)));
+        stakeOnController();
     }
     
 /****INTERNAL FUNCTIONS****/
 
-    function stake() internal {
+    function stakeOnController() internal {
         StrategyStorage storage ss = strategyStorage();
         uint256 stakeAmount = ss.poolToken.balanceOf(address(this)) ;
-        ss.poolToken.approve(address(ss.gauge), stakeAmount);
-        ss.gauge.deposit(stakeAmount);  
+        ss.poolToken.approve(address(ss.controller), stakeAmount);
+        ss.controller.stake(stakeAmount);  
     }
-    
-    function unStake(uint amount) internal{
+    //currently unstaking all
+    function unStakeFromController() internal returns(uint256){
         StrategyStorage storage ss = strategyStorage();
-        ss.gauge.withdraw(amount);
+        uint256 unstakedAmount = ss.controller.unStake();
+        return unstakedAmount;
     }
 
-/****OPEN FUNCTIONS****/
- 
-    function claimCRV() external returns(uint256){
-        StrategyStorage storage ss = strategyStorage();
-        uint256 oldBalance = ss.crvToken.balanceOf(address(this));
-        Minter(ss.minter).mint(address(ss.gauge));
-        uint256 newBalance = ss.crvToken.balanceOf(address(this));
-        uint256 crvReceived = newBalance - oldBalance;
-        uint256 crvToLock = crvReceived * ss.crvLockPercent / ss.DENOMINATOR;
-        ss.availableCRVToLock = ss.availableCRVToLock.add(crvToLock);
-        ss.availableCRVToSwap = ss.availableCRVToSwap.add(crvReceived - crvToLock);
-        return crvReceived;
-    }
+/****OPEN FUNCTIONS****/    
     
-    function createLock(uint256 _value, uint256 _unlockTime) external{
+    function claimAndConverCRV() external returns(uint256) {
         StrategyStorage storage ss = strategyStorage();
-        require(_value <= ss.availableCRVToLock, 'Insufficient CRV' );
-        ss.availableCRVToLock = ss.availableCRVToLock.sub(_value);
-        ss.crvToken.approve(address(ss.votingEscrow), _value);
-        VotingEscrow(ss.votingEscrow).create_lock(_value, _unlockTime);
-    } 
-    
-    function releaseLock() external{
-        StrategyStorage storage ss = strategyStorage();
-        uint256 oldBalance = ss.crvToken.balanceOf(address(this));
-        VotingEscrow(ss.votingEscrow).withdraw();  
-        uint256 newBalance = ss.crvToken.balanceOf(address(this));
-        uint256 crvReceived = newBalance - oldBalance;
-        uint256 crvToLock = crvReceived * ss.crvLockPercent / ss.DENOMINATOR;
-        ss.availableCRVToLock = ss.availableCRVToLock.add(crvToLock);
-        ss.availableCRVToSwap = ss.availableCRVToSwap.add(crvReceived - crvToLock);
-    }
-    
-    function increaseLockAmount(uint256 _value) external {
-        StrategyStorage storage ss = strategyStorage();
-        require(_value <= ss.availableCRVToLock, 'Insufficient CRV' );
-        ss.availableCRVToLock = ss.availableCRVToLock.sub(_value);
-        ss.crvToken.approve(address(ss.votingEscrow), _value);
-        VotingEscrow(ss.votingEscrow).increase_amount(_value);
-    }
-   
-    function claimAndConvert3CRV() external returns(uint256){
-        StrategyStorage storage ss = strategyStorage();
-        uint256 oldBalance = ss.poolToken.balanceOf(address(this));
-        FeeDistributor(ss.feeDistributor).claim();
-        uint256 newBalance = ss.poolToken.balanceOf(address(this));
-        uint256 tokenReceived = newBalance - oldBalance;
-        oldBalance = ss.coins[ss.rewardCoin].balanceOf(address(this));
-        ss.poolAddress.remove_liquidity_one_coin(tokenReceived, int128(ss.rewardCoin), 0);
-        newBalance = ss.coins[ss.rewardCoin].balanceOf(address(this));
-        tokenReceived = newBalance - oldBalance;
-        ss.coins[ss.rewardCoin].transfer(ss.poolOwner, tokenReceived);
-        return tokenReceived;
-    }
-    
-    function convertCRV(uint256 amount) external returns(uint256) {
-        StrategyStorage storage ss = strategyStorage();
-        require(amount <= ss.availableCRVToSwap, "insufficient token");
-        ss.availableCRVToSwap = ss.availableCRVToSwap.sub(amount);
-        uint256 oldBalance = ss.coins[ss.rewardCoin].balanceOf(address(this));
-        ss.crvToken.approve(address(ss.uniswapRouter), amount);
+        ss.controller.claimCRV();
+        uint256 claimedAmount = ss.crvToken.balanceOf(address(this));
+        require(claimedAmount > 0, "Nothing to claim");
+        ss.crvToken.approve(address(ss.uniswapRouter), claimedAmount);
         address[] memory path = new address[](3);
         path[0] = address(ss.crvToken);
         path[1] = ss.uniswapRouter.WETH();
-        path[2] = address(ss.coins[ss.rewardCoin]);
+        path[2] = address(ss.coins[ss.coinIndex]);
         
         ss.uniswapRouter.swapExactTokensForTokens(
-            amount, 
+            claimedAmount, 
             uint256(0), 
             path, 
             address(this), 
             block.timestamp + 1800
         );
         
-        uint256 newBalance = ss.coins[ss.rewardCoin].balanceOf(address(this));
-        uint256 tokenReceived = newBalance - oldBalance;
-        ss.coins[ss.rewardCoin].transfer(ss.poolOwner, tokenReceived);
+        uint256 tokenReceived = ss.coins[ss.coinIndex].balanceOf(address(this));
+        ss.coins[ss.coinIndex].transfer(ss.poolOwner, tokenReceived);
         return tokenReceived;
     }
 

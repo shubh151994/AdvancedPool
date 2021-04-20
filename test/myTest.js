@@ -9,7 +9,7 @@ const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x4008f27fD04f90fb527B92430199Ad649c77D962";
+const DiamondContractAddress = "0x5b79389a277FEDa5E45657AcbDA35e6090a3B399";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -200,9 +200,9 @@ const AdvancedPoolABI =   [
   {
     "inputs": [
       {
-        "internalType": "contract IERC20[]",
-        "name": "_coins",
-        "type": "address[]"
+        "internalType": "contract IERC20",
+        "name": "_coin",
+        "type": "address"
       },
       {
         "internalType": "contract IERC20",
@@ -230,19 +230,14 @@ const AdvancedPoolABI =   [
         "type": "uint256"
       },
       {
-        "internalType": "contract DepositStrategy[]",
-        "name": "_depositStrategies",
-        "type": "address[]"
+        "internalType": "contract DepositStrategy",
+        "name": "_depositStrategy",
+        "type": "address"
       },
       {
-        "internalType": "uint256[]",
-        "name": "_strategyForCoin",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[][]",
-        "name": "_coinsPositionInStrategy",
-        "type": "uint256[][]"
+        "internalType": "uint256",
+        "name": "_maxWithdrawalAllowed",
+        "type": "uint256"
       }
     ],
     "name": "initialize",
@@ -252,11 +247,6 @@ const AdvancedPoolABI =   [
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      },
       {
         "internalType": "uint256",
         "name": "amount",
@@ -276,11 +266,6 @@ const AdvancedPoolABI =   [
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      },
       {
         "internalType": "uint256",
         "name": "amount",
@@ -308,6 +293,11 @@ const AdvancedPoolABI =   [
       {
         "internalType": "uint256",
         "name": "_maxLiquidity",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_maxWithdrawalAllowed",
         "type": "uint256"
       }
     ],
@@ -379,37 +369,7 @@ const AdvancedPoolABI =   [
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "strategyIndex",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
-    "name": "setStrategyRewardCoin",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "addToStrategy",
     "outputs": [
       {
@@ -422,13 +382,7 @@ const AdvancedPoolABI =   [
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "removeFromPool",
     "outputs": [
       {
@@ -445,11 +399,6 @@ const AdvancedPoolABI =   [
       {
         "internalType": "uint256",
         "name": "amountOfStableCoins",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
         "type": "uint256"
       }
     ],
@@ -485,11 +434,6 @@ const AdvancedPoolABI =   [
         "internalType": "uint256",
         "name": "amountOfPoolToken",
         "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
       }
     ],
     "name": "calculateStableCoins",
@@ -519,13 +463,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "maxBurnAllowed",
     "outputs": [
       {
@@ -539,13 +477,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "feesCollected",
     "outputs": [
       {
@@ -559,13 +491,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "currentLiquidity",
     "outputs": [
       {
@@ -579,13 +505,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "idealAmount",
     "outputs": [
       {
@@ -599,13 +519,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "maxLiquidityAllowedInPool",
     "outputs": [
       {
@@ -619,13 +533,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "amountToDeposit",
     "outputs": [
       {
@@ -639,13 +547,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "minLiquidityToMaintainInPool",
     "outputs": [
       {
@@ -659,13 +561,7 @@ const AdvancedPoolABI =   [
     "constant": true
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "coinIndex",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "amountToWithdraw",
     "outputs": [
       {
@@ -679,7 +575,7 @@ const AdvancedPoolABI =   [
     "constant": true
   }
 ]
-const AdvancePoolAddr = "0xD438b24FA03e02796Da4BA3edc1A6E00555F045A";
+const AdvancePoolAddr = "0xAAE0B54B91f27fCEB86B43af16D0A3C27D28071E";
 
 const FacetCutAction = {
   Add: 0,
@@ -769,15 +665,14 @@ async function addFacet(){
 
 async function initializeAdvancedPool(){
   try{
-  const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
-  const poolToken = "0xbD7D8A9c7E57B5Aaa842d749Cc1dA9e02693d9d6"
+  const coins = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
+  const poolToken = "0xA969771455E768E891dA90b639e36c48CFE0d4B4"
   const minLiq = 1000
   const maxLiq = 3000
   const withFee = 1000
   const depFee = 1000
-  const depStrategies = ["0x2aA2d29d3f312F2508aBDa55b40e2805D4312207"]
-  const strForCoin = [0,0,0]
-  const coinPos = [[0,1,2]]
+  const depStrategies = "0xbECD7339E5FF0d3A5493A0e6d1F019A4486E4fa0 "
+  const _maxWithdrawalAllowed = 1000000000
   
   console.log("1111111111")
   const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
@@ -790,8 +685,7 @@ async function initializeAdvancedPool(){
         withFee,
         depFee,
         depStrategies,
-        strForCoin,
-        coinPos
+        _maxWithdrawalAllowed
       ).encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)

@@ -3,13 +3,13 @@
 /* global contract artifacts web3 before it assert */
 
 const Web3 = require('web3');
-const config = require('./../config.js');
+const config = require('./../../config.js');
 const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
 const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0xbECD7339E5FF0d3A5493A0e6d1F019A4486E4fa0";
+const DiamondContractAddress = "0x818072816A7Fc05201549D520ED836Bf777D546D";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -168,6 +168,25 @@ const TriPoolStrategyABI =    [
     "inputs": [
       {
         "internalType": "uint256",
+        "name": "_coinIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "changeCoinIndex",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
       }
@@ -205,7 +224,7 @@ const TriPoolStrategyABI =    [
   }
 ]
 
-const TriPoolStrategyAddr = "0x96cAbacCaA96750D5F5BD9f2A0a3d781667629bc";
+const TriPoolStrategyAddr = "0x6dA2e6404DA018E987953A108c6407D5568cBD9d";
 
 const FacetCutAction = {
   Add: 0,
@@ -278,20 +297,6 @@ async function addFacet(){
 };
 
 
-// async function readValue(){
-//   try{
-//   const EosToEth2 = new web3.eth.Contract(EosToEthPart2ABI, DiamondContractAddress)
-//   console.log(EosToEth2.methods, "EosToEth2")
-//   const functCall = await EosToEth2.methods.contractParams().call();
-//   console.log("444444444444444444444")
-//   console.log(functCall,"functCall")
-//   } catch(e) {
-//       console.log('in catch2')
-//       throw new Error(e);
-//   }
-
-// };
-
 
 async function initializeTriPoolStrategy(){
   try{
@@ -327,46 +332,5 @@ async function initializeTriPoolStrategy(){
 
 };
 
-async function withdrawToken(){
-  try{
-  const id = 5
-  const byteData = '0x0000000000000003010000000005f5e1000000000000000000f5951a818cdb8d67843794980af7a5db588fe6acf5951a818cdb8d67843794980af7a5db588fe6ac000000000000000000000000000000000000000000000000'
-  
-  console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart1ABI, DiamondContractAddress);
-  const functCall = await bridgeCall.methods
-      .pushInboundMessage(
-        id,
-        byteData
-      ).encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
-
-async function sendToken(){
-  try{
-  
-  console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart1ABI, DiamondContractAddress);
-  const functCall = await bridgeCall.methods
-      .sendToken(
-        "1000000",
-        "0"
-      ).encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
 
 initializeTriPoolStrategy()

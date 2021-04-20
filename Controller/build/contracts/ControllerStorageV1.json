@@ -1,0 +1,1861 @@
+{
+  "contractName": "ControllerStorageV1",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/Controller/contracts/storage/ControllerStorage.sol\":\"ControllerStorageV1\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/Curve.sol\":{\"keccak256\":\"0x40ff3f2138f9cbf5a655ce31ea0a4fc6bc725e8cf15e4d75ccb3fff166e9b4cb\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://aa5b5142fdb5b035a5a2c0d133064b0cedf4048c8232ed851d14a1e1b0382f82\",\"dweb:/ipfs/QmYznLMA23NtVxED29Jcxtv1G7DPEYu9V87ojFfoCtT8RQ\"]},\"/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0xa1b6638cca4f679f9945b9ed2e670dbf1dce6ab58f71aa92d11563b03c350787\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://0b274d13550ec46cefe23819f5d7e6d6535a343cce9eb324907937a3fabf02df\",\"dweb:/ipfs/QmR8nJXCohjayBKvuaupn92pSxGQUuHVn6tJJZ3yVeravt\"]},\"/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/UniswapRouter.sol\":{\"keccak256\":\"0x16dd775c753986f29901f171677f4ff1bc397ebebf53955e0ea562f0b61ca081\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://f17a74de0a379270d65c641e6480eb4bfac71362535f7b0fbe1d2f88b84e883e\",\"dweb:/ipfs/QmaKDemHCHWcwk3wcUJP1KxuS83rZ8BibaiSYEYdH3KPt1\"]},\"/E/New Desktop/Projects/AdvancedPool/Controller/contracts/libraries/SafeMath.sol\":{\"keccak256\":\"0x127498b7bbef003b1f6ebda3d3f9f5f65fc7c1cb0e2463301797f28de304dfd5\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://73828136b611ac79407c6071ce1be24fc00e255430b2f14ec342ca9aa8621652\",\"dweb:/ipfs/QmSKCZxpFChox35prPnUBHKkBfYamYDqBAcWZVcBbTb4rs\"]},\"/E/New Desktop/Projects/AdvancedPool/Controller/contracts/storage/ControllerStorage.sol\":{\"keccak256\":\"0x5bc5332a0237ac6fd22eccf115a72cec18b4ebe7caf2388878e69340c4e1be42\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://1d90dc1cbbd2848b47cd83ddad83b164854b82eec4573fdacf03bd667add7e21\",\"dweb:/ipfs/QmTFoxxoBW3w2TsLyD4sefuL6KUGcAKjPmDEs9zypAz2zV\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212206ad5b7017cc28d9546248e2a8b2dd4e6d921aeafb0c48f68835a0c0ed2346b5e64736f6c63430007060033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212206ad5b7017cc28d9546248e2a8b2dd4e6d921aeafb0c48f68835a0c0ed2346b5e64736f6c63430007060033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "223:1138:15:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "223:1138:15:-:0;;;;;",
+  "source": "\r\n//SPDX-License-Identifier: UNLICENSED\r\npragma solidity >0.6.0;\r\nimport \"../libraries/SafeMath.sol\";\r\nimport \"../interfaces/IERC20.sol\"; \r\nimport \"../interfaces/Curve.sol\"; \r\nimport \"../interfaces/UniswapRouter.sol\";\r\n\r\n\r\ncontract ControllerStorageV1 {\r\n    \r\n    bytes32 constant CONTROLLER_STORAGE_POSITION = keccak256(\"diamond.standard.controller.storage\");\r\n\r\n    using SafeMath for uint256;\r\n\r\n    struct ControllerStorage {\r\n        bool initialized;\r\n    \r\n        IERC20 crvToken;\r\n        IERC20 adminFeeToken;\r\n\r\n        mapping(address => Gauge) strategyGauges;\r\n        mapping(address => IERC20) strategyLPTokens;\r\n        mapping(address => bool) isStratgey;\r\n        mapping(address => uint256) availableCRV;\r\n\r\n        address[] depositStrategies;\r\n        \r\n        Minter minter;\r\n        \r\n        VotingEscrow votingEscrow;\r\n    \r\n        FeeDistributor feeDistributor;\r\n        \r\n        UniswapV2Router uniswapRouter;\r\n        \r\n        address controllerOwner;\r\n        \r\n        uint256 crvLockPercent;\r\n        uint256 DENOMINATOR;\r\n        uint256 totalStrategies;\r\n        uint256 availableCRVToLock;\r\n\r\n    }\r\n\r\n    function controllerStorage() internal pure returns (ControllerStorage storage cs) {\r\n        bytes32 position = CONTROLLER_STORAGE_POSITION;\r\n        assembly {\r\n            cs.slot := position\r\n        }\r\n    }\r\n\r\n}",
+  "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\Controller\\contracts\\storage\\ControllerStorage.sol",
+  "ast": {
+    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/storage/ControllerStorage.sol",
+    "exportedSymbols": {
+      "ControllerStorageV1": [
+        2860
+      ],
+      "FeeDistributor": [
+        1637
+      ],
+      "Gauge": [
+        1627
+      ],
+      "IERC20": [
+        1845
+      ],
+      "Minter": [
+        1633
+      ],
+      "Pool": [
+        1597
+      ],
+      "SafeMath": [
+        2790
+      ],
+      "UniswapV2Router": [
+        1898
+      ],
+      "VotingEscrow": [
+        1663
+      ]
+    },
+    "id": 2861,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2792,
+        "literals": [
+          "solidity",
+          ">",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "41:23:15"
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/libraries/SafeMath.sol",
+        "file": "../libraries/SafeMath.sol",
+        "id": 2793,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 2791,
+        "src": "66:35:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/IERC20.sol",
+        "file": "../interfaces/IERC20.sol",
+        "id": 2794,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 1846,
+        "src": "103:34:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/Curve.sol",
+        "file": "../interfaces/Curve.sol",
+        "id": 2795,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 1664,
+        "src": "140:33:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/UniswapRouter.sol",
+        "file": "../interfaces/UniswapRouter.sol",
+        "id": 2796,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 1899,
+        "src": "176:41:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2860,
+        "linearizedBaseContracts": [
+          2860
+        ],
+        "name": "ControllerStorageV1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 2801,
+            "mutability": "constant",
+            "name": "CONTROLLER_STORAGE_POSITION",
+            "nodeType": "VariableDeclaration",
+            "scope": 2860,
+            "src": "265:95:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 2797,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "265:7:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "6469616d6f6e642e7374616e646172642e636f6e74726f6c6c65722e73746f72616765",
+                  "id": 2799,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "322:37:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_36cd024ab99b7eb43ce06d2c7a20fd55d745b01b3ab37b4f7429b2a08705e3a4",
+                    "typeString": "literal_string \"diamond.standard.controller.storage\""
+                  },
+                  "value": "diamond.standard.controller.storage"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_36cd024ab99b7eb43ce06d2c7a20fd55d745b01b3ab37b4f7429b2a08705e3a4",
+                    "typeString": "literal_string \"diamond.standard.controller.storage\""
+                  }
+                ],
+                "id": 2798,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "312:9:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 2800,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "312:48:15",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "id": 2804,
+            "libraryName": {
+              "id": 2802,
+              "name": "SafeMath",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2790,
+              "src": "375:8:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SafeMath_$2790",
+                "typeString": "library SafeMath"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "369:27:15",
+            "typeName": {
+              "id": 2803,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "388:7:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "canonicalName": "ControllerStorageV1.ControllerStorage",
+            "id": 2848,
+            "members": [
+              {
+                "constant": false,
+                "id": 2806,
+                "mutability": "mutable",
+                "name": "initialized",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "440:16:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 2805,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "440:4:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2808,
+                "mutability": "mutable",
+                "name": "crvToken",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "473:15:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IERC20_$1845",
+                  "typeString": "contract IERC20"
+                },
+                "typeName": {
+                  "id": 2807,
+                  "name": "IERC20",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1845,
+                  "src": "473:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1845",
+                    "typeString": "contract IERC20"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2810,
+                "mutability": "mutable",
+                "name": "adminFeeToken",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "499:20:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IERC20_$1845",
+                  "typeString": "contract IERC20"
+                },
+                "typeName": {
+                  "id": 2809,
+                  "name": "IERC20",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1845,
+                  "src": "499:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1845",
+                    "typeString": "contract IERC20"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2814,
+                "mutability": "mutable",
+                "name": "strategyGauges",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "532:40:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Gauge_$1627_$",
+                  "typeString": "mapping(address => contract Gauge)"
+                },
+                "typeName": {
+                  "id": 2813,
+                  "keyType": {
+                    "id": 2811,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "540:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "532:25:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Gauge_$1627_$",
+                    "typeString": "mapping(address => contract Gauge)"
+                  },
+                  "valueType": {
+                    "id": 2812,
+                    "name": "Gauge",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1627,
+                    "src": "551:5:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Gauge_$1627",
+                      "typeString": "contract Gauge"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2818,
+                "mutability": "mutable",
+                "name": "strategyLPTokens",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "583:43:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_contract$_IERC20_$1845_$",
+                  "typeString": "mapping(address => contract IERC20)"
+                },
+                "typeName": {
+                  "id": 2817,
+                  "keyType": {
+                    "id": 2815,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "591:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "583:26:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_contract$_IERC20_$1845_$",
+                    "typeString": "mapping(address => contract IERC20)"
+                  },
+                  "valueType": {
+                    "id": 2816,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1845,
+                    "src": "602:6:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$1845",
+                      "typeString": "contract IERC20"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2822,
+                "mutability": "mutable",
+                "name": "isStratgey",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "637:35:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                  "typeString": "mapping(address => bool)"
+                },
+                "typeName": {
+                  "id": 2821,
+                  "keyType": {
+                    "id": 2819,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "645:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "637:24:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                    "typeString": "mapping(address => bool)"
+                  },
+                  "valueType": {
+                    "id": 2820,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "656:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2826,
+                "mutability": "mutable",
+                "name": "availableCRV",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "683:40:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 2825,
+                  "keyType": {
+                    "id": 2823,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "691:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "683:27:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 2824,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "702:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2829,
+                "mutability": "mutable",
+                "name": "depositStrategies",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "736:27:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 2827,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "736:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 2828,
+                  "nodeType": "ArrayTypeName",
+                  "src": "736:9:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                    "typeString": "address[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2831,
+                "mutability": "mutable",
+                "name": "minter",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "784:13:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_Minter_$1633",
+                  "typeString": "contract Minter"
+                },
+                "typeName": {
+                  "id": 2830,
+                  "name": "Minter",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1633,
+                  "src": "784:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Minter_$1633",
+                    "typeString": "contract Minter"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2833,
+                "mutability": "mutable",
+                "name": "votingEscrow",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "818:25:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_VotingEscrow_$1663",
+                  "typeString": "contract VotingEscrow"
+                },
+                "typeName": {
+                  "id": 2832,
+                  "name": "VotingEscrow",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1663,
+                  "src": "818:12:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_VotingEscrow_$1663",
+                    "typeString": "contract VotingEscrow"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2835,
+                "mutability": "mutable",
+                "name": "feeDistributor",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "860:29:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_FeeDistributor_$1637",
+                  "typeString": "contract FeeDistributor"
+                },
+                "typeName": {
+                  "id": 2834,
+                  "name": "FeeDistributor",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1637,
+                  "src": "860:14:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_FeeDistributor_$1637",
+                    "typeString": "contract FeeDistributor"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2837,
+                "mutability": "mutable",
+                "name": "uniswapRouter",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "910:29:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_UniswapV2Router_$1898",
+                  "typeString": "contract UniswapV2Router"
+                },
+                "typeName": {
+                  "id": 2836,
+                  "name": "UniswapV2Router",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1898,
+                  "src": "910:15:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_UniswapV2Router_$1898",
+                    "typeString": "contract UniswapV2Router"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2839,
+                "mutability": "mutable",
+                "name": "controllerOwner",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "960:23:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2838,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "960:7:15",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2841,
+                "mutability": "mutable",
+                "name": "crvLockPercent",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1004:22:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2840,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1004:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2843,
+                "mutability": "mutable",
+                "name": "DENOMINATOR",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1037:19:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2842,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1037:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2845,
+                "mutability": "mutable",
+                "name": "totalStrategies",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1067:23:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2844,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1067:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2847,
+                "mutability": "mutable",
+                "name": "availableCRVToLock",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1101:26:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2846,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1101:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ControllerStorage",
+            "nodeType": "StructDefinition",
+            "scope": 2860,
+            "src": "404:733:15",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2858,
+              "nodeType": "Block",
+              "src": "1227:129:15",
+              "statements": [
+                {
+                  "assignments": [
+                    2854
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2854,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2858,
+                      "src": "1238:16:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 2853,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1238:7:15",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2856,
+                  "initialValue": {
+                    "id": 2855,
+                    "name": "CONTROLLER_STORAGE_POSITION",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2801,
+                    "src": "1257:27:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1238:46:15"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "1304:45:15",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "1319:19:15",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "1330:8:15"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "cs.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "1319:7:15"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 2851,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "1319:7:15",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 2854,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "1330:8:15",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 2857,
+                  "nodeType": "InlineAssembly",
+                  "src": "1295:54:15"
+                }
+              ]
+            },
+            "id": 2859,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "controllerStorage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2849,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1171:2:15"
+            },
+            "returnParameters": {
+              "id": 2852,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2851,
+                  "mutability": "mutable",
+                  "name": "cs",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2859,
+                  "src": "1197:28:15",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ControllerStorage_$2848_storage_ptr",
+                    "typeString": "struct ControllerStorageV1.ControllerStorage"
+                  },
+                  "typeName": {
+                    "id": 2850,
+                    "name": "ControllerStorage",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 2848,
+                    "src": "1197:17:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ControllerStorage_$2848_storage_ptr",
+                      "typeString": "struct ControllerStorageV1.ControllerStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1196:30:15"
+            },
+            "scope": 2860,
+            "src": "1145:211:15",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 2861,
+        "src": "223:1138:15"
+      }
+    ],
+    "src": "41:1320:15"
+  },
+  "legacyAST": {
+    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/storage/ControllerStorage.sol",
+    "exportedSymbols": {
+      "ControllerStorageV1": [
+        2860
+      ],
+      "FeeDistributor": [
+        1637
+      ],
+      "Gauge": [
+        1627
+      ],
+      "IERC20": [
+        1845
+      ],
+      "Minter": [
+        1633
+      ],
+      "Pool": [
+        1597
+      ],
+      "SafeMath": [
+        2790
+      ],
+      "UniswapV2Router": [
+        1898
+      ],
+      "VotingEscrow": [
+        1663
+      ]
+    },
+    "id": 2861,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2792,
+        "literals": [
+          "solidity",
+          ">",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "41:23:15"
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/libraries/SafeMath.sol",
+        "file": "../libraries/SafeMath.sol",
+        "id": 2793,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 2791,
+        "src": "66:35:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/IERC20.sol",
+        "file": "../interfaces/IERC20.sol",
+        "id": 2794,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 1846,
+        "src": "103:34:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/Curve.sol",
+        "file": "../interfaces/Curve.sol",
+        "id": 2795,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 1664,
+        "src": "140:33:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Controller/contracts/interfaces/UniswapRouter.sol",
+        "file": "../interfaces/UniswapRouter.sol",
+        "id": 2796,
+        "nodeType": "ImportDirective",
+        "scope": 2861,
+        "sourceUnit": 1899,
+        "src": "176:41:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 2860,
+        "linearizedBaseContracts": [
+          2860
+        ],
+        "name": "ControllerStorageV1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 2801,
+            "mutability": "constant",
+            "name": "CONTROLLER_STORAGE_POSITION",
+            "nodeType": "VariableDeclaration",
+            "scope": 2860,
+            "src": "265:95:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 2797,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "265:7:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "6469616d6f6e642e7374616e646172642e636f6e74726f6c6c65722e73746f72616765",
+                  "id": 2799,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "322:37:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_36cd024ab99b7eb43ce06d2c7a20fd55d745b01b3ab37b4f7429b2a08705e3a4",
+                    "typeString": "literal_string \"diamond.standard.controller.storage\""
+                  },
+                  "value": "diamond.standard.controller.storage"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_36cd024ab99b7eb43ce06d2c7a20fd55d745b01b3ab37b4f7429b2a08705e3a4",
+                    "typeString": "literal_string \"diamond.standard.controller.storage\""
+                  }
+                ],
+                "id": 2798,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "312:9:15",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 2800,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "312:48:15",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "id": 2804,
+            "libraryName": {
+              "id": 2802,
+              "name": "SafeMath",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2790,
+              "src": "375:8:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SafeMath_$2790",
+                "typeString": "library SafeMath"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "369:27:15",
+            "typeName": {
+              "id": 2803,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "388:7:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "canonicalName": "ControllerStorageV1.ControllerStorage",
+            "id": 2848,
+            "members": [
+              {
+                "constant": false,
+                "id": 2806,
+                "mutability": "mutable",
+                "name": "initialized",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "440:16:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 2805,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "440:4:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2808,
+                "mutability": "mutable",
+                "name": "crvToken",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "473:15:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IERC20_$1845",
+                  "typeString": "contract IERC20"
+                },
+                "typeName": {
+                  "id": 2807,
+                  "name": "IERC20",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1845,
+                  "src": "473:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1845",
+                    "typeString": "contract IERC20"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2810,
+                "mutability": "mutable",
+                "name": "adminFeeToken",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "499:20:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_IERC20_$1845",
+                  "typeString": "contract IERC20"
+                },
+                "typeName": {
+                  "id": 2809,
+                  "name": "IERC20",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1845,
+                  "src": "499:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$1845",
+                    "typeString": "contract IERC20"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2814,
+                "mutability": "mutable",
+                "name": "strategyGauges",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "532:40:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Gauge_$1627_$",
+                  "typeString": "mapping(address => contract Gauge)"
+                },
+                "typeName": {
+                  "id": 2813,
+                  "keyType": {
+                    "id": 2811,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "540:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "532:25:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_contract$_Gauge_$1627_$",
+                    "typeString": "mapping(address => contract Gauge)"
+                  },
+                  "valueType": {
+                    "id": 2812,
+                    "name": "Gauge",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1627,
+                    "src": "551:5:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Gauge_$1627",
+                      "typeString": "contract Gauge"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2818,
+                "mutability": "mutable",
+                "name": "strategyLPTokens",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "583:43:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_contract$_IERC20_$1845_$",
+                  "typeString": "mapping(address => contract IERC20)"
+                },
+                "typeName": {
+                  "id": 2817,
+                  "keyType": {
+                    "id": 2815,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "591:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "583:26:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_contract$_IERC20_$1845_$",
+                    "typeString": "mapping(address => contract IERC20)"
+                  },
+                  "valueType": {
+                    "id": 2816,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1845,
+                    "src": "602:6:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$1845",
+                      "typeString": "contract IERC20"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2822,
+                "mutability": "mutable",
+                "name": "isStratgey",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "637:35:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                  "typeString": "mapping(address => bool)"
+                },
+                "typeName": {
+                  "id": 2821,
+                  "keyType": {
+                    "id": 2819,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "645:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "637:24:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                    "typeString": "mapping(address => bool)"
+                  },
+                  "valueType": {
+                    "id": 2820,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "656:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2826,
+                "mutability": "mutable",
+                "name": "availableCRV",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "683:40:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 2825,
+                  "keyType": {
+                    "id": 2823,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "691:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "683:27:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 2824,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "702:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2829,
+                "mutability": "mutable",
+                "name": "depositStrategies",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "736:27:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 2827,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "736:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 2828,
+                  "nodeType": "ArrayTypeName",
+                  "src": "736:9:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                    "typeString": "address[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2831,
+                "mutability": "mutable",
+                "name": "minter",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "784:13:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_Minter_$1633",
+                  "typeString": "contract Minter"
+                },
+                "typeName": {
+                  "id": 2830,
+                  "name": "Minter",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1633,
+                  "src": "784:6:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Minter_$1633",
+                    "typeString": "contract Minter"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2833,
+                "mutability": "mutable",
+                "name": "votingEscrow",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "818:25:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_VotingEscrow_$1663",
+                  "typeString": "contract VotingEscrow"
+                },
+                "typeName": {
+                  "id": 2832,
+                  "name": "VotingEscrow",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1663,
+                  "src": "818:12:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_VotingEscrow_$1663",
+                    "typeString": "contract VotingEscrow"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2835,
+                "mutability": "mutable",
+                "name": "feeDistributor",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "860:29:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_FeeDistributor_$1637",
+                  "typeString": "contract FeeDistributor"
+                },
+                "typeName": {
+                  "id": 2834,
+                  "name": "FeeDistributor",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1637,
+                  "src": "860:14:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_FeeDistributor_$1637",
+                    "typeString": "contract FeeDistributor"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2837,
+                "mutability": "mutable",
+                "name": "uniswapRouter",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "910:29:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_UniswapV2Router_$1898",
+                  "typeString": "contract UniswapV2Router"
+                },
+                "typeName": {
+                  "id": 2836,
+                  "name": "UniswapV2Router",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 1898,
+                  "src": "910:15:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_UniswapV2Router_$1898",
+                    "typeString": "contract UniswapV2Router"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2839,
+                "mutability": "mutable",
+                "name": "controllerOwner",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "960:23:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 2838,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "960:7:15",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2841,
+                "mutability": "mutable",
+                "name": "crvLockPercent",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1004:22:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2840,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1004:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2843,
+                "mutability": "mutable",
+                "name": "DENOMINATOR",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1037:19:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2842,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1037:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2845,
+                "mutability": "mutable",
+                "name": "totalStrategies",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1067:23:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2844,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1067:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2847,
+                "mutability": "mutable",
+                "name": "availableCRVToLock",
+                "nodeType": "VariableDeclaration",
+                "scope": 2848,
+                "src": "1101:26:15",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 2846,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1101:7:15",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ControllerStorage",
+            "nodeType": "StructDefinition",
+            "scope": 2860,
+            "src": "404:733:15",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 2858,
+              "nodeType": "Block",
+              "src": "1227:129:15",
+              "statements": [
+                {
+                  "assignments": [
+                    2854
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 2854,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 2858,
+                      "src": "1238:16:15",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 2853,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1238:7:15",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 2856,
+                  "initialValue": {
+                    "id": 2855,
+                    "name": "CONTROLLER_STORAGE_POSITION",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 2801,
+                    "src": "1257:27:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1238:46:15"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "1304:45:15",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "1319:19:15",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "1330:8:15"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "cs.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "1319:7:15"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 2851,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "1319:7:15",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 2854,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "1330:8:15",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 2857,
+                  "nodeType": "InlineAssembly",
+                  "src": "1295:54:15"
+                }
+              ]
+            },
+            "id": 2859,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "controllerStorage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2849,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1171:2:15"
+            },
+            "returnParameters": {
+              "id": 2852,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2851,
+                  "mutability": "mutable",
+                  "name": "cs",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2859,
+                  "src": "1197:28:15",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ControllerStorage_$2848_storage_ptr",
+                    "typeString": "struct ControllerStorageV1.ControllerStorage"
+                  },
+                  "typeName": {
+                    "id": 2850,
+                    "name": "ControllerStorage",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 2848,
+                    "src": "1197:17:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ControllerStorage_$2848_storage_ptr",
+                      "typeString": "struct ControllerStorageV1.ControllerStorage"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1196:30:15"
+            },
+            "scope": 2860,
+            "src": "1145:211:15",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 2861,
+        "src": "223:1138:15"
+      }
+    ],
+    "src": "41:1320:15"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2021-04-20T09:10:44.684Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

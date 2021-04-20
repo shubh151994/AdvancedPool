@@ -1,8 +1,7 @@
 /* eslint-disable prefer-const */
 /* global artifacts */
 
-const { Console } = require("console")
-const config = require("./../config.js");
+const config = require("./../../config.js");
 const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')

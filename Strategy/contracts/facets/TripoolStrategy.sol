@@ -46,6 +46,13 @@ contract TriPoolStrategy is StrategyStorageV1 {
         ss.poolOwner = newOwner;
         return true;
     } 
+
+    function changeCoinIndex(uint256 _coinIndex) external onlyPoolOnwer() returns(bool){
+        StrategyStorage storage ss = strategyStorage();
+        require(_coinIndex < ss.coins.length, 'Invalid Coin Index');
+        ss.coinIndex = _coinIndex;
+        return true;
+    } 
     
     function deposit(uint256 amount) external onlyPoolOnwer(){
         StrategyStorage storage ss = strategyStorage();

@@ -111,6 +111,12 @@ contract AdvancedPool is PoolStorageV1 {
         ps.owner = newOwner;
         return true;
     } 
+
+    function updateStrategy(DepositStrategy _depositStrategy) external onlyOnwer() returns(bool){
+        PoolStorage storage ps = poolStorage();
+        ps.depositStrategy = _depositStrategy;
+        return true;
+    } 
     
 /****POOL FUNCTIONS****/
 
@@ -161,17 +167,11 @@ contract AdvancedPool is PoolStorageV1 {
         return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? ps.poolToken.decimals() : ps.poolToken.decimals() * ps.poolBalance/ps.poolToken.totalSupply();
     }
     
-    
     // returning max number of pool token that can be burnt
     // if min is also less than actual
     function maxBurnAllowed() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
         return calculatePoolTokens(ps.maxWithdrawalAllowed);
-    }
-    
-    function feesCollected() public view returns(uint256){
-        PoolStorage storage ps = poolStorage();
-        return ps.feesCollected;
     }
 
     function currentLiquidity() public view returns(uint256){
@@ -202,6 +202,26 @@ contract AdvancedPool is PoolStorageV1 {
     function amountToWithdraw() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
         return currentLiquidity() > minLiquidityToMaintainInPool() || ps.strategyDeposit == 0 || ps.strategyDeposit < idealAmount() - currentLiquidity() ? 0 : idealAmount() - currentLiquidity();
+    }
+
+    function lockStatus() public view returns(bool){
+        PoolStorage storage ps = poolStorage();
+        return ps.locked;
+    }
+
+    function totalDeposit() public view returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        return ps.poolBalance;
+    }
+
+    function strategyDeposit() public view returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        return ps.strategyDeposit;
+    }
+       
+    function feesCollected() public view returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        return ps.feesCollected;
     }
     
 }

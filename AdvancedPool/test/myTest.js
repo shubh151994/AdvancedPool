@@ -3,13 +3,13 @@
 /* global contract artifacts web3 before it assert */
 
 const Web3 = require('web3');
-const config = require('./../config.js');
+const config = require('./../../config.js');
 const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
 const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x5b79389a277FEDa5E45657AcbDA35e6090a3B399";
+const DiamondContractAddress = "0x53c8127d38664d834C090bd20c8Bd02D35F20A13";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -369,6 +369,25 @@ const AdvancedPoolABI =   [
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "contract DepositStrategy",
+        "name": "_depositStrategy",
+        "type": "address"
+      }
+    ],
+    "name": "updateStrategy",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "addToStrategy",
     "outputs": [
@@ -478,20 +497,6 @@ const AdvancedPoolABI =   [
   },
   {
     "inputs": [],
-    "name": "feesCollected",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
     "name": "currentLiquidity",
     "outputs": [
       {
@@ -573,9 +578,65 @@ const AdvancedPoolABI =   [
     "stateMutability": "view",
     "type": "function",
     "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "lockStatus",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "totalDeposit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "strategyDeposit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "feesCollected",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
   }
 ]
-const AdvancePoolAddr = "0xAAE0B54B91f27fCEB86B43af16D0A3C27D28071E";
+const AdvancePoolAddr = "0x9C91Cb7894450e94969aA8Cd2754831c9E551Fba";
 
 const FacetCutAction = {
   Add: 0,
@@ -648,30 +709,15 @@ async function addFacet(){
 };
 
 
-// async function readValue(){
-//   try{
-//   const EosToEth2 = new web3.eth.Contract(EosToEthPart2ABI, DiamondContractAddress)
-//   console.log(EosToEth2.methods, "EosToEth2")
-//   const functCall = await EosToEth2.methods.contractParams().call();
-//   console.log("444444444444444444444")
-//   console.log(functCall,"functCall")
-//   } catch(e) {
-//       console.log('in catch2')
-//       throw new Error(e);
-//   }
-
-// };
-
-
 async function initializeAdvancedPool(){
   try{
   const coins = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
-  const poolToken = "0xA969771455E768E891dA90b639e36c48CFE0d4B4"
+  const poolToken = "0x94e056b39fca4D8982748D3E382645A8BD498617"
   const minLiq = 1000
   const maxLiq = 3000
   const withFee = 1000
   const depFee = 1000
-  const depStrategies = "0xbECD7339E5FF0d3A5493A0e6d1F019A4486E4fa0 "
+  const depStrategies = "0xbECD7339E5FF0d3A5493A0e6d1F019A4486E4fa0"
   const _maxWithdrawalAllowed = 1000000000
   
   console.log("1111111111")
@@ -696,39 +742,14 @@ async function initializeAdvancedPool(){
   }
 
 };
-  
-async function withdrawToken(){
-  try{
-  const id = 5
-  const byteData = '0x0000000000000003010000000005f5e1000000000000000000f5951a818cdb8d67843794980af7a5db588fe6acf5951a818cdb8d67843794980af7a5db588fe6ac000000000000000000000000000000000000000000000000'
-  
-  console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart1ABI, DiamondContractAddress);
-  const functCall = await bridgeCall.methods
-      .pushInboundMessage(
-        id,
-        byteData
-      ).encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
 
 async function sendToken(){
   try{
   
   console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart1ABI, DiamondContractAddress);
+  const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
   const functCall = await bridgeCall.methods
-      .sendToken(
-        "1000000",
-        "0"
-      ).encodeABI();
+      .stake("100000000").encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
   console.log(receipt)
@@ -738,5 +759,7 @@ async function sendToken(){
   }
 
 };
+  
+  
 
-initializeAdvancedPool()
+sendToken()

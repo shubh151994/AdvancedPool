@@ -28,7 +28,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":\"DepositStrategy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xa0a379c0832f5d2ce1f49e0b4d329f7ffc8bda34914fed56254da6f49db03608\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://031898a27a8ffa3e94dd40263607307ed068b6bc62e9ed7e232f3a9034050f21\",\"dweb:/ipfs/QmYKsqUFvkca82DZ6kdBtVPSweLmDBsuvkcoRL3YRywBnc\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":\"DepositStrategy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xa0a379c0832f5d2ce1f49e0b4d329f7ffc8bda34914fed56254da6f49db03608\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://031898a27a8ffa3e94dd40263607307ed068b6bc62e9ed7e232f3a9034050f21\",\"dweb:/ipfs/QmYKsqUFvkca82DZ6kdBtVPSweLmDBsuvkcoRL3YRywBnc\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -37,20 +37,20 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\ninterface DepositStrategy{\r\n    function deposit(uint256 amount) external;\r\n    function withdraw(uint256 amount) external;\r\n}",
-  "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\contracts\\interfaces\\DepositStrategy.sol",
+  "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\AdvancedPool\\contracts\\interfaces\\DepositStrategy.sol",
   "ast": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
+    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        1620
+        1685
       ]
     },
-    "id": 1621,
+    "id": 1686,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1609,
+        "id": 1674,
         "literals": [
           "solidity",
           "^",
@@ -66,32 +66,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1620,
+        "id": 1685,
         "linearizedBaseContracts": [
-          1620
+          1685
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "b6b55f25",
-            "id": 1614,
+            "id": 1679,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1612,
+              "id": 1677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1611,
+                  "id": 1676,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1614,
+                  "scope": 1679,
                   "src": "115:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -100,7 +100,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1610,
+                    "id": 1675,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "115:7:6",
@@ -115,12 +115,12 @@
               "src": "114:16:6"
             },
             "returnParameters": {
-              "id": 1613,
+              "id": 1678,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "139:0:6"
             },
-            "scope": 1620,
+            "scope": 1685,
             "src": "98:42:6",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -128,23 +128,23 @@
           },
           {
             "functionSelector": "2e1a7d4d",
-            "id": 1619,
+            "id": 1684,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1617,
+              "id": 1682,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1616,
+                  "id": 1681,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1619,
+                  "scope": 1684,
                   "src": "164:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -153,7 +153,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1615,
+                    "id": 1680,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "164:7:6",
@@ -168,37 +168,37 @@
               "src": "163:16:6"
             },
             "returnParameters": {
-              "id": 1618,
+              "id": 1683,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "188:0:6"
             },
-            "scope": 1620,
+            "scope": 1685,
             "src": "146:43:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1621,
+        "scope": 1686,
         "src": "66:126:6"
       }
     ],
     "src": "39:153:6"
   },
   "legacyAST": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
+    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        1620
+        1685
       ]
     },
-    "id": 1621,
+    "id": 1686,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1609,
+        "id": 1674,
         "literals": [
           "solidity",
           "^",
@@ -214,32 +214,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1620,
+        "id": 1685,
         "linearizedBaseContracts": [
-          1620
+          1685
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "b6b55f25",
-            "id": 1614,
+            "id": 1679,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1612,
+              "id": 1677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1611,
+                  "id": 1676,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1614,
+                  "scope": 1679,
                   "src": "115:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -248,7 +248,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1610,
+                    "id": 1675,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "115:7:6",
@@ -263,12 +263,12 @@
               "src": "114:16:6"
             },
             "returnParameters": {
-              "id": 1613,
+              "id": 1678,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "139:0:6"
             },
-            "scope": 1620,
+            "scope": 1685,
             "src": "98:42:6",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -276,23 +276,23 @@
           },
           {
             "functionSelector": "2e1a7d4d",
-            "id": 1619,
+            "id": 1684,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1617,
+              "id": 1682,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1616,
+                  "id": 1681,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1619,
+                  "scope": 1684,
                   "src": "164:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -301,7 +301,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1615,
+                    "id": 1680,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "164:7:6",
@@ -316,19 +316,19 @@
               "src": "163:16:6"
             },
             "returnParameters": {
-              "id": 1618,
+              "id": 1683,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "188:0:6"
             },
-            "scope": 1620,
+            "scope": 1685,
             "src": "146:43:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1621,
+        "scope": 1686,
         "src": "66:126:6"
       }
     ],
@@ -340,7 +340,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-19T13:46:36.004Z",
+  "updatedAt": "2021-04-20T11:17:29.014Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

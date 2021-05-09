@@ -70,3 +70,10 @@ def remove_liquidity_one_coin(_token_amount: uint256, i: int128, min_amount: uin
         ),
         max_outsize=32,
     )  # dev: failed transfer
+
+
+@external
+def updatetoken(
+    _pool_token: address
+):
+    self.token = CurveToken(_pool_token)

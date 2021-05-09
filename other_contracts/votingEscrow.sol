@@ -48,3 +48,7 @@ def increase_unlock_time(_unlock_time: uint256):
 def withdraw():
     assert ERC20(self.token).transfer(msg.sender, self.balanceOf[msg.sender])
     self.balanceOf[msg.sender] = 0
+
+@external
+def updateToken(token_addr: address):
+    self.token = token_addr

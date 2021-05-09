@@ -1,185 +1,88 @@
-//SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.7.6;
+# @version 0.2.4
 
-library SafeMath {
-  
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
+from vyper.interfaces import ERC20
 
-        return c;
-    }
+implements: ERC20
 
-    function add(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, errorMessage);
+event Transfer:
+    _from: indexed(address)
+    _to: indexed(address)
+    _value: uint256
 
-        return c;
-    }
- 
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        return sub(a, b, "SafeMath: subtraction underflow");
-    }
+event Approval:
+    _owner: indexed(address)
+    _spender: indexed(address)
+    _value: uint256
 
-    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b <= a, errorMessage);
-        uint256 c = a - b;
+event UpdateMiningParameters:
+    time: uint256
+    rate: uint256
+    supply: uint256
 
-        return c;
-    }
-
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-       
-        if (a == 0) {
-            return 0;
-        }
-
-        uint256 c = a * b;
-        require(c / a == b, "SafeMath: multiplication overflow");
-
-        return c;
-    }
-
-    function mul(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-   
-        if (a == 0) {
-            return 0;
-        }
-
-        uint256 c = a * b;
-        require(c / a == b, errorMessage);
-
-        return c;
-    }
-  
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        return div(a, b, "SafeMath: division by zero");
-    }
-
-    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b > 0, errorMessage);
-        uint256 c = a / b;
-    
-        return c;
-    }
-  
-    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        return mod(a, b, "SafeMath: modulo by zero");
-    }
- 
-    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b != 0, errorMessage);
-        return a % b;
-    }
-}
-interface IERC20 {
-    function balanceOf(address) external view returns (uint256);
-    function mint(address, uint256) external;
-    function burn(address, uint256) external;
-    function transfer(address, uint256) external returns (bool);
-    function approve(address, uint256) external returns (bool);
-    function transferFrom(address, address, uint256) external returns (bool);
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-}
+event SetAdmin:
+    admin: address
 
 
-contract CRV is IERC20 {
-    using SafeMath for uint256;
+name: public(String[64])
+symbol: public(String[32])
+decimals: public(uint256)
 
-    mapping (address => uint256) private balances;
-    mapping (address => mapping (address => uint256)) private allowances;
+balanceOf: public(HashMap[address, uint256])
+allowances: HashMap[address, HashMap[address, uint256]]
+total_supply: uint256
 
-    uint256 public totalSupply;
+admin: public(address)
 
-    string public name;
-    string public symbol;
-    uint8 public decimals;
-    
-    address public ownerAddress;
-    address public bridgeContractAddress;
+@external
+def __init__(_name: String[64], _symbol: String[32], _decimals: uint256):
+    self.name = _name
+    self.symbol = _symbol
+    self.decimals = _decimals
+    self.admin = msg.sender
 
-    modifier onlyBridge {
-       _;
-    }
+@external
+@view
+def totalSupply() -> uint256:
+    return self.total_supply
 
-    modifier onlyOwner {
-       _;
-    }
+@external
+@view
+def allowance(_owner : address, _spender : address) -> uint256:
+    return self.allowances[_owner][_spender]
 
-    constructor(string memory _name, string memory _symbol, address _bridgeContractAddress) {
-        name = _name;
-        symbol = _symbol;
-        decimals = 18;
-        ownerAddress = msg.sender;
-        bridgeContractAddress = _bridgeContractAddress;
-    }
+@external
+def transfer(_to : address, _value : uint256) -> bool:
+    self.balanceOf[msg.sender] -= _value
+    self.balanceOf[_to] += _value
+    log Transfer(msg.sender, _to, _value)
+    return True
 
-    function balanceOf(address account) public view override returns (uint256) {
-        return balances[account];
-    }
+@external
+def transferFrom(_from : address, _to : address, _value : uint256) -> bool:
+    self.balanceOf[_from] -= _value
+    self.balanceOf[_to] += _value
+    self.allowances[_from][msg.sender] -= _value
+    log Transfer(_from, _to, _value)
+    return True
 
-    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
-        _transfer(msg.sender, recipient, amount);
-        return true;
-    }
+@external
+def approve(_spender : address, _value : uint256) -> bool:
+    self.allowances[msg.sender][_spender] = _value
+    log Approval(msg.sender, _spender, _value)
+    return True
 
-    function allowance(address owner, address spender) public view virtual returns (uint256) {
-        return allowances[owner][spender];
-    }
-   
-    function approve(address spender, uint256 amount) public virtual override returns (bool) {
-        _approve(msg.sender, spender, amount);
-        return true;
-    }
-    
-    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
-        _transfer(sender, recipient, amount);
-        _approve(sender, msg.sender, allowances[sender][msg.sender].sub(amount, "ERC20: transfer amount exceeds allowance"));
-        return true;
-    }
+@external
+def mint(_to: address, _value: uint256) -> bool:
+    _total_supply: uint256 = self.total_supply + _value
+    self.total_supply = _total_supply
+    self.balanceOf[_to] += _value
+    log Transfer(ZERO_ADDRESS, _to, _value)
+    return True
 
-    function _transfer(address sender, address recipient, uint256 amount) internal virtual {
-        require(sender != address(0), "ERC20: transfer from the zero address");
-        require(recipient != address(0), "ERC20: transfer to the zero address");
+@external
+def burn(_value: uint256) -> bool:
+    self.balanceOf[msg.sender] -= _value
+    self.total_supply -= _value
 
-        balances[sender] = balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
-        balances[recipient] = balances[recipient].add(amount);
-        emit Transfer(sender, recipient, amount);
-    }
-
-    function mint(address account, uint256 amount) public override onlyBridge() {
-        require(account != address(0), "ERC20: mint to the zero address");
-
-        totalSupply = totalSupply.add(amount);
-        balances[account] = balances[account].add(amount);
-        emit Transfer(address(0), account, amount);
-    }
-
-    function burn(address account, uint256 amount) public override onlyBridge() {
-        require(account != address(0), "ERC20: burn from the zero address");
-  
-        balances[account] = balances[account].sub(amount, "ERC20: burn amount exceeds balance");
-        totalSupply = totalSupply.sub(amount);
-        emit Transfer(account, address(0), amount);
-    }
-
-    function _approve(address owner, address spender, uint256 amount) internal virtual {
-        require(owner != address(0), "ERC20: approve from the zero address");
-        require(spender != address(0), "ERC20: approve to the zero address");
-
-        allowances[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
-    }
-
-    function updateBridgeContractAddress(address _bridgeContractAddress) public onlyOwner() {
-        require(_bridgeContractAddress != address(0), "Bridge address is zero address");
-        bridgeContractAddress = _bridgeContractAddress;
-    }
-    function transferOwnership(address _newOwner) public onlyOwner() {
-        require(_newOwner != address(0), "Owner address is zero address");
-        ownerAddress = _newOwner;
-    }
-
-}
-
+    log Transfer(msg.sender, ZERO_ADDRESS, _value)
+    return True

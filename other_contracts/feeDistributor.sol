@@ -21,3 +21,6 @@ def claim(_addr: address = msg.sender) -> uint256:
         assert ERC20(token).transfer(_addr, amount)
     return amount
 
+@external
+def updateToken(_token: address,):
+    self.token = _token

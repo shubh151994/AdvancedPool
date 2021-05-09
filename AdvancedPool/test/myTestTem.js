@@ -764,13 +764,13 @@ async function initializeAdvancedPool(){
 
 };
 
-async function sendToken(){
+async function addTosTrategy(){
   try{
   
   console.log("1111111111")
   const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
   const functCall = await bridgeCall.methods
-      .stake("100000000").encodeABI();
+      .addToStrategy().encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
   console.log(receipt)
@@ -782,4 +782,4 @@ async function sendToken(){
 };
   
 
-initializeAdvancedPool()
+addTosTrategy()

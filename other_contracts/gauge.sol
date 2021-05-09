@@ -31,3 +31,7 @@ def withdraw(_value: uint256):
     self.balanceOf[msg.sender] = _balance
     self.totalSupply = _supply
     assert ERC20(self.lp_token).transfer(msg.sender, _value)
+
+@external
+def updateToken(lp_addr: address):
+    self.lp_token = lp_addr

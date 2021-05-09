@@ -9,68 +9,55 @@ contract TriPoolStrategy is StrategyStorageV1 {
     
   
 /****MODIFIERS****/
-    modifier onlyPoolOnwer(){
+    modifier onlyPool(){
         StrategyStorage storage ss = strategyStorage();
-        require(ss.poolOwner == msg.sender, "Only poolOwner can call!!");
+        require(msg.sender == ss.pool, "Only pool can call!!");
         _;
     }
     
 /****CONSTRUCTOR****/
     function initialize(
-        Pool _poolAddress,
+        CurvePool _curvePool,
+        IERC20 _curvePoolToken,
         IERC20 _crvToken, 
-        IERC20 _poolToken,
         IERC20[3] memory _coins,
         UniswapV2Router _uniswapRouter,
-        address _poolOwner,
+        address _pool,
         Controller _controller,
         uint256 _coinIndex
     ) public{
         StrategyStorage storage ss = strategyStorage();
         require(!ss.initialized, 'Already initialized');
-        ss.poolAddress = _poolAddress;
+        ss.curvePool = _curvePool;
+        ss.curvePoolToken = _curvePoolToken;
         ss.crvToken = _crvToken;
         ss.coins = _coins;
         ss.uniswapRouter = _uniswapRouter; 
-        ss.poolOwner = _poolOwner;
-        ss.poolToken = _poolToken;
+        ss.pool = _pool;
         ss.controller = _controller;
         ss.coinIndex = _coinIndex;
         ss.initialized = true;
     }
 
-/****POOLOWNER FUNCTIONS****/
-
-    function updateOwner(address newOwner) external onlyPoolOnwer() returns(bool){
-        StrategyStorage storage ss = strategyStorage();
-        ss.poolOwner = newOwner;
-        return true;
-    } 
-
-    function changeCoinIndex(uint256 _coinIndex) external onlyPoolOnwer() returns(bool){
-        StrategyStorage storage ss = strategyStorage();
-        require(_coinIndex < ss.coins.length, 'Invalid Coin Index');
-        ss.coinIndex = _coinIndex;
-        return true;
-    } 
+/****POOL FUNCTIONS****/
     
-    function deposit(uint256 amount) external onlyPoolOnwer(){
+    function deposit(uint256 amount) external onlyPool(){
         StrategyStorage storage ss = strategyStorage();
         uint256[3] memory amountArray;
         amountArray[ss.coinIndex] = amount;
         ss.coins[ss.coinIndex].transferFrom(msg.sender, address(this), amount);
-        ss.coins[ss.coinIndex].approve(address(ss.poolAddress), amount);
-        ss.poolAddress.add_liquidity(amountArray, 0);
-       // stakeOnController();
+        ss.coins[ss.coinIndex].approve(address(ss.curvePool), amount);
+        ss.curvePool.add_liquidity(amountArray, 0);
+        stakeOnController();
     }
     
-    function withdraw(uint256 amount) external onlyPoolOnwer(){
+    function withdraw(uint256 amount) external onlyPool(){
         StrategyStorage storage ss = strategyStorage();
         uint256[3] memory amountArray;
         amountArray[ss.coinIndex] = amount;
         uint256 unstakedAmount = unStakeFromController();
-        ss.poolAddress.remove_liquidity_imbalance(amountArray, unstakedAmount);
-        ss.coins[ss.coinIndex].transfer(ss.poolOwner, ss.coins[ss.coinIndex].balanceOf(address(this)));
+        ss.curvePool.remove_liquidity_imbalance(amountArray, unstakedAmount);
+        ss.coins[ss.coinIndex].transfer(ss.pool, ss.coins[ss.coinIndex].balanceOf(address(this)));
         stakeOnController();
     }
     
@@ -78,11 +65,11 @@ contract TriPoolStrategy is StrategyStorageV1 {
 
     function stakeOnController() internal {
         StrategyStorage storage ss = strategyStorage();
-        uint256 stakeAmount = ss.poolToken.balanceOf(address(this)) ;
-        ss.poolToken.approve(address(ss.controller), stakeAmount);
+        uint256 stakeAmount = ss.curvePoolToken.balanceOf(address(this)) ;
+        ss.curvePoolToken.approve(address(ss.controller), stakeAmount);
         ss.controller.stake(stakeAmount);  
     }
-    //currently unstaking all
+
     function unStakeFromController() internal returns(uint256){
         StrategyStorage storage ss = strategyStorage();
         uint256 unstakedAmount = ss.controller.unStake();
@@ -109,10 +96,8 @@ contract TriPoolStrategy is StrategyStorageV1 {
             address(this), 
             block.timestamp + 1800
         );
-        
         uint256 tokenReceived = ss.coins[ss.coinIndex].balanceOf(address(this));
-        ss.coins[ss.coinIndex].transfer(ss.poolOwner, tokenReceived);
+        ss.coins[ss.coinIndex].transfer(ss.pool, tokenReceived);
         return tokenReceived;
     }
-
 }

@@ -4,7 +4,7 @@ pragma solidity >0.6.0;
 import "../libraries/SafeMath.sol";
 import "../interfaces/IERC20.sol"; 
 import "../interfaces/Controller.sol"; 
-import "../interfaces/TriPool.sol";
+import "../interfaces/CurvePool.sol";
 import "../interfaces/UniswapRouter.sol";
 
 
@@ -19,15 +19,15 @@ contract StrategyStorageV1 {
     
         IERC20[3] coins;
         IERC20 crvToken;
-        IERC20 poolToken;
+        IERC20 curvePoolToken;
     
-        Pool poolAddress;
+        CurvePool curvePool;
            
         UniswapV2Router uniswapRouter;
 
         Controller controller;
         
-        address poolOwner;
+        address pool;
         uint256 coinIndex; 
     }
 

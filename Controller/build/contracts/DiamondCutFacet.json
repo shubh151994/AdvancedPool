@@ -14305,12 +14305,13 @@
         }
       },
       "links": {},
-      "address": "0x23234d8AFA6761aE0B4e8fb4F0b3C14b23C6f4Dc",
-      "transactionHash": "0xa3aaa772bc6263d4b4c3fdd232b7f1340be2fb14b37c739e07131a9f2b7a9f2f"
+      "address": "0xcc73F29fBB67Bf700431578f207aA59767d7264a",
+      "transactionHash": "0xb68c3be23647a635010781e36045fed7405208f443c7233d5f713fa5d2bf0e8c"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-04-20T09:09:10.066Z",
+  "updatedAt": "2021-05-09T08:00:23.937Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -29,7 +29,12 @@ module.exports = {
    
   },
 
-  
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    etherscan: "EZHQPM7ETCHP6IZQVQKKT6M9ITTBYS1GNQ"
+  },
   mocha: {
   },
 

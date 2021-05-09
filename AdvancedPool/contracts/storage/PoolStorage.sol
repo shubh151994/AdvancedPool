@@ -4,6 +4,7 @@ pragma solidity >0.6.0;
 import "../libraries/SafeMath.sol";
 import "../interfaces/IERC20.sol"; 
 import "../interfaces/DepositStrategy.sol";
+import "../interfaces/UniswapRouter.sol";
 
 
 contract PoolStorageV1 {
@@ -18,6 +19,7 @@ contract PoolStorageV1 {
         IERC20 poolToken;
         
         DepositStrategy depositStrategy;
+        UniswapV2Router02 uniswapRouter;
         
         uint256 DENOMINATOR;
 
@@ -33,6 +35,10 @@ contract PoolStorageV1 {
            
         bool  locked;
         address  owner;
+
+        uint256 defaultGas;
+        mapping(address => uint256) gasUsed;
+
     }
 
     function poolStorage() internal pure returns (PoolStorage storage ps) {

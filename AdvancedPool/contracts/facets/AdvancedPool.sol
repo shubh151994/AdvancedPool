@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.7.6;
 pragma experimental ABIEncoderV2;
+
 import "../storage/PoolStorage.sol";
+
 contract AdvancedPool is PoolStorageV1 {
     
 /****VARIABLES*****/
@@ -21,12 +23,14 @@ contract AdvancedPool is PoolStorageV1 {
         _;
     }
   
+
 /****EVENTS****/ 
-    event userDeposits(address user,uint amount);
-    event userWithdrawal(address user,uint amount);
-    event poolDeposit(address user, address pool, address coin, uint amount);
-    event poolWithdrawal(address user, address pool, address coin, uint amount);
+    event userDeposits(address user, uint256 amount);
+    event userWithdrawal(address user,uint256 amount);
+    event poolDeposit(address user, address pool, uint256 amount);
+    event poolWithdrawal(address user, address pool, uint256 amount);
     
+
 /****CONSTRUCTOR****/
     function initialize(
         IERC20 _coin,
@@ -35,12 +39,14 @@ contract AdvancedPool is PoolStorageV1 {
         uint256 _maxLiquidity, 
         uint256 _withdrawFees, 
         uint256 _depositFees,
+        uint256 _maxWithdrawalAllowed,
+        address _owner,
         DepositStrategy _depositStrategy,
-        uint256 _maxWithdrawalAllowed
+        UniswapV2Router02 _uniswapRouter
     ) public {
         PoolStorage storage ps = poolStorage();
         require(!ps.initialized, 'Already initialized');
-        ps.owner = msg.sender;
+        ps.owner = _owner;
         ps.DENOMINATOR = 10000;
         ps.coin = _coin;
         ps.poolToken = _poolToken;
@@ -50,128 +56,145 @@ contract AdvancedPool is PoolStorageV1 {
         ps.depositFees = _depositFees;
         ps.depositStrategy = _depositStrategy;
         ps.maxWithdrawalAllowed = _maxWithdrawalAllowed;
+        ps.uniswapRouter = _uniswapRouter;
         ps.initialized = true;
     }
     
+
 /*****USERS FUNCTIONS****/
-    // amount will be in coins precision
+
     function stake(uint256 amount) external notLocked() returns(uint256){
+        require(amount > 0, 'Invalid Amount');
+
         PoolStorage storage ps = poolStorage();
         uint256 feeAmount = amount * ps.depositFees / ps.DENOMINATOR;
         ps.feesCollected = ps.feesCollected + feeAmount;
-        ps.poolBalance = ps.poolBalance.add(amount);
         uint256 mintAmount = calculatePoolTokens(amount - feeAmount);
+        ps.poolBalance = ps.poolBalance.add(amount - feeAmount);
         ps.coin.transferFrom(msg.sender, address(this), amount);
         ps.poolToken.mint(msg.sender, mintAmount);
         emit userDeposits(msg.sender,amount);
         return mintAmount;
     }
-    
-    //amount is the amount of LP token user want to burn
-    function unStake(uint256 amount) external notLocked() returns(uint256){
+
+    function unstake(uint256 amount) external notLocked() returns(uint256){
         PoolStorage storage ps = poolStorage();
-        require(amount <= ps.poolToken.balanceOf(msg.sender), "You dont have enough pool token!!");
-        require(amount <= maxBurnAllowed(), "Dont have enough fund, Please try later!!");
-        require(ps.poolBalance - ps.strategyDeposit - amount >= minLiquidityToMaintainInPool() , "Dont have enough fund, Please try later!!");
-        uint256 tokenAmount = calculateStableCoins(amount);
-        uint256 feeAmount = tokenAmount * ps.withdrawFees/ ps.DENOMINATOR;
+        require(amount <= maxWithdrawal(), "Dont have enough fund, Please try later!!");
+       
+        uint256 burnAmount = calculatePoolTokens(amount);
+        require(burnAmount <= ps.poolToken.balanceOf(msg.sender), "You dont have enough pool token!!");
+
+        uint256 feeAmount = amount * ps.withdrawFees/ ps.DENOMINATOR;
         ps.feesCollected = ps.feesCollected + feeAmount;
-        ps.poolBalance = ps.poolBalance.sub(tokenAmount - feeAmount);
-        ps.coin.transfer(msg.sender, tokenAmount - feeAmount);
-        ps.poolToken.burn(msg.sender, amount);  
-        emit userWithdrawal(msg.sender,amount);
-        return tokenAmount - feeAmount;
+        ps.poolBalance = ps.poolBalance.sub(amount);
+
+        ps.coin.transfer(msg.sender, amount - feeAmount);
+        ps.poolToken.burn(msg.sender, burnAmount);  
+        emit userWithdrawal(msg.sender, amount);
+        return amount - feeAmount;
+    }
+
+
+/****POOL FUNCTIONS****/
+
+    function addToStrategy() public notLocked() returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
+        uint256 amount = amountToDeposit();
+        require(amount > 0, "Nothing to deposit");
+        ps.strategyDeposit = ps.strategyDeposit.add(amount);
+        ps.coin.approve(address(ps.depositStrategy), amount);
+        ps.depositStrategy.deposit(amount);
+        emit poolDeposit(msg.sender, address(ps.depositStrategy), amount);
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+        return amount;
     }
     
+    function removeFromStrategy() public notLocked() returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
+        uint256 amount = amountToWithdraw();
+        require(amount > 0 , "Nothing to withdraw");
+        ps.strategyDeposit = ps.strategyDeposit.sub(amount);
+        ps.depositStrategy.withdraw(amount);
+        emit poolWithdrawal(msg.sender, address(ps.depositStrategy), amount);
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+        return amount;
+    }
+    
+
 /****ADMIN FUNCTIONS*****/
     
-    function updateLiquidityParam(uint256 _minLiquidity, uint256 _maxLiquidity, uint256 _maxWithdrawalAllowed) external onlyOnwer() notLocked() returns(bool){
+    function updateLiquidityParam(uint256 _minLiquidity, uint256 _maxLiquidity, uint256 _maxWithdrawalAllowed) external onlyOnwer() returns(bool){
+        require(_minLiquidity > 0 &&  _maxLiquidity > 0 && _maxWithdrawalAllowed > 0, 'Parameters cant be zero!!');
+        require(_minLiquidity <  _maxLiquidity, 'Min liquidity cant be greater than max liquidity!!');
+   
         PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.minLiquidity = _minLiquidity;
         ps.maxLiquidity = _maxLiquidity;
         ps.maxWithdrawalAllowed = _maxWithdrawalAllowed;
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+        if(amountToDeposit() > 0){
+            addToStrategy();
+        }else if(amountToWithdraw() > 0){
+            removeFromStrategy();
+        }
         return true;
     }
     
-    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlyOnwer() notLocked() returns(bool){
+    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlyOnwer() returns(bool){
         PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.withdrawFees = _withdrawFees;
         ps.depositFees = _depositFees;
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice));
         return true;
     }
     
     function changeLockStatus() external onlyOnwer() returns(bool){
         PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.locked = !ps.locked;
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice));
         return ps.locked;
     }
     
     function updateOwner(address newOwner) external onlyOnwer() returns(bool){
         PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.owner = newOwner;
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice));
         return true;
     } 
 
-    function updateStrategy(DepositStrategy _depositStrategy) external onlyOnwer() returns(bool){
-        PoolStorage storage ps = poolStorage();
-        ps.depositStrategy = _depositStrategy;
-        return true;
-    } 
-    
-/****POOL FUNCTIONS****/
 
-    function addToStrategy() external notLocked() returns(uint256){
-        PoolStorage storage ps = poolStorage();
-        uint256 amount = amountToDeposit();
-        require(amount > 0 , "Nothing to deposit");
-        ps.strategyDeposit = ps.strategyDeposit.add(amount);
-        ps.coin.approve(address(ps.depositStrategy), amount);
-        ps.depositStrategy.deposit(amount);
-        emit poolDeposit(msg.sender, address(ps.depositStrategy), address(ps.coin), amount);
-        return amount;
-    }
-    
-    function removeFromPool() external notLocked() returns(uint256){
-        PoolStorage storage ps = poolStorage();
-        uint256 amount = amountToWithdraw();
-        require(amount > 0 , "Nothing to withdraw");
-        ps.strategyDeposit = ps.strategyDeposit.sub(amount);
-        ps.depositStrategy.withdraw(amount);
-        emit poolWithdrawal(msg.sender, address(ps.depositStrategy), address(ps.coin),  amount);
-        return amount;
-    }
-    
 /****OTHER FUNCTIONS****/
-    
-    //TOKEN MUST BE SENT IN COINS PRECISION
+
     function calculatePoolTokens(uint256 amountOfStableCoins) public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return amountOfStableCoins * stableCoinPrice() / ps.coin.decimals() ;
+        return (amountOfStableCoins * stableCoinPrice())/10**ps.coin.decimals() ;
     }
-    
-    //Returning in pool token PRECISION
+
     function stableCoinPrice() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? ps.coin.decimals() : ps.coin.decimals() * ps.poolToken.totalSupply()/ps.poolBalance;
+        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? 10**ps.coin.decimals() : ((10**ps.coin.decimals()) * ps.poolToken.totalSupply())/ps.poolBalance;
     }
     
-       //RETURNING IN COIN PRECISION
     function calculateStableCoins(uint256 amountOfPoolToken) public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        amountOfPoolToken = amountOfPoolToken * poolTokenPrice() / ps.coin.decimals();
+        amountOfPoolToken = (amountOfPoolToken*poolTokenPrice())/(10**ps.poolToken.decimals());
         return amountOfPoolToken;
     }
-    
+
     function poolTokenPrice() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? ps.poolToken.decimals() : ps.poolToken.decimals() * ps.poolBalance/ps.poolToken.totalSupply();
+        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? 10**ps.poolToken.decimals() : ((10**ps.poolToken.decimals())*ps.poolBalance)/ps.poolToken.totalSupply();
     }
     
-    // returning max number of pool token that can be burnt
-    // if min is also less than actual
-    function maxBurnAllowed() public view returns(uint256){
+    function maxWithdrawal() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return calculatePoolTokens(ps.maxWithdrawalAllowed);
+        return minLiquidityToMaintainInPool()/2 < ps.maxWithdrawalAllowed ? minLiquidityToMaintainInPool()/2 : ps.maxWithdrawalAllowed;
     }
 
     function currentLiquidity() public view returns(uint256){
@@ -181,7 +204,7 @@ contract AdvancedPool is PoolStorageV1 {
    
     function idealAmount() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.poolBalance * (ps.minLiquidity + ps.maxLiquidity) / (2 * ps.DENOMINATOR);
+        return (ps.poolBalance * (ps.minLiquidity.add(ps.maxLiquidity))) / (2 * ps.DENOMINATOR);
     }
      
     function maxLiquidityAllowedInPool() public view returns(uint256){
@@ -193,7 +216,6 @@ contract AdvancedPool is PoolStorageV1 {
         return currentLiquidity() <= maxLiquidityAllowedInPool() ? 0 : currentLiquidity() - idealAmount();
     }
     
-      
     function minLiquidityToMaintainInPool() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
         return ps.poolBalance * ps.minLiquidity / ps.DENOMINATOR;
@@ -223,5 +245,37 @@ contract AdvancedPool is PoolStorageV1 {
         PoolStorage storage ps = poolStorage();
         return ps.feesCollected;
     }
-    
+
+    function currentFees() public view returns(uint256, uint256){
+        PoolStorage storage ps = poolStorage();
+        return (ps.depositFees, ps.withdrawFees);
+    }
+
+    function claimGasFee() public{
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtStart = (gasleft().add(ps.defaultGas)).mul(tx.gasprice);
+        uint256 claimableAmount = ps.gasUsed[msg.sender];
+        require(claimableAmount > 0, "Nothing to claim");
+        require(address(this).balance >= claimableAmount, "Dont have enough fund, Try later!!");
+        ps.gasUsed[msg.sender] = 0;
+        msg.sender.transfer(claimableAmount);
+        uint256 gasAtEnd = gasleft().mul(tx.gasprice);
+        ps.gasUsed[msg.sender] = gasAtStart - gasAtEnd;
+    }
+
+    function convertFeesToETH() external {
+        PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
+        address[] memory path = new address[](2);
+        ps.coin.approve(address(ps.uniswapRouter), ps.feesCollected);
+        path[0] = address(ps.coin);
+        path[1] = ps.uniswapRouter.WETH();
+        uint256 amountOutMin = 0;
+        ps.feesCollected = 0;
+        ps.uniswapRouter.swapExactTokensForETH(ps.feesCollected, amountOutMin, path, address(this), block.timestamp + 100000);
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice));
+    }
+
+    receive() external payable {
+    }
 }

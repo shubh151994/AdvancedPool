@@ -52,15 +52,15 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/CurvePool.sol",
     "exportedSymbols": {
       "CurvePool": [
-        1162
+        1271
       ]
     },
-    "id": 1163,
+    "id": 1272,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1143,
+        "id": 1252,
         "literals": [
           "solidity",
           "^",
@@ -68,7 +68,7 @@
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:7"
+        "src": "39:23:8"
       },
       {
         "abstract": false,
@@ -76,33 +76,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1162,
+        "id": 1271,
         "linearizedBaseContracts": [
-          1162
+          1271
         ],
         "name": "CurvePool",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "4515cef3",
-            "id": 1152,
+            "id": 1261,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "add_liquidity",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1150,
+              "id": 1259,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1147,
+                  "id": 1256,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1152,
-                  "src": "115:19:7",
+                  "scope": 1261,
+                  "src": "115:19:8",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -111,26 +111,26 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1144,
+                      "id": 1253,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "115:7:7",
+                      "src": "115:7:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1146,
+                    "id": 1255,
                     "length": {
                       "hexValue": "33",
-                      "id": 1145,
+                      "id": 1254,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "123:1:7",
+                      "src": "123:1:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_3_by_1",
                         "typeString": "int_const 3"
@@ -138,7 +138,7 @@
                       "value": "3"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "115:10:7",
+                    "src": "115:10:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$3_storage_ptr",
                       "typeString": "uint256[3]"
@@ -148,12 +148,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1149,
+                  "id": 1258,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1152,
-                  "src": "136:7:7",
+                  "scope": 1261,
+                  "src": "136:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -161,10 +161,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1148,
+                    "id": 1257,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "136:7:7",
+                    "src": "136:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -173,40 +173,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "114:30:7"
+              "src": "114:30:8"
             },
             "returnParameters": {
-              "id": 1151,
+              "id": 1260,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "153:0:7"
+              "src": "153:0:8"
             },
-            "scope": 1162,
-            "src": "92:62:7",
+            "scope": 1271,
+            "src": "92:62:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "9fdaea0c",
-            "id": 1161,
+            "id": 1270,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "remove_liquidity_imbalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1159,
+              "id": 1268,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1156,
+                  "id": 1265,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1161,
-                  "src": "196:19:7",
+                  "scope": 1270,
+                  "src": "196:19:8",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -215,26 +215,26 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1153,
+                      "id": 1262,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "196:7:7",
+                      "src": "196:7:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1155,
+                    "id": 1264,
                     "length": {
                       "hexValue": "33",
-                      "id": 1154,
+                      "id": 1263,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "204:1:7",
+                      "src": "204:1:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_3_by_1",
                         "typeString": "int_const 3"
@@ -242,7 +242,7 @@
                       "value": "3"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "196:10:7",
+                    "src": "196:10:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$3_storage_ptr",
                       "typeString": "uint256[3]"
@@ -252,12 +252,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1158,
+                  "id": 1267,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1161,
-                  "src": "217:7:7",
+                  "scope": 1270,
+                  "src": "217:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -265,10 +265,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1157,
+                    "id": 1266,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "217:7:7",
+                    "src": "217:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -277,40 +277,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "195:30:7"
+              "src": "195:30:8"
             },
             "returnParameters": {
-              "id": 1160,
+              "id": 1269,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "234:0:7"
+              "src": "234:0:8"
             },
-            "scope": 1162,
-            "src": "160:75:7",
+            "scope": 1271,
+            "src": "160:75:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1163,
-        "src": "66:172:7"
+        "scope": 1272,
+        "src": "66:172:8"
       }
     ],
-    "src": "39:203:7"
+    "src": "39:203:8"
   },
   "legacyAST": {
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/CurvePool.sol",
     "exportedSymbols": {
       "CurvePool": [
-        1162
+        1271
       ]
     },
-    "id": 1163,
+    "id": 1272,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1143,
+        "id": 1252,
         "literals": [
           "solidity",
           "^",
@@ -318,7 +318,7 @@
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:7"
+        "src": "39:23:8"
       },
       {
         "abstract": false,
@@ -326,33 +326,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1162,
+        "id": 1271,
         "linearizedBaseContracts": [
-          1162
+          1271
         ],
         "name": "CurvePool",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "4515cef3",
-            "id": 1152,
+            "id": 1261,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "add_liquidity",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1150,
+              "id": 1259,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1147,
+                  "id": 1256,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1152,
-                  "src": "115:19:7",
+                  "scope": 1261,
+                  "src": "115:19:8",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -361,26 +361,26 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1144,
+                      "id": 1253,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "115:7:7",
+                      "src": "115:7:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1146,
+                    "id": 1255,
                     "length": {
                       "hexValue": "33",
-                      "id": 1145,
+                      "id": 1254,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "123:1:7",
+                      "src": "123:1:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_3_by_1",
                         "typeString": "int_const 3"
@@ -388,7 +388,7 @@
                       "value": "3"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "115:10:7",
+                    "src": "115:10:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$3_storage_ptr",
                       "typeString": "uint256[3]"
@@ -398,12 +398,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1149,
+                  "id": 1258,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1152,
-                  "src": "136:7:7",
+                  "scope": 1261,
+                  "src": "136:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -411,10 +411,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1148,
+                    "id": 1257,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "136:7:7",
+                    "src": "136:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -423,40 +423,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "114:30:7"
+              "src": "114:30:8"
             },
             "returnParameters": {
-              "id": 1151,
+              "id": 1260,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "153:0:7"
+              "src": "153:0:8"
             },
-            "scope": 1162,
-            "src": "92:62:7",
+            "scope": 1271,
+            "src": "92:62:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "9fdaea0c",
-            "id": 1161,
+            "id": 1270,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "remove_liquidity_imbalance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1159,
+              "id": 1268,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1156,
+                  "id": 1265,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1161,
-                  "src": "196:19:7",
+                  "scope": 1270,
+                  "src": "196:19:8",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -465,26 +465,26 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1153,
+                      "id": 1262,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "196:7:7",
+                      "src": "196:7:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1155,
+                    "id": 1264,
                     "length": {
                       "hexValue": "33",
-                      "id": 1154,
+                      "id": 1263,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "204:1:7",
+                      "src": "204:1:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_3_by_1",
                         "typeString": "int_const 3"
@@ -492,7 +492,7 @@
                       "value": "3"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "196:10:7",
+                    "src": "196:10:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$3_storage_ptr",
                       "typeString": "uint256[3]"
@@ -502,12 +502,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1158,
+                  "id": 1267,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1161,
-                  "src": "217:7:7",
+                  "scope": 1270,
+                  "src": "217:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -515,10 +515,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1157,
+                    "id": 1266,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "217:7:7",
+                    "src": "217:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -527,26 +527,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "195:30:7"
+              "src": "195:30:8"
             },
             "returnParameters": {
-              "id": 1160,
+              "id": 1269,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "234:0:7"
+              "src": "234:0:8"
             },
-            "scope": 1162,
-            "src": "160:75:7",
+            "scope": 1271,
+            "src": "160:75:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1163,
-        "src": "66:172:7"
+        "scope": 1272,
+        "src": "66:172:8"
       }
     ],
-    "src": "39:203:7"
+    "src": "39:203:8"
   },
   "compiler": {
     "name": "solc",
@@ -554,7 +554,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-09T06:07:43.909Z",
+  "updatedAt": "2021-05-09T11:17:28.379Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

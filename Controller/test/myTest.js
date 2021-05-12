@@ -3,13 +3,13 @@
 /* global contract artifacts web3 before it assert */
 
 const Web3 = require('web3');
-const config = require('./../config.js');
+const config = require('./../../config.js');
 const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
 const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x2aA2d29d3f312F2508aBDa55b40e2805D4312207";
+const DiamondContractAddress = "0xcD85a2327D8858f091A9204a10f5e815E807D649";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -96,18 +96,23 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const TriPoolStrategyABI =   [
+const ControllerAbi =   [
   {
     "inputs": [
       {
-        "internalType": "contract Pool",
-        "name": "_poolAddress",
-        "type": "address"
+        "internalType": "address[]",
+        "name": "_depositStrategies",
+        "type": "address[]"
       },
       {
-        "internalType": "contract Gauge",
-        "name": "_gauge",
-        "type": "address"
+        "internalType": "contract Gauge[]",
+        "name": "_gauges",
+        "type": "address[]"
+      },
+      {
+        "internalType": "contract IERC20[]",
+        "name": "_strategyLPToken",
+        "type": "address[]"
       },
       {
         "internalType": "contract Minter",
@@ -117,11 +122,6 @@ const TriPoolStrategyABI =   [
       {
         "internalType": "contract IERC20",
         "name": "_crvToken",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IERC20",
-        "name": "_poolToken",
         "type": "address"
       },
       {
@@ -135,24 +135,24 @@ const TriPoolStrategyABI =   [
         "type": "address"
       },
       {
-        "internalType": "contract IERC20[3]",
-        "name": "_coins",
-        "type": "address[3]"
-      },
-      {
         "internalType": "contract UniswapV2Router",
         "name": "_uniswapRouter",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_poolOwner",
+        "name": "_controllerOwner",
         "type": "address"
       },
       {
         "internalType": "uint256",
         "name": "_crvLockPercent",
         "type": "uint256"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "_adminFeeToken",
+        "type": "address"
       }
     ],
     "name": "initialize",
@@ -182,12 +182,22 @@ const TriPoolStrategyABI =   [
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_strategy",
+        "type": "address"
+      },
+      {
+        "internalType": "contract Gauge",
+        "name": "_gauge",
+        "type": "address"
+      },
+      {
         "internalType": "contract IERC20",
-        "name": "_rewardCoin",
+        "name": "_strategyLPToken",
         "type": "address"
       }
     ],
-    "name": "setRewardCoin",
+    "name": "addNewStrategy",
     "outputs": [
       {
         "internalType": "bool",
@@ -201,25 +211,38 @@ const TriPoolStrategyABI =   [
   {
     "inputs": [
       {
-        "internalType": "uint256[10]",
-        "name": "amounts",
-        "type": "uint256[10]"
+        "internalType": "contract IERC20",
+        "name": "_adminFeeToken",
+        "type": "address"
       }
     ],
-    "name": "deposit",
-    "outputs": [],
+    "name": "updateAdminFeeToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "uint256[10]",
-        "name": "amounts",
-        "type": "uint256[10]"
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
-    "name": "withdraw",
+    "name": "stake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unstake",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -277,26 +300,7 @@ const TriPoolStrategyABI =   [
   },
   {
     "inputs": [],
-    "name": "claimAndConvert3CRV",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "convertCRV",
+    "name": "claimAndConverAdminFees",
     "outputs": [
       {
         "internalType": "uint256",
@@ -308,8 +312,7 @@ const TriPoolStrategyABI =   [
     "type": "function"
   }
 ]
-
-const TriPoolStrategyAddr = "0x03b1cc08d707ecAD7A7471Ed1a978dE773ab2B5c";
+const ControllerAddr = "0x2349f4c0063c85230EdE2950C962a83Bf125e643";
 
 const FacetCutAction = {
   Add: 0,
@@ -364,13 +367,13 @@ async function addFacet(){
   try{
   console.log("1111111111")
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract(TriPoolStrategyABI, TriPoolStrategyAddr)
+  const Part1Call = new web3.eth.Contract(ControllerAbi, ControllerAddr)
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
   
   console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
-      .diamondCut([ [TriPoolStrategyAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      .diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
@@ -397,35 +400,35 @@ async function addFacet(){
 // };
 
 
-async function initializeTriPoolStrategy(){
+async function initializeController(){
   try{
-  const poolAddress = "0x2CC463cc7818d6f582a28444c8E9565942110667"
-  const gauge = "0x6834a4381Dd06e4a7ea27d8C879E368a879d2104";
-  const minter = "0x2c90e72766607c45D2113D0BbE911cd48102fCb5"
-  const crv = "0xaDcb0EAe0227bD76Ea914f0744af4AD6e7c1563e"
-  const poolToken = "0xc6FefF33f57242451F104d842E3D86Eef81C6E1B"
-  const veCRV = "0x2183D62Cf4811081A42E6cE19ef64e10F150BbC8"
-  const feeDistributor = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
-  const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
-  const uniswap = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
-  const poolOwner = config.publicKey.rinkeby
+  const strategires = ["0x0b2cfdd4561df95b20FCBC582a521b02374Db54c"]
+  const gauges = ["0xF0C904b796a913Ae483E6fd6e0b36dF527849784"];
+  const strategyLPTOken = ["0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"]
+  const minter = "0xAde9c3e4F7E7D97F0aD2f3a68c8E65524C789078"
+  const crv = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
+  const veCRV = "0xe1187A7aD69Af79d9706E2f118a89e1438225825"
+  const feeDistributor = "0x140fCf94762Fe2C64D998F6CD7812Ef3e7877Fb2"
+  const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+  const controllerOwner = config.publicKey.rinkeby
   const crvLockPercent = "2000"
+  const _adminFeeToken = "0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"
   
   console.log("1111111111")
-  const diamondCall = new web3.eth.Contract(TriPoolStrategyABI, DiamondContractAddress);
+  const diamondCall = new web3.eth.Contract(ControllerAbi, DiamondContractAddress);
   const functCall = await diamondCall.methods
       .initialize(
-        poolAddress, 
-        gauge,
-        minter, 
+        strategires, 
+        gauges,
+        strategyLPTOken, 
+        minter,
         crv,
-        poolToken,
         veCRV,
         feeDistributor,
-        coins,
         uniswap,
-        poolOwner,
-        crvLockPercent
+        controllerOwner,
+        crvLockPercent,
+        _adminFeeToken
       ).encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
@@ -479,4 +482,40 @@ async function sendToken(){
 
 };
 
-initializeTriPoolStrategy()
+
+async function addFacet2(){
+  try{
+  console.log("1111111111")
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  const Part1Call = new web3.eth.Contract( [
+    {
+      "inputs": [],
+      "name": "unstake",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ], "0x3Fa9914A0544123d411e5fBebDC59a4348b6B850")
+ 
+  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+  
+  console.log("33333333333333333",selectorspart1)
+  const functCall = await facetCutCall.methods
+      .diamondCut([["0x3Fa9914A0544123d411e5fBebDC59a4348b6B850", FacetCutAction.Replace, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      console.log("444444444444444444444")
+  const receipt = await transact(functCall, 0 )
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+};
+
+addFacet2()

@@ -55,7 +55,7 @@ contract TriPoolStrategy is StrategyStorageV1 {
         StrategyStorage storage ss = strategyStorage();
         uint256[3] memory amountArray;
         amountArray[ss.coinIndex] = amount;
-        uint256 unstakedAmount = unStakeFromController();
+        uint256 unstakedAmount = unstakeFromController();
         ss.curvePool.remove_liquidity_imbalance(amountArray, unstakedAmount);
         ss.coins[ss.coinIndex].transfer(ss.pool, ss.coins[ss.coinIndex].balanceOf(address(this)));
         stakeOnController();
@@ -70,9 +70,9 @@ contract TriPoolStrategy is StrategyStorageV1 {
         ss.controller.stake(stakeAmount);  
     }
 
-    function unStakeFromController() internal returns(uint256){
+    function unstakeFromController() internal returns(uint256){
         StrategyStorage storage ss = strategyStorage();
-        uint256 unstakedAmount = ss.controller.unStake();
+        uint256 unstakedAmount = ss.controller.unstake();
         return unstakedAmount;
     }
 

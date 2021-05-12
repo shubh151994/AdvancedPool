@@ -6,7 +6,7 @@ const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const AdvancedPool = artifacts.require('AdvancedPool')
+const AdvancedPool2 = artifacts.require('AdvancedPool2')
 
 
 const FacetCutAction = {
@@ -26,25 +26,25 @@ function getSelectors (contract) {
   return selectors
 }
 
-module.exports = function (deployer, network, accounts) {
-  console.log(accounts[0],"accounts");
-
-  deployer.deploy(AdvancedPool)
-  deployer.deploy(DiamondCutFacet)
-  deployer.deploy(DiamondLoupeFacet)
-  deployer.deploy(OwnershipFacet).then(() => {
-    const diamondCut = [
-      [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
-      [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
-      [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
-    ]
-    return deployer.deploy(Diamond, diamondCut, [config.publicKey.ropsten])
-  })
-}
-
 // module.exports = function (deployer, network, accounts) {
 //   console.log(accounts[0],"accounts");
-//   deployer.deploy(EosToEthPart3Dummy).then(() => {
-//     console.log(Getter.address)
+
+//   deployer.deploy(AdvancedPool)
+//   deployer.deploy(DiamondCutFacet)
+//   deployer.deploy(DiamondLoupeFacet)
+//   deployer.deploy(OwnershipFacet).then(() => {
+//     const diamondCut = [
+//       [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
+//       [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
+//       [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
+//     ]
+//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.ropsten])
 //   })
 // }
+
+module.exports = function (deployer, network, accounts) {
+  console.log(accounts[0],"accounts");
+  deployer.deploy(AdvancedPool2).then(() => {
+    console.log(AdvancedPool2.address)
+  })
+}

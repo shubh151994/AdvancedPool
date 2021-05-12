@@ -9,7 +9,7 @@ const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x818072816A7Fc05201549D520ED836Bf777D546D";
+const DiamondContractAddress = "0x0b2cfdd4561df95b20FCBC582a521b02374Db54c";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -96,22 +96,22 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const TriPoolStrategyABI =    [
+const TriPoolStrategyABI = [
   {
     "inputs": [
       {
-        "internalType": "contract Pool",
-        "name": "_poolAddress",
+        "internalType": "contract CurvePool",
+        "name": "_curvePool",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "_curvePoolToken",
         "type": "address"
       },
       {
         "internalType": "contract IERC20",
         "name": "_crvToken",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IERC20",
-        "name": "_poolToken",
         "type": "address"
       },
       {
@@ -126,7 +126,7 @@ const TriPoolStrategyABI =    [
       },
       {
         "internalType": "address",
-        "name": "_poolOwner",
+        "name": "_pool",
         "type": "address"
       },
       {
@@ -142,44 +142,6 @@ const TriPoolStrategyABI =    [
     ],
     "name": "initialize",
     "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "updateOwner",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_coinIndex",
-        "type": "uint256"
-      }
-    ],
-    "name": "changeCoinIndex",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -224,7 +186,7 @@ const TriPoolStrategyABI =    [
   }
 ]
 
-const TriPoolStrategyAddr = "0x6dA2e6404DA018E987953A108c6407D5568cBD9d";
+const TriPoolStrategyAddr = "0x5d0fbEEe100608D3A5743D7045B6cDFCa88b3fb8";
 
 const FacetCutAction = {
   Add: 0,
@@ -285,7 +247,7 @@ async function addFacet(){
   
   console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
-      .diamondCut([ [TriPoolStrategyAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      .diamondCut([ [TriPoolStrategyAddr, FacetCutAction.Replace, selectorspart1 ]], zeroAddress, '0x').encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
@@ -296,29 +258,27 @@ async function addFacet(){
 
 };
 
-
-
 async function initializeTriPoolStrategy(){
   try{
-  const poolAddress = "0x2CC463cc7818d6f582a28444c8E9565942110667"
-  const crv = "0xaDcb0EAe0227bD76Ea914f0744af4AD6e7c1563e"
-  const poolToken = "0xc6FefF33f57242451F104d842E3D86Eef81C6E1B"
+  const crvPool = "0xE00ee2D77fDdC63438BEF441153f58c249E12adF"
+  const crvPoolToken = "0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"
+  const crv = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
   const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
-  const uniswap = "0xE02E339D8bD5958f049c48756d15b6f58211Eee2"
-  const poolOwner = config.publicKey.rinkeby
-  const controller = config.publicKey.rinkeby
+  const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+  const pool = "0x4d5A1b515accf195393471dc109470F85c551416"
+  const controller = "0xcD85a2327D8858f091A9204a10f5e815E807D649"
   const coinIndex = 1
   
   console.log("1111111111")
   const diamondCall = new web3.eth.Contract(TriPoolStrategyABI, DiamondContractAddress);
   const functCall = await diamondCall.methods
       .initialize(
-        poolAddress, 
+        crvPool, 
+        crvPoolToken,
         crv,
-        poolToken,
         coins,
         uniswap,
-        poolOwner,
+        pool,
         controller,
         coinIndex
       ).encodeABI();
@@ -333,4 +293,74 @@ async function initializeTriPoolStrategy(){
 };
 
 
-initializeTriPoolStrategy()
+async function addFacet2(){
+  try{
+  console.log("1111111111")
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  const Part1Call = new web3.eth.Contract([
+    {
+      "inputs": [
+        {
+          "internalType": "contract CurvePool",
+          "name": "_curvePool",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "_curvePoolToken",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "_crvToken",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20[3]",
+          "name": "_coins",
+          "type": "address[3]"
+        },
+        {
+          "internalType": "contract UniswapV2Router",
+          "name": "_uniswapRouter",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_pool",
+          "type": "address"
+        },
+        {
+          "internalType": "contract Controller",
+          "name": "_controller",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_coinIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "initialize2",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ], "0x021115E654CA7c0De33c9e3A2bd033E5E1503e30")
+ 
+  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+  
+  console.log("33333333333333333",selectorspart1)
+  const functCall = await facetCutCall.methods
+      .diamondCut([ ["0x021115E654CA7c0De33c9e3A2bd033E5E1503e30", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      console.log("444444444444444444444")
+  const receipt = await transact(functCall, 0 )
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+};
+
+addFacet()

@@ -42,15 +42,15 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        2237
+        2382
       ]
     },
-    "id": 2238,
+    "id": 2383,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2226,
+        "id": 2371,
         "literals": [
           "solidity",
           "^",
@@ -58,7 +58,7 @@
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:6"
+        "src": "39:23:7"
       },
       {
         "abstract": false,
@@ -66,33 +66,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2237,
+        "id": 2382,
         "linearizedBaseContracts": [
-          2237
+          2382
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "b6b55f25",
-            "id": 2231,
+            "id": 2376,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2229,
+              "id": 2374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2228,
+                  "id": 2373,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2231,
-                  "src": "115:14:6",
+                  "scope": 2376,
+                  "src": "115:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -100,10 +100,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2227,
+                    "id": 2372,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "115:7:6",
+                    "src": "115:7:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -112,40 +112,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "114:16:6"
+              "src": "114:16:7"
             },
             "returnParameters": {
-              "id": 2230,
+              "id": 2375,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "139:0:6"
+              "src": "139:0:7"
             },
-            "scope": 2237,
-            "src": "98:42:6",
+            "scope": 2382,
+            "src": "98:42:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "2e1a7d4d",
-            "id": 2236,
+            "id": 2381,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2234,
+              "id": 2379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2233,
+                  "id": 2378,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2236,
-                  "src": "164:14:6",
+                  "scope": 2381,
+                  "src": "164:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -153,10 +153,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2232,
+                    "id": 2377,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "164:7:6",
+                    "src": "164:7:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -165,40 +165,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "163:16:6"
+              "src": "163:16:7"
             },
             "returnParameters": {
-              "id": 2235,
+              "id": 2380,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "188:0:6"
+              "src": "188:0:7"
             },
-            "scope": 2237,
-            "src": "146:43:6",
+            "scope": 2382,
+            "src": "146:43:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2238,
-        "src": "66:126:6"
+        "scope": 2383,
+        "src": "66:126:7"
       }
     ],
-    "src": "39:153:6"
+    "src": "39:153:7"
   },
   "legacyAST": {
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        2237
+        2382
       ]
     },
-    "id": 2238,
+    "id": 2383,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2226,
+        "id": 2371,
         "literals": [
           "solidity",
           "^",
@@ -206,7 +206,7 @@
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:6"
+        "src": "39:23:7"
       },
       {
         "abstract": false,
@@ -214,33 +214,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2237,
+        "id": 2382,
         "linearizedBaseContracts": [
-          2237
+          2382
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "b6b55f25",
-            "id": 2231,
+            "id": 2376,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2229,
+              "id": 2374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2228,
+                  "id": 2373,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2231,
-                  "src": "115:14:6",
+                  "scope": 2376,
+                  "src": "115:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -248,10 +248,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2227,
+                    "id": 2372,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "115:7:6",
+                    "src": "115:7:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -260,40 +260,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "114:16:6"
+              "src": "114:16:7"
             },
             "returnParameters": {
-              "id": 2230,
+              "id": 2375,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "139:0:6"
+              "src": "139:0:7"
             },
-            "scope": 2237,
-            "src": "98:42:6",
+            "scope": 2382,
+            "src": "98:42:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "2e1a7d4d",
-            "id": 2236,
+            "id": 2381,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2234,
+              "id": 2379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2233,
+                  "id": 2378,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2236,
-                  "src": "164:14:6",
+                  "scope": 2381,
+                  "src": "164:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -301,10 +301,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2232,
+                    "id": 2377,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "164:7:6",
+                    "src": "164:7:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -313,26 +313,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "163:16:6"
+              "src": "163:16:7"
             },
             "returnParameters": {
-              "id": 2235,
+              "id": 2380,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "188:0:6"
+              "src": "188:0:7"
             },
-            "scope": 2237,
-            "src": "146:43:6",
+            "scope": 2382,
+            "src": "146:43:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2238,
-        "src": "66:126:6"
+        "scope": 2383,
+        "src": "66:126:7"
       }
     ],
-    "src": "39:153:6"
+    "src": "39:153:7"
   },
   "compiler": {
     "name": "solc",
@@ -340,7 +340,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-09T04:56:37.956Z",
+  "updatedAt": "2021-05-10T04:05:13.953Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -91,11 +91,12 @@ contract Controller is ControllerStorageV1 {
         cs.strategyGauges[msg.sender].deposit(amount);  
     }
     
-    function unstake() external onlyStrategy(){
+    function unstake() external onlyStrategy() returns(uint256){
         ControllerStorage storage cs = controllerStorage();
         uint256 unstakedAmount = cs.strategyGauges[msg.sender].balanceOf(address(this));
         cs.strategyGauges[msg.sender].withdraw(unstakedAmount);
         cs.strategyLPTokens[msg.sender].transfer(msg.sender, unstakedAmount);
+        return unstakedAmount;
     }
 
     function claimCRV() external onlyStrategy() returns(uint256){

@@ -14302,6 +14302,48 @@
           ],
           "name": "DiamondCut",
           "type": "event"
+        },
+        "0xe785b7d46d252880dc19457b2c8b06b2de37c69d645338fdd151c21279e60633": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "facetAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum IDiamondCut.FacetCutAction",
+                  "name": "action",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes4[]",
+                  "name": "functionSelectors",
+                  "type": "bytes4[]"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct IDiamondCut.FacetCut[]",
+              "name": "_diamondCut",
+              "type": "tuple[]"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_init",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes",
+              "name": "_calldata",
+              "type": "bytes"
+            }
+          ],
+          "name": "DiamondCut",
+          "type": "event"
         }
       },
       "links": {},
@@ -14310,7 +14352,7 @@
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-09T08:00:23.937Z",
+  "updatedAt": "2021-05-09T11:52:18.096Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

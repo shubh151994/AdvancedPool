@@ -267,12 +267,13 @@ contract AdvancedPool is PoolStorageV1 {
         PoolStorage storage ps = poolStorage();
         ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         address[] memory path = new address[](2);
-        ps.coin.approve(address(ps.uniswapRouter), ps.feesCollected);
+        uint256 amountToSwap = ps.feesCollected;
+        ps.feesCollected = 0;
+        ps.coin.approve(address(ps.uniswapRouter), amountToSwap);
         path[0] = address(ps.coin);
         path[1] = ps.uniswapRouter.WETH();
         uint256 amountOutMin = 0;
-        ps.feesCollected = 0;
-        ps.uniswapRouter.swapExactTokensForETH(ps.feesCollected, amountOutMin, path, address(this), block.timestamp + 100000);
+        ps.uniswapRouter.swapExactTokensForETH(amountToSwap, amountOutMin, path, address(this), block.timestamp + 100000);
         ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice));
     }
 

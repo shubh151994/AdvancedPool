@@ -24,25 +24,25 @@ function getSelectors (contract) {
   return selectors
 }
 
-module.exports = function (deployer, network, accounts) {
-  console.log(accounts[0],"accounts");
-
-  deployer.deploy(TriPoolStrategy)
-  deployer.deploy(DiamondCutFacet)
-  deployer.deploy(DiamondLoupeFacet)
-  deployer.deploy(OwnershipFacet).then(() => {
-    const diamondCut = [
-      [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
-      [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
-      [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
-    ]
-    return deployer.deploy(Diamond, diamondCut, [config.publicKey.ropsten])
-  })
-}
-
 // module.exports = function (deployer, network, accounts) {
 //   console.log(accounts[0],"accounts");
-//   deployer.deploy(EosToEthPart3Dummy).then(() => {
-//     console.log(Getter.address)
+
+//   deployer.deploy(TriPoolStrategy)
+//   deployer.deploy(DiamondCutFacet)
+//   deployer.deploy(DiamondLoupeFacet)
+//   deployer.deploy(OwnershipFacet).then(() => {
+//     const diamondCut = [
+//       [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
+//       [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
+//       [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
+//     ]
+//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.ropsten])
 //   })
 // }
+
+module.exports = function (deployer, network, accounts) {
+  console.log(accounts[0],"accounts");
+  deployer.deploy(TriPoolStrategy).then(() => {
+    console.log(TriPoolStrategy.address)
+  })
+}

@@ -5,7 +5,7 @@ const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const Controller = artifacts.require('Controller')
+const Controller2 = artifacts.require('Controller2')
 
 const FacetCutAction = {
   Add: 0,
@@ -24,25 +24,25 @@ function getSelectors (contract) {
   return selectors
 }
 
-module.exports = function (deployer, network, accounts) {
-  console.log(accounts[0],"accounts");
-
-  deployer.deploy(Controller)
-  deployer.deploy(DiamondCutFacet)
-  deployer.deploy(DiamondLoupeFacet)
-  deployer.deploy(OwnershipFacet).then(() => {
-    const diamondCut = [
-      [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
-      [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
-      [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
-    ]
-    return deployer.deploy(Diamond, diamondCut, [config.publicKey.rinkeby])
-  })
-}
-
 // module.exports = function (deployer, network, accounts) {
 //   console.log(accounts[0],"accounts");
-//   deployer.deploy(EosToEthPart3Dummy).then(() => {
-//     console.log(Getter.address)
+
+//   deployer.deploy(Controller)
+//   deployer.deploy(DiamondCutFacet)
+//   deployer.deploy(DiamondLoupeFacet)
+//   deployer.deploy(OwnershipFacet).then(() => {
+//     const diamondCut = [
+//       [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
+//       [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
+//       [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
+//     ]
+//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.rinkeby])
 //   })
 // }
+
+module.exports = function (deployer, network, accounts) {
+  console.log(accounts[0],"accounts");
+  deployer.deploy(Controller2).then(() => {
+    console.log(Controller2.address)
+  })
+}

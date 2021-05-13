@@ -5,7 +5,7 @@ const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const TriPoolStrategy = artifacts.require('TriPoolStrategy')
+const TriPoolStrategy2 = artifacts.require('TriPoolStrategy2')
 
 const FacetCutAction = {
   Add: 0,
@@ -42,7 +42,7 @@ function getSelectors (contract) {
 
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
-  deployer.deploy(TriPoolStrategy).then(() => {
-    console.log(TriPoolStrategy.address)
+  deployer.deploy(TriPoolStrategy2).then(() => {
+    console.log(TriPoolStrategy2.address)
   })
 }

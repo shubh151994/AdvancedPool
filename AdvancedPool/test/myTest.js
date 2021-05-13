@@ -1138,21 +1138,21 @@ async function addFacet2(){
   try{
   console.log("1111111111")
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract([
+  const Part1Call = new web3.eth.Contract( [
     {
       "inputs": [],
-      "name": "convertFeesToETH",
+      "name": "getYield",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ], "0x1D20b5391f994c3814b36fA80fa5DC563C7AA28F")
+  ], "0x36fEFbd26079ed16206D19B29fceb3128edc6Ac8")
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
   
   console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
-      .diamondCut([ ["0x1D20b5391f994c3814b36fA80fa5DC563C7AA28F", FacetCutAction.Replace, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      .diamondCut([ ["0x36fEFbd26079ed16206D19B29fceb3128edc6Ac8", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0 )
   console.log(receipt)

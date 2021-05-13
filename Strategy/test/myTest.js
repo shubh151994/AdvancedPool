@@ -299,60 +299,25 @@ async function addFacet2(){
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
   const Part1Call = new web3.eth.Contract([
     {
-      "inputs": [
-        {
-          "internalType": "contract CurvePool",
-          "name": "_curvePool",
-          "type": "address"
-        },
-        {
-          "internalType": "contract IERC20",
-          "name": "_curvePoolToken",
-          "type": "address"
-        },
-        {
-          "internalType": "contract IERC20",
-          "name": "_crvToken",
-          "type": "address"
-        },
-        {
-          "internalType": "contract IERC20[3]",
-          "name": "_coins",
-          "type": "address[3]"
-        },
-        {
-          "internalType": "contract UniswapV2Router",
-          "name": "_uniswapRouter",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_pool",
-          "type": "address"
-        },
-        {
-          "internalType": "contract Controller",
-          "name": "_controller",
-          "type": "address"
-        },
+      "inputs": [],
+      "name": "claimAndConvertCRV",
+      "outputs": [
         {
           "internalType": "uint256",
-          "name": "_coinIndex",
+          "name": "",
           "type": "uint256"
         }
       ],
-      "name": "initialize2",
-      "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ], "0x021115E654CA7c0De33c9e3A2bd033E5E1503e30")
+  ], "0x725BF2E75BD607096352fd7C32Fd3da1F55Df4D3")
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
   
   console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
-      .diamondCut([ ["0x021115E654CA7c0De33c9e3A2bd033E5E1503e30", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      .diamondCut([ ["0x725BF2E75BD607096352fd7C32Fd3da1F55Df4D3", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
@@ -363,4 +328,4 @@ async function addFacet2(){
 
 };
 
-addFacet()
+addFacet2()

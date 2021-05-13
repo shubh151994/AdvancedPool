@@ -60,25 +60,8 @@ contract TriPoolStrategy is StrategyStorageV1 {
         ss.coins[ss.coinIndex].transfer(ss.pool, ss.coins[ss.coinIndex].balanceOf(address(this)));
         stakeOnController();
     }
-    
-/****INTERNAL FUNCTIONS****/
 
-    function stakeOnController() internal {
-        StrategyStorage storage ss = strategyStorage();
-        uint256 stakeAmount = ss.curvePoolToken.balanceOf(address(this)) ;
-        ss.curvePoolToken.approve(address(ss.controller), stakeAmount);
-        ss.controller.stake(stakeAmount);  
-    }
-
-    function unstakeFromController() internal returns(uint256){
-        StrategyStorage storage ss = strategyStorage();
-        uint256 unstakedAmount = ss.controller.unstake();
-        return unstakedAmount;
-    }
-
-/****OPEN FUNCTIONS****/    
-    
-    function claimAndConverCRV() external returns(uint256) {
+    function claimAndConvertCRV() external onlyPool() returns(uint256) {
         StrategyStorage storage ss = strategyStorage();
         ss.controller.claimCRV();
         uint256 claimedAmount = ss.crvToken.balanceOf(address(this));
@@ -100,4 +83,20 @@ contract TriPoolStrategy is StrategyStorageV1 {
         ss.coins[ss.coinIndex].transfer(ss.pool, tokenReceived);
         return tokenReceived;
     }
+    
+/****INTERNAL FUNCTIONS****/
+
+    function stakeOnController() internal {
+        StrategyStorage storage ss = strategyStorage();
+        uint256 stakeAmount = ss.curvePoolToken.balanceOf(address(this)) ;
+        ss.curvePoolToken.approve(address(ss.controller), stakeAmount);
+        ss.controller.stake(stakeAmount);  
+    }
+
+    function unstakeFromController() internal returns(uint256){
+        StrategyStorage storage ss = strategyStorage();
+        uint256 unstakedAmount = ss.controller.unstake();
+        return unstakedAmount;
+    }
+
 }

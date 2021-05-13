@@ -4,4 +4,5 @@ pragma solidity ^0.7.6;
 interface DepositStrategy{
     function deposit(uint256 amount) external;
     function withdraw(uint256 amount) external;
+    function claimAndConvertCRV() external returns(uint256);
 }

@@ -61,15 +61,15 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol",
     "exportedSymbols": {
       "IERC173": [
-        1374
+        1438
       ]
     },
-    "id": 1375,
+    "id": 1439,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1356,
+        "id": 1420,
         "literals": [
           "solidity",
           "^",
@@ -85,36 +85,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1357,
+          "id": 1421,
           "nodeType": "StructuredDocumentation",
           "src": "60:116:12",
           "text": "@title ERC-173 Contract Ownership Standard\n  Note: the ERC-165 identifier for this interface is 0x7f5828d0"
         },
         "fullyImplemented": false,
-        "id": 1374,
+        "id": 1438,
         "linearizedBaseContracts": [
-          1374
+          1438
         ],
         "name": "IERC173",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
-            "id": 1363,
+            "id": 1427,
             "name": "OwnershipTransferred",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1362,
+              "id": 1426,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1359,
+                  "id": 1423,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "previousOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1363,
+                  "scope": 1427,
                   "src": "245:29:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -123,7 +123,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1358,
+                    "id": 1422,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "245:7:12",
@@ -137,12 +137,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1361,
+                  "id": 1425,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1363,
+                  "scope": 1427,
                   "src": "276:24:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -151,7 +151,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1360,
+                    "id": 1424,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "276:7:12",
@@ -170,29 +170,29 @@
           },
           {
             "functionSelector": "8da5cb5b",
-            "id": 1368,
+            "id": 1432,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "owner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1364,
+              "id": 1428,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "324:2:12"
             },
             "returnParameters": {
-              "id": 1367,
+              "id": 1431,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1366,
+                  "id": 1430,
                   "mutability": "mutable",
                   "name": "owner_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1368,
+                  "scope": 1432,
                   "src": "350:14:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -201,7 +201,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1365,
+                    "id": 1429,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "350:7:12",
@@ -216,7 +216,7 @@
               ],
               "src": "349:16:12"
             },
-            "scope": 1374,
+            "scope": 1438,
             "src": "310:56:12",
             "stateMutability": "view",
             "virtual": false,
@@ -224,23 +224,23 @@
           },
           {
             "functionSelector": "f2fde38b",
-            "id": 1373,
+            "id": 1437,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "transferOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1371,
+              "id": 1435,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1370,
+                  "id": 1434,
                   "mutability": "mutable",
                   "name": "_newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1373,
+                  "scope": 1437,
                   "src": "401:17:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -249,7 +249,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1369,
+                    "id": 1433,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "401:7:12",
@@ -265,19 +265,19 @@
               "src": "400:19:12"
             },
             "returnParameters": {
-              "id": 1372,
+              "id": 1436,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "428:0:12"
             },
-            "scope": 1374,
+            "scope": 1438,
             "src": "374:55:12",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1375,
+        "scope": 1439,
         "src": "193:239:12"
       }
     ],
@@ -287,15 +287,15 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol",
     "exportedSymbols": {
       "IERC173": [
-        1374
+        1438
       ]
     },
-    "id": 1375,
+    "id": 1439,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1356,
+        "id": 1420,
         "literals": [
           "solidity",
           "^",
@@ -311,36 +311,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1357,
+          "id": 1421,
           "nodeType": "StructuredDocumentation",
           "src": "60:116:12",
           "text": "@title ERC-173 Contract Ownership Standard\n  Note: the ERC-165 identifier for this interface is 0x7f5828d0"
         },
         "fullyImplemented": false,
-        "id": 1374,
+        "id": 1438,
         "linearizedBaseContracts": [
-          1374
+          1438
         ],
         "name": "IERC173",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
-            "id": 1363,
+            "id": 1427,
             "name": "OwnershipTransferred",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1362,
+              "id": 1426,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1359,
+                  "id": 1423,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "previousOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1363,
+                  "scope": 1427,
                   "src": "245:29:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -349,7 +349,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1358,
+                    "id": 1422,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "245:7:12",
@@ -363,12 +363,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1361,
+                  "id": 1425,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1363,
+                  "scope": 1427,
                   "src": "276:24:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -377,7 +377,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1360,
+                    "id": 1424,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "276:7:12",
@@ -396,29 +396,29 @@
           },
           {
             "functionSelector": "8da5cb5b",
-            "id": 1368,
+            "id": 1432,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "owner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1364,
+              "id": 1428,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "324:2:12"
             },
             "returnParameters": {
-              "id": 1367,
+              "id": 1431,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1366,
+                  "id": 1430,
                   "mutability": "mutable",
                   "name": "owner_",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1368,
+                  "scope": 1432,
                   "src": "350:14:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -427,7 +427,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1365,
+                    "id": 1429,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "350:7:12",
@@ -442,7 +442,7 @@
               ],
               "src": "349:16:12"
             },
-            "scope": 1374,
+            "scope": 1438,
             "src": "310:56:12",
             "stateMutability": "view",
             "virtual": false,
@@ -450,23 +450,23 @@
           },
           {
             "functionSelector": "f2fde38b",
-            "id": 1373,
+            "id": 1437,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "transferOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1371,
+              "id": 1435,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1370,
+                  "id": 1434,
                   "mutability": "mutable",
                   "name": "_newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1373,
+                  "scope": 1437,
                   "src": "401:17:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -475,7 +475,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1369,
+                    "id": 1433,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "401:7:12",
@@ -491,19 +491,19 @@
               "src": "400:19:12"
             },
             "returnParameters": {
-              "id": 1372,
+              "id": 1436,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "428:0:12"
             },
-            "scope": 1374,
+            "scope": 1438,
             "src": "374:55:12",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1375,
+        "scope": 1439,
         "src": "193:239:12"
       }
     ],
@@ -515,7 +515,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-09T11:17:28.391Z",
+  "updatedAt": "2021-05-12T10:07:46.757Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -49,15 +49,15 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
       "Controller": [
-        1250
+        1314
       ]
     },
-    "id": 1251,
+    "id": 1315,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1236,
+        "id": 1300,
         "literals": [
           "solidity",
           "^",
@@ -73,32 +73,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1250,
+        "id": 1314,
         "linearizedBaseContracts": [
-          1250
+          1314
         ],
         "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "a694fc3a",
-            "id": 1241,
+            "id": 1305,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "stake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1239,
+              "id": 1303,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1238,
+                  "id": 1302,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1241,
+                  "scope": 1305,
                   "src": "110:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -107,7 +107,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1237,
+                    "id": 1301,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "110:7:7",
@@ -122,12 +122,12 @@
               "src": "109:16:7"
             },
             "returnParameters": {
-              "id": 1240,
+              "id": 1304,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "134:0:7"
             },
-            "scope": 1250,
+            "scope": 1314,
             "src": "95:40:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -135,29 +135,29 @@
           },
           {
             "functionSelector": "2def6620",
-            "id": 1246,
+            "id": 1310,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "unstake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1242,
+              "id": 1306,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "157:2:7"
             },
             "returnParameters": {
-              "id": 1245,
+              "id": 1309,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1244,
+                  "id": 1308,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1246,
+                  "scope": 1310,
                   "src": "177:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -166,7 +166,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1243,
+                    "id": 1307,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "177:7:7",
@@ -180,7 +180,7 @@
               ],
               "src": "176:9:7"
             },
-            "scope": 1250,
+            "scope": 1314,
             "src": "141:45:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -188,32 +188,32 @@
           },
           {
             "functionSelector": "48f8f6d9",
-            "id": 1249,
+            "id": 1313,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "claimCRV",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1247,
+              "id": 1311,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "209:2:7"
             },
             "returnParameters": {
-              "id": 1248,
+              "id": 1312,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "220:0:7"
             },
-            "scope": 1250,
+            "scope": 1314,
             "src": "192:29:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1251,
+        "scope": 1315,
         "src": "68:156:7"
       }
     ],
@@ -223,15 +223,15 @@
     "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
       "Controller": [
-        1250
+        1314
       ]
     },
-    "id": 1251,
+    "id": 1315,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1236,
+        "id": 1300,
         "literals": [
           "solidity",
           "^",
@@ -247,32 +247,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1250,
+        "id": 1314,
         "linearizedBaseContracts": [
-          1250
+          1314
         ],
         "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "a694fc3a",
-            "id": 1241,
+            "id": 1305,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "stake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1239,
+              "id": 1303,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1238,
+                  "id": 1302,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1241,
+                  "scope": 1305,
                   "src": "110:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -281,7 +281,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1237,
+                    "id": 1301,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "110:7:7",
@@ -296,12 +296,12 @@
               "src": "109:16:7"
             },
             "returnParameters": {
-              "id": 1240,
+              "id": 1304,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "134:0:7"
             },
-            "scope": 1250,
+            "scope": 1314,
             "src": "95:40:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -309,29 +309,29 @@
           },
           {
             "functionSelector": "2def6620",
-            "id": 1246,
+            "id": 1310,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "unstake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1242,
+              "id": 1306,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "157:2:7"
             },
             "returnParameters": {
-              "id": 1245,
+              "id": 1309,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1244,
+                  "id": 1308,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1246,
+                  "scope": 1310,
                   "src": "177:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -340,7 +340,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1243,
+                    "id": 1307,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "177:7:7",
@@ -354,7 +354,7 @@
               ],
               "src": "176:9:7"
             },
-            "scope": 1250,
+            "scope": 1314,
             "src": "141:45:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -362,32 +362,32 @@
           },
           {
             "functionSelector": "48f8f6d9",
-            "id": 1249,
+            "id": 1313,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "claimCRV",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1247,
+              "id": 1311,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "209:2:7"
             },
             "returnParameters": {
-              "id": 1248,
+              "id": 1312,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "220:0:7"
             },
-            "scope": 1250,
+            "scope": 1314,
             "src": "192:29:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1251,
+        "scope": 1315,
         "src": "68:156:7"
       }
     ],
@@ -399,7 +399,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-09T11:17:28.375Z",
+  "updatedAt": "2021-05-12T10:07:46.737Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

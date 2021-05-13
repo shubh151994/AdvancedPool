@@ -12,7 +12,7 @@ contract AdvancedPool is PoolStorageV1 {
 
 /****MODIFIERS*****/
     
-    modifier onlyOnwer(){
+    modifier onlyOwner(){
         PoolStorage storage ps = poolStorage();
         require(ps.owner == msg.sender, "Only admin can call!!");
         _;
@@ -125,7 +125,7 @@ contract AdvancedPool is PoolStorageV1 {
 
 /****ADMIN FUNCTIONS*****/
     
-    function updateLiquidityParam(uint256 _minLiquidity, uint256 _maxLiquidity, uint256 _maxWithdrawalAllowed) external onlyOnwer() returns(bool){
+    function updateLiquidityParam(uint256 _minLiquidity, uint256 _maxLiquidity, uint256 _maxWithdrawalAllowed) external onlyOwner() returns(bool){
         require(_minLiquidity > 0 &&  _maxLiquidity > 0 && _maxWithdrawalAllowed > 0, 'Parameters cant be zero!!');
         require(_minLiquidity <  _maxLiquidity, 'Min liquidity cant be greater than max liquidity!!');
    
@@ -143,7 +143,7 @@ contract AdvancedPool is PoolStorageV1 {
         return true;
     }
     
-    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlyOnwer() returns(bool){
+    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlyOwner() returns(bool){
         PoolStorage storage ps = poolStorage();
         ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.withdrawFees = _withdrawFees;
@@ -152,7 +152,7 @@ contract AdvancedPool is PoolStorageV1 {
         return true;
     }
     
-    function changeLockStatus() external onlyOnwer() returns(bool){
+    function changeLockStatus() external onlyOwner() returns(bool){
         PoolStorage storage ps = poolStorage();
         ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.locked = !ps.locked;
@@ -160,13 +160,21 @@ contract AdvancedPool is PoolStorageV1 {
         return ps.locked;
     }
     
-    function updateOwner(address newOwner) external onlyOnwer() returns(bool){
+    function updateOwner(address newOwner) external onlyOwner() returns(bool){
         PoolStorage storage ps = poolStorage();
         ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
         ps.owner = newOwner;
         ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice));
         return true;
     } 
+
+    function getYield() public onlyOwner(){
+        PoolStorage storage ps = poolStorage();
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].add((gasleft().add(ps.defaultGas)).mul(tx.gasprice));
+        uint256 tokenReceived = ps.depositStrategy.claimAndConvertCRV();
+        ps.poolBalance = ps.poolBalance.add(tokenReceived);
+        ps.gasUsed[msg.sender] = ps.gasUsed[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+    }
 
 
 /****OTHER FUNCTIONS****/

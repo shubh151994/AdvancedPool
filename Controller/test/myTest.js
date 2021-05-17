@@ -538,6 +538,7 @@ async function addFacet(){
 async function initializeController(){
   try{
   const strategires = ["0x0b2cfdd4561df95b20FCBC582a521b02374Db54c"]
+  const pool = ["0x4d5A1b515accf195393471dc109470F85c551416"]
   const gauges = ["0xF0C904b796a913Ae483E6fd6e0b36dF527849784"];
   const strategyLPTOken = ["0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"]
   const minter = "0xAde9c3e4F7E7D97F0aD2f3a68c8E65524C789078"
@@ -554,6 +555,7 @@ async function initializeController(){
   const functCall = await diamondCall.methods
       .initialize(
         strategires, 
+        pool,
         gauges,
         strategyLPTOken, 
         minter,
@@ -653,4 +655,4 @@ async function addFacet2(){
 
 };
 
-addFacet()
+initializeController()

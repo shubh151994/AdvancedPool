@@ -205,6 +205,11 @@ const ControllerAbi =  [
         "internalType": "contract IERC20",
         "name": "_strategyLPToken",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
       }
     ],
     "name": "addNewStrategy",
@@ -426,9 +431,23 @@ const ControllerAbi =  [
     "stateMutability": "view",
     "type": "function",
     "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "crvLockPercent",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
   }
 ]
-const ControllerAddr = "0xE6E429837cF147f892d691043BF4C95841097f95";
+const ControllerAddr = "0xA3e5254FA45628511F79722673681E78A7205104";
 
 const FacetCutAction = {
   Add: 0,

@@ -62,6 +62,7 @@ contract Controller is ControllerStorageV1 {
         cs.crvLockPercent = _crvLockPercent;
         cs.DENOMINATOR = 10000;
         cs.adminFeeToken = _adminFeeToken;
+        cs.defaultGas = 21000 + 15000;
         cs.totalStrategies = _depositStrategies.length;
         cs.initialized = true;
     }
@@ -76,13 +77,14 @@ contract Controller is ControllerStorageV1 {
         return true;
     } 
 
-    function addNewStrategy(address _strategy, Gauge _gauge, IERC20 _strategyLPToken) external onlyOwner() returns(bool){
+    function addNewStrategy(address _strategy, Gauge _gauge, IERC20 _strategyLPToken, address _pool) external onlyOwner() returns(bool){
         ControllerStorage storage cs = controllerStorage();
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.depositStrategies.push(_strategy);
         cs.strategyGauges[_strategy] = _gauge;
         cs.strategyLPTokens[_strategy] = _strategyLPToken;
         cs.isStratgey[_strategy] = true;
+        cs.isPool[_pool] = true;
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
         return true;
     } 
@@ -245,6 +247,11 @@ contract Controller is ControllerStorageV1 {
     function gasUsed(address account) public view returns(uint256){
         ControllerStorage storage cs = controllerStorage();
         return cs.claimableGas[account];
+    }
+
+    function crvLockPercent() public view returns(uint256){
+        ControllerStorage storage cs = controllerStorage();
+        return cs.crvLockPercent;
     }
 
 }

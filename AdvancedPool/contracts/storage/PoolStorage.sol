@@ -5,7 +5,7 @@ import "../libraries/SafeMath.sol";
 import "../interfaces/IERC20.sol"; 
 import "../interfaces/DepositStrategy.sol";
 import "../interfaces/UniswapRouter.sol";
-
+import "../interfaces/Controller.sol";
 
 contract PoolStorageV1 {
     
@@ -35,10 +35,10 @@ contract PoolStorageV1 {
            
         bool  locked;
         address  owner;
-
+        //have to remove next two lines == REMOVE
         uint256 defaultGas;
         mapping(address => uint256) gasUsed;
-
+        Controller controller;
     }
 
     function poolStorage() internal pure returns (PoolStorage storage ps) {

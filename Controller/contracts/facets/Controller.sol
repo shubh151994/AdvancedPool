@@ -21,10 +21,16 @@ contract Controller is ControllerStorageV1 {
         _;
     }
     
+    modifier onlyStrategyOrPool(){
+        ControllerStorage storage cs = controllerStorage();
+        require(cs.isStratgey[msg.sender] || cs.isPool[msg.sender], "Only strategy or pool can call!!");
+        _;
+    }
 
 /****CONSTRUCTOR****/
     function initialize(
         address[] memory _depositStrategies,
+        address[] memory _pools,
         Gauge[] memory _gauges, 
         IERC20[] memory _strategyLPToken,
         Minter _minter, 
@@ -37,13 +43,14 @@ contract Controller is ControllerStorageV1 {
         IERC20 _adminFeeToken
     ) public{
         ControllerStorage storage cs = controllerStorage();
-        require(!cs.initialized, 'Already initialized');
+        //require(!cs.initialized, 'Already initialized');
         cs.depositStrategies = _depositStrategies;
 
-        for(uint256 i = 0; i < _depositStrategies.length; i++){
+        for(uint256 i = 0; i < cs.depositStrategies.length; i++){
             cs.strategyGauges[cs.depositStrategies[i]] = _gauges[i];
             cs.strategyLPTokens[cs.depositStrategies[i]] = _strategyLPToken[i];
-            cs.isStratgey[_depositStrategies[i]] = true;
+            cs.isStratgey[cs.depositStrategies[i]] = true;
+            cs.isPool[_pools[i]] = true;
         }
 
         cs.minter = _minter;
@@ -63,24 +70,93 @@ contract Controller is ControllerStorageV1 {
 
     function updateOwner(address newOwner) external onlyOwner() returns(bool){
         ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.controllerOwner = newOwner;
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
         return true;
     } 
 
     function addNewStrategy(address _strategy, Gauge _gauge, IERC20 _strategyLPToken) external onlyOwner() returns(bool){
         ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.depositStrategies.push(_strategy);
         cs.strategyGauges[_strategy] = _gauge;
         cs.strategyLPTokens[_strategy] = _strategyLPToken;
         cs.isStratgey[_strategy] = true;
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
         return true;
     } 
 
     function updateAdminFeeToken(IERC20 _adminFeeToken) external onlyOwner() returns(bool){
         ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.adminFeeToken = _adminFeeToken;
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
         return true;
     } 
+
+    function createLock(uint256 _value, uint256 _unlockTime) external onlyOwner() {
+        ControllerStorage storage cs = controllerStorage();
+        require(_value <= cs.availableCRVToLock, 'Insufficient CRV' );
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
+        cs.availableCRVToLock = cs.availableCRVToLock.sub(_value);
+        cs.crvToken.approve(address(cs.votingEscrow), _value);
+        VotingEscrow(cs.votingEscrow).create_lock(_value, _unlockTime);
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+    } 
+    
+    function releaseLock() external onlyOwner() {
+        ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
+        uint256 oldBalance = cs.crvToken.balanceOf(address(this));
+        VotingEscrow(cs.votingEscrow).withdraw();  
+        uint256 newBalance = cs.crvToken.balanceOf(address(this));
+        uint256 crvReceived = newBalance - oldBalance;
+        cs.availableCRVToLock = cs.availableCRVToLock.add(crvReceived);
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+    }
+    
+    function increaseLockAmount(uint256 _value) external onlyOwner() {
+        ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
+        require(_value <= cs.availableCRVToLock, 'Insufficient CRV' );
+        cs.availableCRVToLock = cs.availableCRVToLock.sub(_value);
+        cs.crvToken.approve(address(cs.votingEscrow), _value);
+        VotingEscrow(cs.votingEscrow).increase_amount(_value);
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+    }
+
+    function increaseUnlockTime(uint256 _value) external onlyOwner() {
+        ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
+        VotingEscrow(cs.votingEscrow).increase_unlock_time(_value);
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+    }
+
+    function claimAndConvertAdminFees() external onlyOwner() returns(uint256){
+        ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
+        uint256 oldBalance = cs.adminFeeToken.balanceOf(address(this));
+        FeeDistributor(cs.feeDistributor).claim();
+        uint256 newBalance = cs.adminFeeToken.balanceOf(address(this));
+        uint256 adminFeeReceived = newBalance - oldBalance;
+        oldBalance = cs.crvToken.balanceOf(address(this));
+        convertToCRV(adminFeeReceived);
+        newBalance = cs.crvToken.balanceOf(address(this));
+        uint256 crvReceived = newBalance - oldBalance;
+        cs.availableCRVToLock = cs.availableCRVToLock + crvReceived;
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+        return crvReceived;
+    }
+
+    function updateLockPercentage(uint256 _newPercent) external onlyOwner() returns(bool){
+        ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
+        cs.crvLockPercent = _newPercent;
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
+        return true;
+    } 
+    
 
 /****STRATEGY FUNCTIONS****/
 
@@ -112,47 +188,29 @@ contract Controller is ControllerStorageV1 {
         return crvReceived - crvToLock;
     }
 
+    function updateGasUsed(uint256 _gasUsed) public onlyStrategyOrPool() {
+        ControllerStorage storage cs = controllerStorage();
+        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender] + _gasUsed;
+    }
+
 /****OPEN FUNCTIONS****/
 
-    function createLock(uint256 _value, uint256 _unlockTime) external{
+    receive() external payable {
         ControllerStorage storage cs = controllerStorage();
-        require(_value <= cs.availableCRVToLock, 'Insufficient CRV' );
-        cs.availableCRVToLock = cs.availableCRVToLock.sub(_value);
-        cs.crvToken.approve(address(cs.votingEscrow), _value);
-        VotingEscrow(cs.votingEscrow).create_lock(_value, _unlockTime);
-    } 
-    
-    function releaseLock() external{
-        ControllerStorage storage cs = controllerStorage();
-        uint256 oldBalance = cs.crvToken.balanceOf(address(this));
-        VotingEscrow(cs.votingEscrow).withdraw();  
-        uint256 newBalance = cs.crvToken.balanceOf(address(this));
-        uint256 crvReceived = newBalance - oldBalance;
-        cs.availableCRVToLock = cs.availableCRVToLock.add(crvReceived);
+        cs.ethReceived[msg.sender] = cs.ethReceived[msg.sender] + msg.value;
     }
     
-    function increaseLockAmount(uint256 _value) external {
-        ControllerStorage storage cs = controllerStorage();
-        require(_value <= cs.availableCRVToLock, 'Insufficient CRV' );
-        cs.availableCRVToLock = cs.availableCRVToLock.sub(_value);
-        cs.crvToken.approve(address(cs.votingEscrow), _value);
-        VotingEscrow(cs.votingEscrow).increase_amount(_value);
+    function claimGasFee() public{
+        ControllerStorage storage cs = controllerStorage();     
+        uint256 gasAtStart = (gasleft().add(cs.defaultGas)).mul(tx.gasprice);
+        uint256 claimableAmount = cs.claimableGas[msg.sender];
+        require(claimableAmount > 0, "Nothing to claim");
+        require(address(this).balance >= claimableAmount, "Dont have enough fund, Try later!!");
+        cs.claimableGas[msg.sender] = 0;
+        msg.sender.transfer(claimableAmount);
+        uint256 gasAtEnd = gasleft().mul(tx.gasprice);
+        cs.claimableGas[msg.sender] = gasAtStart - gasAtEnd;
     }
-
-    function claimAndConverAdminFees() external returns(uint256){
-        ControllerStorage storage cs = controllerStorage();
-        uint256 oldBalance = cs.adminFeeToken.balanceOf(address(this));
-        FeeDistributor(cs.feeDistributor).claim();
-        uint256 newBalance = cs.adminFeeToken.balanceOf(address(this));
-        uint256 adminFeeReceived = newBalance - oldBalance;
-        oldBalance = cs.crvToken.balanceOf(address(this));
-        convertToCRV(adminFeeReceived);
-        newBalance = cs.crvToken.balanceOf(address(this));
-        uint256 crvReceived = newBalance - oldBalance;
-        cs.availableCRVToLock = cs.availableCRVToLock + crvReceived;
-        return crvReceived;
-    }
-    
 /***INTERNAL FUNCTION****/
 
     function convertToCRV(uint256 amount) internal {
@@ -170,6 +228,23 @@ contract Controller is ControllerStorageV1 {
             address(this), 
             block.timestamp + 1800
         );
+    }
+
+/****VIEW FUNCTIONS****/
+
+    function defaultGas() public view returns(uint256){
+        ControllerStorage storage cs = controllerStorage();
+        return cs.defaultGas;
+    }
+
+    function availableCRVToLock() public view returns(uint256){
+        ControllerStorage storage cs = controllerStorage();
+        return cs.availableCRVToLock;
+    }
+
+    function gasUsed(address account) public view returns(uint256){
+        ControllerStorage storage cs = controllerStorage();
+        return cs.claimableGas[account];
     }
 
 }

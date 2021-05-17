@@ -96,7 +96,7 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const AdvancedPoolABI =   [
+const AdvancedPoolABI =  [
   {
     "anonymous": false,
     "inputs": [
@@ -240,6 +240,11 @@ const AdvancedPoolABI =   [
       {
         "internalType": "contract UniswapV2Router02",
         "name": "_uniswapRouter",
+        "type": "address"
+      },
+      {
+        "internalType": "contract Controller",
+        "name": "_controller",
         "type": "address"
       }
     ],
@@ -394,6 +399,20 @@ const AdvancedPoolABI =   [
         "type": "bool"
       }
     ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getYield",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "convertFeesToETH",
+    "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -640,20 +659,31 @@ const AdvancedPoolABI =   [
   },
   {
     "inputs": [],
-    "name": "claimGasFee",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "convertFeesToETH",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "name": "currentLiquidityParams",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
   }
 ]
-const AdvancePoolAddr = "0x978ff0A8506F3f73ba3649d6081CC3428705be22";
+
+const AdvancePoolAddr = "0x38B93238c7fBD43Ea304d70bcC73BE7155BB81A4";
 
 const FacetCutAction = {
   Add: 0,
@@ -711,7 +741,7 @@ async function addFacet(){
   const Part1Call = new web3.eth.Contract(AdvancedPoolABI, AdvancePoolAddr)
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  
+  selectorspart1.push('0x00000000');
   console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
       .diamondCut([ [AdvancePoolAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
@@ -729,15 +759,15 @@ async function initializeAdvancedPool(){
   try{
   const coins = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
   const poolToken = "0x8A76eADe0fAf10A33FE63f78C828d583a4f19EdE"
-  const minLiq = 1000
-  const maxLiq = 3000
+  const minLiq = 2000
+  const maxLiq = 4000
   const withFee = 50
   const depFee = 50
-  const _maxWithdrawalAllowed = 1000000000
+  const _maxWithdrawalAllowed = 25000000000
   const owner = config.publicKey.rinkeby
   const depStrategies = "0x0b2cfdd4561df95b20FCBC582a521b02374Db54c"
   const UniswapV2Router02 = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
- 
+  const controller = "0xcD85a2327D8858f091A9204a10f5e815E807D649"
   
   console.log("1111111111")
   const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
@@ -752,7 +782,8 @@ async function initializeAdvancedPool(){
         _maxWithdrawalAllowed,
         owner,
         depStrategies,
-        UniswapV2Router02
+        UniswapV2Router02,
+        controller
       ).encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
@@ -1178,4 +1209,4 @@ async function ethfees(){
 
 };
 
-addFacet2()
+initializeAdvancedPool()

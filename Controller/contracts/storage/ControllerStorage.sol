@@ -40,7 +40,10 @@ contract ControllerStorageV1 {
         uint256 DENOMINATOR;
         uint256 totalStrategies;
         uint256 availableCRVToLock;
-
+        uint256 defaultGas;
+        mapping(address => uint256) claimableGas;    
+        mapping(address => uint256) ethReceived;
+        mapping(address => bool) isPool;
     }
 
     function controllerStorage() internal pure returns (ControllerStorage storage cs) {

@@ -1,5 +1,5 @@
 {
-  "contractName": "DepositStrategy",
+  "contractName": "Controller",
   "abi": [
     {
       "inputs": [
@@ -9,7 +9,7 @@
           "type": "uint256"
         }
       ],
-      "name": "deposit",
+      "name": "stake",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -18,18 +18,18 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "amount",
+          "name": "gasUsed",
           "type": "uint256"
         }
       ],
-      "name": "withdraw",
+      "name": "updateGasUsed",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [],
-      "name": "claimAndConvertCRV",
+      "name": "defaultGas",
       "outputs": [
         {
           "internalType": "uint256",
@@ -41,7 +41,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"claimAndConvertCRV\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":\"DepositStrategy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol\":{\"keccak256\":\"0xb4f43f50c9713ed5669dd598cdfe761472ffc7dfe438d7df29186bbf71d6614f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://408ad88dd4a835b32a2b3db67a86e1354dcc4ab635cd29bad5de185cfe9de6dd\",\"dweb:/ipfs/QmSFJGx2x4Hdh2xxgX4XS32GWBfftwDqvYg4e3DYQHWGUD\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"defaultGas\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"stake\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gasUsed\",\"type\":\"uint256\"}],\"name\":\"updateGasUsed\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol\":\"Controller\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol\":{\"keccak256\":\"0x69dc70d839367bb94cc19311d9d18942db0aa256c3b2897a1fd101f1f828831f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://782088a781dab8adf7d618a3c052049bb8a59be94c7999412c85d0d653d49eee\",\"dweb:/ipfs/QmZTTdV7zscXqQMQKtyNFPX7zicfFEukjpxWj5eC4iUihK\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -49,21 +49,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\ninterface DepositStrategy{\r\n    function deposit(uint256 amount) external;\r\n    function withdraw(uint256 amount) external;\r\n    function claimAndConvertCRV() external returns(uint256);\r\n}",
-  "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\AdvancedPool\\contracts\\interfaces\\DepositStrategy.sol",
+  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\n\r\ninterface Controller{\r\n    function stake(uint256 amount) external;\r\n    function updateGasUsed(uint256 gasUsed) external;\r\n    function defaultGas() external returns(uint256);\r\n}\r\n\r\n\r\n",
+  "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\AdvancedPool\\contracts\\interfaces\\Controller.sol",
   "ast": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
+    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
-      "DepositStrategy": [
-        2209
+      "Controller": [
+        2191
       ]
     },
-    "id": 2210,
+    "id": 2192,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2193,
+        "id": 2175,
         "literals": [
           "solidity",
           "^",
@@ -71,7 +71,7 @@
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:7"
+        "src": "39:23:6"
       },
       {
         "abstract": false,
@@ -79,33 +79,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2209,
+        "id": 2191,
         "linearizedBaseContracts": [
-          2209
+          2191
         ],
-        "name": "DepositStrategy",
+        "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "b6b55f25",
-            "id": 2198,
+            "functionSelector": "a694fc3a",
+            "id": 2180,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "deposit",
+            "name": "stake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2196,
+              "id": 2178,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2195,
+                  "id": 2177,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2198,
-                  "src": "115:14:7",
+                  "scope": 2180,
+                  "src": "110:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -113,10 +113,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2194,
+                    "id": 2176,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "115:7:7",
+                    "src": "110:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -125,40 +125,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "114:16:7"
+              "src": "109:16:6"
             },
             "returnParameters": {
-              "id": 2197,
+              "id": 2179,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "139:0:7"
+              "src": "134:0:6"
             },
-            "scope": 2209,
-            "src": "98:42:7",
+            "scope": 2191,
+            "src": "95:40:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "2e1a7d4d",
-            "id": 2203,
+            "functionSelector": "57cfd501",
+            "id": 2185,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "withdraw",
+            "name": "updateGasUsed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2201,
+              "id": 2183,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2200,
+                  "id": 2182,
                   "mutability": "mutable",
-                  "name": "amount",
+                  "name": "gasUsed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2203,
-                  "src": "164:14:7",
+                  "scope": 2185,
+                  "src": "164:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -166,10 +166,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2199,
+                    "id": 2181,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "164:7:7",
+                    "src": "164:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -178,46 +178,46 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "163:16:7"
+              "src": "163:17:6"
             },
             "returnParameters": {
-              "id": 2202,
+              "id": 2184,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "188:0:7"
+              "src": "189:0:6"
             },
-            "scope": 2209,
-            "src": "146:43:7",
+            "scope": 2191,
+            "src": "141:49:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "2fbd7082",
-            "id": 2208,
+            "functionSelector": "84e9a901",
+            "id": 2190,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "claimAndConvertCRV",
+            "name": "defaultGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2204,
+              "id": 2186,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "222:2:7"
+              "src": "215:2:6"
             },
             "returnParameters": {
-              "id": 2207,
+              "id": 2189,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2206,
+                  "id": 2188,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2208,
-                  "src": "242:7:7",
+                  "scope": 2190,
+                  "src": "235:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -225,10 +225,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2205,
+                    "id": 2187,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "242:7:7",
+                    "src": "235:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -237,34 +237,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "241:9:7"
+              "src": "234:9:6"
             },
-            "scope": 2209,
-            "src": "195:56:7",
+            "scope": 2191,
+            "src": "196:48:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2210,
-        "src": "66:188:7"
+        "scope": 2192,
+        "src": "68:179:6"
       }
     ],
-    "src": "39:215:7"
+    "src": "39:214:6"
   },
   "legacyAST": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
+    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
-      "DepositStrategy": [
-        2209
+      "Controller": [
+        2191
       ]
     },
-    "id": 2210,
+    "id": 2192,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2193,
+        "id": 2175,
         "literals": [
           "solidity",
           "^",
@@ -272,7 +272,7 @@
           ".6"
         ],
         "nodeType": "PragmaDirective",
-        "src": "39:23:7"
+        "src": "39:23:6"
       },
       {
         "abstract": false,
@@ -280,33 +280,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2209,
+        "id": 2191,
         "linearizedBaseContracts": [
-          2209
+          2191
         ],
-        "name": "DepositStrategy",
+        "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "b6b55f25",
-            "id": 2198,
+            "functionSelector": "a694fc3a",
+            "id": 2180,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "deposit",
+            "name": "stake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2196,
+              "id": 2178,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2195,
+                  "id": 2177,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2198,
-                  "src": "115:14:7",
+                  "scope": 2180,
+                  "src": "110:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -314,10 +314,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2194,
+                    "id": 2176,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "115:7:7",
+                    "src": "110:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -326,40 +326,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "114:16:7"
+              "src": "109:16:6"
             },
             "returnParameters": {
-              "id": 2197,
+              "id": 2179,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "139:0:7"
+              "src": "134:0:6"
             },
-            "scope": 2209,
-            "src": "98:42:7",
+            "scope": 2191,
+            "src": "95:40:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "2e1a7d4d",
-            "id": 2203,
+            "functionSelector": "57cfd501",
+            "id": 2185,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "withdraw",
+            "name": "updateGasUsed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2201,
+              "id": 2183,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2200,
+                  "id": 2182,
                   "mutability": "mutable",
-                  "name": "amount",
+                  "name": "gasUsed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2203,
-                  "src": "164:14:7",
+                  "scope": 2185,
+                  "src": "164:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -367,10 +367,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2199,
+                    "id": 2181,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "164:7:7",
+                    "src": "164:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -379,46 +379,46 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "163:16:7"
+              "src": "163:17:6"
             },
             "returnParameters": {
-              "id": 2202,
+              "id": 2184,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "188:0:7"
+              "src": "189:0:6"
             },
-            "scope": 2209,
-            "src": "146:43:7",
+            "scope": 2191,
+            "src": "141:49:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "2fbd7082",
-            "id": 2208,
+            "functionSelector": "84e9a901",
+            "id": 2190,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "claimAndConvertCRV",
+            "name": "defaultGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2204,
+              "id": 2186,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "222:2:7"
+              "src": "215:2:6"
             },
             "returnParameters": {
-              "id": 2207,
+              "id": 2189,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2206,
+                  "id": 2188,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2208,
-                  "src": "242:7:7",
+                  "scope": 2190,
+                  "src": "235:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -426,10 +426,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2205,
+                    "id": 2187,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "242:7:7",
+                    "src": "235:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -438,20 +438,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "241:9:7"
+              "src": "234:9:6"
             },
-            "scope": 2209,
-            "src": "195:56:7",
+            "scope": 2191,
+            "src": "196:48:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2210,
-        "src": "66:188:7"
+        "scope": 2192,
+        "src": "68:179:6"
       }
     ],
-    "src": "39:215:7"
+    "src": "39:214:6"
   },
   "compiler": {
     "name": "solc",
@@ -459,7 +459,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-17T10:06:58.822Z",
+  "updatedAt": "2021-05-17T10:06:58.819Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

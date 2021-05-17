@@ -96,12 +96,22 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const ControllerAbi =   [
+const ControllerAbi =  [
+  {
+    "stateMutability": "payable",
+    "type": "receive",
+    "payable": true
+  },
   {
     "inputs": [
       {
         "internalType": "address[]",
         "name": "_depositStrategies",
+        "type": "address[]"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_pools",
         "type": "address[]"
       },
       {
@@ -231,39 +241,6 @@ const ControllerAbi =   [
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "stake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "unstake",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "claimCRV",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "_value",
         "type": "uint256"
       },
@@ -299,8 +276,21 @@ const ControllerAbi =   [
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_value",
+        "type": "uint256"
+      }
+    ],
+    "name": "increaseUnlockTime",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
-    "name": "claimAndConverAdminFees",
+    "name": "claimAndConvertAdminFees",
     "outputs": [
       {
         "internalType": "uint256",
@@ -310,9 +300,135 @@ const ControllerAbi =   [
     ],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_newPercent",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateLockPercentage",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "stake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unstake",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimCRV",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_gasUsed",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateGasUsed",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimGasFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "defaultGas",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "availableCRVToLock",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "gasUsed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
   }
 ]
-const ControllerAddr = "0x2349f4c0063c85230EdE2950C962a83Bf125e643";
+const ControllerAddr = "0xE6E429837cF147f892d691043BF4C95841097f95";
 
 const FacetCutAction = {
   Add: 0,
@@ -370,7 +486,7 @@ async function addFacet(){
   const Part1Call = new web3.eth.Contract(ControllerAbi, ControllerAddr)
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  
+  selectorspart1.push('0x00000000');
   console.log("33333333333333333",selectorspart1)
   const functCall = await facetCutCall.methods
       .diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
@@ -518,4 +634,4 @@ async function addFacet2(){
 
 };
 
-addFacet2()
+addFacet()

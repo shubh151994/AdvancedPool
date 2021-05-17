@@ -6,7 +6,7 @@ const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const AdvancedPool2 = artifacts.require('AdvancedPool2')
+const AdvancedPool = artifacts.require('AdvancedPool')
 
 
 const FacetCutAction = {
@@ -44,7 +44,7 @@ function getSelectors (contract) {
 
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
-  deployer.deploy(AdvancedPool2).then(() => {
-    console.log(AdvancedPool2.address)
+  deployer.deploy(AdvancedPool).then(() => {
+    console.log(AdvancedPool.address)
   })
 }

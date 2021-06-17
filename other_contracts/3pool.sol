@@ -24,7 +24,7 @@ def __init__(
     self.token = CurveToken(_pool_token)
 
 @external
-def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256):
+def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256, _use_underlying: bool) -> uint256:
     for i in range(N_COINS):
         in_coin: address = self.coins[i]
         if amounts[i] > 0:
@@ -40,10 +40,11 @@ def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256):
                 max_outsize=32,
             )  # dev: failed transfer       
     self.token.mint(msg.sender, 100000000000000000000)
+    return min_mint_amount
 
 @external
-def remove_liquidity_imbalance(amounts: uint256[N_COINS], max_burn_amount: uint256):
-    self.token.burnFrom(msg.sender, 10000000000000000000)  # dev: insufficient funds
+def remove_liquidity_imbalance(amounts: uint256[N_COINS], max_burn_amount: uint256, _use_underlying: bool) -> uint256:
+    self.token.burnFrom(msg.sender, max_burn_amount)  # dev: insufficient funds
     for i in range(N_COINS):
         if amounts[i] != 0:
             # "safeTransfer" which works for ERC20s which return bool or not
@@ -56,21 +57,26 @@ def remove_liquidity_imbalance(amounts: uint256[N_COINS], max_burn_amount: uint2
                 ),
                 max_outsize=32,
             )  # dev: failed transfer
+    return max_burn_amount
 
 @external
-def remove_liquidity_one_coin(_token_amount: uint256, i: int128, min_amount: uint256):
-    self.token.burnFrom(msg.sender, 10000000000000000000)  # dev: insufficient funds
-
+def remove_liquidity_one_coin(
+    _token_amount: uint256,
+    i: int128,
+    _min_amount: uint256,
+    _use_underlying: bool = False
+) -> uint256:
+    self.token.burnFrom(msg.sender, _token_amount)  # dev: insufficient funds
     _response: Bytes[32] = raw_call(
-        self.coins[i],
-        concat(
-            method_id("transfer(address,uint256)"),
-            convert(msg.sender, bytes32),
-            convert(min_amount, bytes32),
-        ),
-        max_outsize=32,
-    )  # dev: failed transfer
-
+                self.coins[i],
+                concat(
+                    method_id("transfer(address,uint256)"),
+                    convert(msg.sender, bytes32),
+                    convert(_min_amount, bytes32),
+                ),
+                max_outsize=32,
+            )  # dev: failed transfer
+    return _token_amount
 
 @external
 def updatetoken(

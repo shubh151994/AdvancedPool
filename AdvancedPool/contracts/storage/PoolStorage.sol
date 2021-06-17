@@ -35,9 +35,7 @@ contract PoolStorageV1 {
            
         bool  locked;
         address  owner;
-        //have to remove next two lines == REMOVE
-        uint256 defaultGas;
-        mapping(address => uint256) gasUsed;
+        address superOwner;
         Controller controller;
     }
 

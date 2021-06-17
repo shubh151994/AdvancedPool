@@ -9,7 +9,7 @@ const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0xcD85a2327D8858f091A9204a10f5e815E807D649";
+const DiamondContractAddress = "0xf20149EfEe7a4f709755c96AaDa9b8AFf1e3ca9c";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -96,7 +96,7 @@ const CutABI =   [
     "type": "function"
   }
 ]
-const ControllerAbi =  [
+const ControllerAbi =[
   {
     "stateMutability": "payable",
     "type": "receive",
@@ -150,9 +150,9 @@ const ControllerAbi =  [
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "_controllerOwner",
-        "type": "address"
+        "internalType": "address[]",
+        "name": "_owners",
+        "type": "address[]"
       },
       {
         "internalType": "uint256",
@@ -176,9 +176,14 @@ const ControllerAbi =  [
         "internalType": "address",
         "name": "newOwner",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "newSuperOwner",
+        "type": "address"
       }
     ],
-    "name": "updateOwner",
+    "name": "updateOwners",
     "outputs": [
       {
         "internalType": "bool",
@@ -339,8 +344,27 @@ const ControllerAbi =  [
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
     "name": "unstake",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unstakeAll",
     "outputs": [
       {
         "internalType": "uint256",
@@ -370,6 +394,11 @@ const ControllerAbi =  [
         "internalType": "uint256",
         "name": "_gasUsed",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "adminAddress",
+        "type": "address"
       }
     ],
     "name": "updateGasUsed",
@@ -447,7 +476,9 @@ const ControllerAbi =  [
     "constant": true
   }
 ]
-const ControllerAddr = "0xA3e5254FA45628511F79722673681E78A7205104";
+const ControllerAddr = "0x030382492f581Eb4fca760db2F89b01E23afCcE4";
+const zeroAddress = '0x0000000000000000000000000000000000000000'
+
 
 const FacetCutAction = {
   Add: 0,
@@ -456,29 +487,29 @@ const FacetCutAction = {
 }
 
 const transact = async (data, value) => {
-   //  console.log(data, contractAddress, holderAddress, privateKey, value)
-        try {
-            var count = await web3.eth.getTransactionCount(deployerAddress);
-            var gasPrice = await web3.eth.getGasPrice();
-            var txData = {
-                nonce: web3.utils.toHex(count),
-                gasLimit: web3.utils.toHex(3000000),
-                gasPrice: '0x' + gasPrice.toString(16),
-                to: DiamondContractAddress,
-                from: deployerAddress,
-                data: data, 
-                value: value
-            }
-            var transaction = new TX(txData,{chain:'rinkeby', hardfork:'petersburg'});
-            transaction.sign(privateKey);
-            var serialisedTransaction = transaction.serialize().toString('hex');
-    
-            var receipt = await web3.eth.sendSignedTransaction('0x' + serialisedTransaction);
-            return receipt;
-        } catch(e) {
-                console.log('in catch')
-                throw new Error(e);
-    		}
+  //  console.log(data, contractAddress, holderAddress, privateKey, value)
+       try {
+           var count = await web3.eth.getTransactionCount(deployerAddress);
+           // var gasPrice = await web3.eth.getGasPrice();
+           var txData = {
+               nonce: web3.utils.toHex(count),
+               gasLimit: web3.utils.toHex(3000000),
+               gasPrice: 10000000000,
+               to: DiamondContractAddress,
+               from: deployerAddress,
+               data: data, 
+               value: value
+           }
+           var transaction = new TX(txData,{chain:'rinkeby', hardfork:'petersburg'});
+           transaction.sign(privateKey);
+           var serialisedTransaction = transaction.serialize().toString('hex');
+   
+           var receipt = await web3.eth.sendSignedTransaction('0x' + serialisedTransaction);
+           return receipt;
+       } catch(e) {
+               console.log('in catch')
+               throw new Error(e);
+       }
 }
 
 function getSelectors (abi) {
@@ -495,21 +526,18 @@ function getSelectors (abi) {
   console.log(selectors,"selectors");
     return selectors
 }
-const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 // FUNCTION TO ADD FACET
 async function addFacet(){
   try{
-  console.log("1111111111")
+  console.log("adding facet")
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
   const Part1Call = new web3.eth.Contract(ControllerAbi, ControllerAddr)
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
   selectorspart1.push('0x00000000');
-  console.log("33333333333333333",selectorspart1)
-  const functCall = await facetCutCall.methods
-      .diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
-      console.log("444444444444444444444")
+  console.log("selectors",selectorspart1)
+  const functCall = await facetCutCall.methods.diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
   } catch(e) {
@@ -519,134 +547,39 @@ async function addFacet(){
 
 };
 
-
-// async function readValue(){
-//   try{
-//   const EosToEth2 = new web3.eth.Contract(EosToEthPart2ABI, DiamondContractAddress)
-//   console.log(EosToEth2.methods, "EosToEth2")
-//   const functCall = await EosToEth2.methods.contractParams().call();
-//   console.log("444444444444444444444")
-//   console.log(functCall,"functCall")
-//   } catch(e) {
-//       console.log('in catch2')
-//       throw new Error(e);
-//   }
-
-// };
-
-
 async function initializeController(){
   try{
-  const strategires = ["0x0b2cfdd4561df95b20FCBC582a521b02374Db54c"]
-  const pool = ["0x4d5A1b515accf195393471dc109470F85c551416"]
+  const strategires = ["0x64DD59A9CE549C5925befe4DD1c9894c316F7648"]
+  const pool = ["0x7ADFF52984c6aAdfC70445E993443387c12eBFB9"]
   const gauges = ["0xF0C904b796a913Ae483E6fd6e0b36dF527849784"];
-  const strategyLPTOken = ["0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"]
+  const curveStrategyLPTOken = ["0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"]
   const minter = "0xAde9c3e4F7E7D97F0aD2f3a68c8E65524C789078"
-  const crv = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
+  const crvToken = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
   const veCRV = "0xe1187A7aD69Af79d9706E2f118a89e1438225825"
   const feeDistributor = "0x140fCf94762Fe2C64D998F6CD7812Ef3e7877Fb2"
   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-  const controllerOwner = config.publicKey.rinkeby
+  const controllerOwners = [config.publicKey.rinkeby,config.publicKey.rinkeby]
   const crvLockPercent = "2000"
-  const _adminFeeToken = "0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"
+  const adminFeeToken = "0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"
   
-  console.log("1111111111")
+  console.log("initializing controller")
   const diamondCall = new web3.eth.Contract(ControllerAbi, DiamondContractAddress);
   const functCall = await diamondCall.methods
       .initialize(
         strategires, 
         pool,
         gauges,
-        strategyLPTOken, 
+        curveStrategyLPTOken, 
         minter,
-        crv,
+        crvToken,
         veCRV,
         feeDistributor,
         uniswap,
-        controllerOwner,
+        controllerOwners,
         crvLockPercent,
-        _adminFeeToken
+        adminFeeToken
       ).encodeABI();
-      console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
-
-async function withdrawToken(){
-  try{
-  const id = 5
-  const byteData = '0x0000000000000003010000000005f5e1000000000000000000f5951a818cdb8d67843794980af7a5db588fe6acf5951a818cdb8d67843794980af7a5db588fe6ac000000000000000000000000000000000000000000000000'
-  
-  console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart1ABI, DiamondContractAddress);
-  const functCall = await bridgeCall.methods
-      .pushInboundMessage(
-        id,
-        byteData
-      ).encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
-
-async function sendToken(){
-  try{
-  
-  console.log("1111111111")
-  const bridgeCall = new web3.eth.Contract(EosToEthPart1ABI, DiamondContractAddress);
-  const functCall = await bridgeCall.methods
-      .sendToken(
-        "1000000",
-        "0"
-      ).encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
-
-
-async function addFacet2(){
-  try{
-  console.log("1111111111")
-  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract( [
-    {
-      "inputs": [],
-      "name": "unstake",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ], "0x3Fa9914A0544123d411e5fBebDC59a4348b6B850")
- 
-  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  
-  console.log("33333333333333333",selectorspart1)
-  const functCall = await facetCutCall.methods
-      .diamondCut([["0x3Fa9914A0544123d411e5fBebDC59a4348b6B850", FacetCutAction.Replace, selectorspart1 ]], zeroAddress, '0x').encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0 )
   console.log(receipt)
   } catch(e) {
       console.log('in catch2')

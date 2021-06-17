@@ -4,6 +4,7 @@ pragma solidity ^0.7.6;
 
 interface Controller{
     function stake(uint256 amount) external;
-    function unstake() external returns(uint256);
+    function unstake(uint256 amount) external returns(uint256);
+    function unstakeAll() external returns(uint256);
     function claimCRV() external;
 }

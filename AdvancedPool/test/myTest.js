@@ -9,7 +9,7 @@ const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x4d5A1b515accf195393471dc109470F85c551416";
+const DiamondContractAddress = "0x7ADFF52984c6aAdfC70445E993443387c12eBFB9";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -228,9 +228,9 @@ const AdvancedPoolABI =  [
         "type": "uint256"
       },
       {
-        "internalType": "address",
-        "name": "_owner",
-        "type": "address"
+        "internalType": "address[]",
+        "name": "_owners",
+        "type": "address[]"
       },
       {
         "internalType": "contract DepositStrategy",
@@ -292,7 +292,13 @@ const AdvancedPoolABI =  [
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "minMintAmount",
+        "type": "uint256"
+      }
+    ],
     "name": "addToStrategy",
     "outputs": [
       {
@@ -305,7 +311,13 @@ const AdvancedPoolABI =  [
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "maxBurnAmount",
+        "type": "uint256"
+      }
+    ],
     "name": "removeFromStrategy",
     "outputs": [
       {
@@ -314,6 +326,19 @@ const AdvancedPoolABI =  [
         "type": "uint256"
       }
     ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "minAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeAllFromStrategy",
+    "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -332,6 +357,11 @@ const AdvancedPoolABI =  [
       {
         "internalType": "uint256",
         "name": "_maxWithdrawalAllowed",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxBurnOrMinMint",
         "type": "uint256"
       }
     ],
@@ -389,9 +419,14 @@ const AdvancedPoolABI =  [
         "internalType": "address",
         "name": "newOwner",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "newSuperOwner",
+        "type": "address"
       }
     ],
-    "name": "updateOwner",
+    "name": "updateOwners",
     "outputs": [
       {
         "internalType": "bool",
@@ -405,6 +440,19 @@ const AdvancedPoolABI =  [
   {
     "inputs": [],
     "name": "getYield",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract DepositStrategy",
+        "name": "_newStrategy",
+        "type": "address"
+      }
+    ],
+    "name": "updateStrategy",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -680,10 +728,29 @@ const AdvancedPoolABI =  [
     "stateMutability": "view",
     "type": "function",
     "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "owners",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
   }
 ]
-
-const AdvancePoolAddr = "0x38B93238c7fBD43Ea304d70bcC73BE7155BB81A4";
+const AdvancePoolAddr = "0xbF090e87A11cBfbf86879291f9058963d8558672";
+const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 const FacetCutAction = {
   Add: 0,
@@ -695,11 +762,11 @@ const transact = async (data, value) => {
    //  console.log(data, contractAddress, holderAddress, privateKey, value)
         try {
             var count = await web3.eth.getTransactionCount(deployerAddress);
-            var gasPrice = await web3.eth.getGasPrice();
+            // var gasPrice = await web3.eth.getGasPrice();
             var txData = {
                 nonce: web3.utils.toHex(count),
                 gasLimit: web3.utils.toHex(3000000),
-                gasPrice: '0x' + gasPrice.toString(16),
+                gasPrice: 10000000000,
                 to: DiamondContractAddress,
                 from: deployerAddress,
                 data: data, 
@@ -731,21 +798,18 @@ function getSelectors (abi) {
   console.log(selectors,"selectors");
     return selectors
 }
-const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 // FUNCTION TO ADD FACET
 async function addFacet(){
   try{
-  console.log("1111111111")
+  console.log("entry to add facet")
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
   const Part1Call = new web3.eth.Contract(AdvancedPoolABI, AdvancePoolAddr)
- 
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
   selectorspart1.push('0x00000000');
-  console.log("33333333333333333",selectorspart1)
+  console.log("selectors",selectorspart1)
   const functCall = await facetCutCall.methods
       .diamondCut([ [AdvancePoolAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
-      console.log("444444444444444444444")
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
   } catch(e) {
@@ -757,35 +821,34 @@ async function addFacet(){
 
 async function initializeAdvancedPool(){
   try{
-  const coins = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
-  const poolToken = "0x8A76eADe0fAf10A33FE63f78C828d583a4f19EdE"
+  const coin = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
+  const poolToken = "0x2D406Fbe74ebdDDF207D551e005Db221dC212F73"
   const minLiq = 2000
   const maxLiq = 4000
   const withFee = 50
   const depFee = 50
-  const _maxWithdrawalAllowed = 25000000000
-  const owner = config.publicKey.rinkeby
-  const depStrategies = "0x0b2cfdd4561df95b20FCBC582a521b02374Db54c"
+  const maxWithdrawalAllowed = 25000000000
+  const owners = [config.publicKey.rinkeby,config.publicKey.rinkeby]
+  const depStrategies = "0x64DD59A9CE549C5925befe4DD1c9894c316F7648"
   const UniswapV2Router02 = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-  const controller = "0xcD85a2327D8858f091A9204a10f5e815E807D649"
+  const controller = "0xf20149EfEe7a4f709755c96AaDa9b8AFf1e3ca9c"
   
-  console.log("1111111111")
+  console.log("initializing advanced pool")
   const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
   const functCall = await bridgeCall.methods
       .initialize(
-        coins, 
+        coin, 
         poolToken,
         minLiq, 
         maxLiq,
         withFee,
         depFee,
-        _maxWithdrawalAllowed,
-        owner,
+        maxWithdrawalAllowed,
+        owners,
         depStrategies,
         UniswapV2Router02,
         controller
       ).encodeABI();
-      console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
   console.log(receipt)
   } catch(e) {
@@ -802,6 +865,23 @@ async function addTosTrategy(){
   const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
   const functCall = await bridgeCall.methods
       .removeFromStrategy().encodeABI();
+      console.log("444444444444444444444")
+  const receipt = await transact(functCall, 0)
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+};
+
+async function removeFromStrategy(){
+  try{
+  
+  console.log("1111111111")
+  const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
+  const functCall = await bridgeCall.methods
+      .removeFromStrategy('1000000000').encodeABI();
       console.log("444444444444444444444")
   const receipt = await transact(functCall, 0)
   console.log(receipt)

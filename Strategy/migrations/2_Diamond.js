@@ -5,7 +5,7 @@ const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const TriPoolStrategy2 = artifacts.require('TriPoolStrategy2')
+const Strategy = artifacts.require('Strategy')
 
 const FacetCutAction = {
   Add: 0,
@@ -24,25 +24,25 @@ function getSelectors (contract) {
   return selectors
 }
 
-// module.exports = function (deployer, network, accounts) {
-//   console.log(accounts[0],"accounts");
-
-//   deployer.deploy(TriPoolStrategy)
-//   deployer.deploy(DiamondCutFacet)
-//   deployer.deploy(DiamondLoupeFacet)
-//   deployer.deploy(OwnershipFacet).then(() => {
-//     const diamondCut = [
-//       [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
-//       [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
-//       [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
-//     ]
-//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.ropsten])
-//   })
-// }
-
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
-  deployer.deploy(TriPoolStrategy2).then(() => {
-    console.log(TriPoolStrategy2.address)
+
+  deployer.deploy(Strategy)
+  deployer.deploy(DiamondCutFacet)
+  deployer.deploy(DiamondLoupeFacet)
+  deployer.deploy(OwnershipFacet).then(() => {
+    const diamondCut = [
+      [DiamondCutFacet.address, FacetCutAction.Add, getSelectors(DiamondCutFacet)],
+      [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
+      [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
+    ]
+    return deployer.deploy(Diamond, diamondCut, [config.publicKey.rinkeby])
   })
 }
+
+// module.exports = function (deployer, network, accounts) {
+//   console.log(accounts[0],"accounts");
+//   deployer.deploy(Strategy).then(() => {
+//     console.log(Strategy.address)
+//   })
+// }

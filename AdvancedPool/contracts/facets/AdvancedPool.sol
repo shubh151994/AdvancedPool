@@ -17,6 +17,11 @@ contract AdvancedPool is PoolStorageV1 {
         require(ps.owner == msg.sender, "Only admin can call!!");
         _;
     }
+    modifier onlySuperOwner(){
+        PoolStorage storage ps = poolStorage();
+        require(ps.superOwner == msg.sender, "Only super admin can call!!");
+        _;
+    }
     modifier notLocked {
         PoolStorage storage ps = poolStorage();
         require(!ps.locked, "contract is locked");
@@ -39,14 +44,15 @@ contract AdvancedPool is PoolStorageV1 {
         uint256 _withdrawFees, 
         uint256 _depositFees,
         uint256 _maxWithdrawalAllowed,
-        address _owner,
+        address[] memory _owners,
         DepositStrategy _depositStrategy,
         UniswapV2Router02 _uniswapRouter,
         Controller _controller
     ) public {
         PoolStorage storage ps = poolStorage();
         require(!ps.initialized, 'Already initialized');
-        ps.owner = _owner;
+        ps.owner = _owners[0];
+        ps.superOwner = _owners[1];
         ps.DENOMINATOR = 10000;
         ps.coin = _coin;
         ps.poolToken = _poolToken;
@@ -98,34 +104,46 @@ contract AdvancedPool is PoolStorageV1 {
 
 /****ADMIN FUNCTIONS*****/
 
-    function addToStrategy() public notLocked() onlyOwner() returns(uint256){
+    function addToStrategy(uint256 minMintAmount) public notLocked() onlyOwner() returns(uint256){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         uint256 amount = amountToDeposit();
         require(amount > 0, "Nothing to deposit");
         ps.strategyDeposit = ps.strategyDeposit.add(amount);
+        ps.coin.approve(address(ps.depositStrategy), 0);
         ps.coin.approve(address(ps.depositStrategy), amount);
-        ps.depositStrategy.deposit(amount);
+        ps.depositStrategy.deposit(amount, minMintAmount);
         emit poolDeposit(msg.sender, address(ps.depositStrategy), amount);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
         return amount;
     }
     
-    function removeFromStrategy() public notLocked() onlyOwner() returns(uint256){
+    function removeFromStrategy(uint256 maxBurnAmount) public notLocked() onlyOwner() returns(uint256){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         uint256 amount = amountToWithdraw();
         require(amount > 0 , "Nothing to withdraw");
         ps.strategyDeposit = ps.strategyDeposit.sub(amount);
-        ps.depositStrategy.withdraw(amount);
+        ps.depositStrategy.withdraw(amount, maxBurnAmount);
         emit poolWithdrawal(msg.sender, address(ps.depositStrategy), amount);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender); 
         return amount;
     }
+
+    function removeAllFromStrategy(uint256 minAmount) public notLocked() onlySuperOwner(){
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        require(ps.strategyDeposit > 0 , "Nothing to withdraw");
+        ps.strategyDeposit = 0;
+        ps.depositStrategy.withdrawAll(minAmount);
+        emit poolWithdrawal(msg.sender, address(ps.depositStrategy), ps.coin.balanceOf(address(this)));
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender); 
+    }
     
-    function updateLiquidityParam(uint256 _minLiquidity, uint256 _maxLiquidity, uint256 _maxWithdrawalAllowed) external onlyOwner() returns(bool){
+    function updateLiquidityParam(uint256 _minLiquidity, uint256 _maxLiquidity, uint256 _maxWithdrawalAllowed, uint256 maxBurnOrMinMint) external onlySuperOwner() returns(bool){
         require(_minLiquidity > 0 &&  _maxLiquidity > 0 && _maxWithdrawalAllowed > 0, 'Parameters cant be zero!!');
         require(_minLiquidity <  _maxLiquidity, 'Min liquidity cant be greater than max liquidity!!');
    
@@ -135,22 +153,22 @@ contract AdvancedPool is PoolStorageV1 {
         ps.maxLiquidity = _maxLiquidity;
         ps.maxWithdrawalAllowed = _maxWithdrawalAllowed;
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
-          if(amountToDeposit() > 0){
-            addToStrategy();
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+        if(amountToDeposit() > 0){
+            addToStrategy(maxBurnOrMinMint);
         }else if(amountToWithdraw() > 0){
-            removeFromStrategy();
+            removeFromStrategy(maxBurnOrMinMint);
         }
         return true;
     }
     
-    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlyOwner() returns(bool){
+    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlySuperOwner() returns(bool){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         ps.withdrawFees = _withdrawFees;
         ps.depositFees = _depositFees;
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
         return true;
     }
     
@@ -159,16 +177,17 @@ contract AdvancedPool is PoolStorageV1 {
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         ps.locked = !ps.locked;
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
         return ps.locked;
     }
     
-    function updateOwner(address newOwner) external onlyOwner() returns(bool){
+    function updateOwners(address newOwner, address newSuperOwner) external onlySuperOwner() returns(bool){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         ps.owner = newOwner;
+        ps.superOwner = newSuperOwner;
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
         return true;
     } 
 
@@ -178,22 +197,33 @@ contract AdvancedPool is PoolStorageV1 {
         uint256 tokenReceived = ps.depositStrategy.claimAndConvertCRV();
         ps.poolBalance = ps.poolBalance.add(tokenReceived);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
     }
     
+    
+    function updateStrategy(DepositStrategy _newStrategy) public onlySuperOwner(){
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        require(ps.strategyDeposit == 0, 'Withdraw all funds first');
+        ps.depositStrategy = _newStrategy;
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+    }
+
     function convertFeesToETH() external onlyOwner() {
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         address[] memory path = new address[](2);
         uint256 amountToSwap = ps.feesCollected;
         ps.feesCollected = 0;
+        ps.coin.approve(address(ps.uniswapRouter), 0);
         ps.coin.approve(address(ps.uniswapRouter), amountToSwap);
         path[0] = address(ps.coin);
         path[1] = ps.uniswapRouter.WETH();
         uint256 amountOutMin = 0;
         ps.uniswapRouter.swapExactTokensForETH(amountToSwap, amountOutMin, path, address(ps.controller), block.timestamp + 100000);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
-        ps.controller.updateGasUsed(gasUsed);
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
     }
 
 
@@ -282,6 +312,11 @@ contract AdvancedPool is PoolStorageV1 {
     function currentLiquidityParams() public view returns(uint256, uint256, uint256){
         PoolStorage storage ps = poolStorage();
         return (ps.minLiquidity, ps.maxLiquidity, ps.maxWithdrawalAllowed);
+    }
+
+    function owners() public view returns(address, address){
+        PoolStorage storage ps = poolStorage();
+        return (ps.owner, ps.superOwner);
     }
 
     receive() external payable {

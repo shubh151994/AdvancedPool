@@ -48,9 +48,9 @@
       "constant": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol\":\"OwnershipFacet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol\":{\"keccak256\":\"0x7732be6b5bd9c248482af0fd8615ea998e0bb4cb207bb8a3bc1eaa189f9a2517\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e553c0cd0bf2c5e6dbb3312f21596c291f58428640b23bd6e761da509591a543\",\"dweb:/ipfs/QmcbUdu5kLF2UQpfnbNSe2Gm9gbURZgwusdCvrtt5saVzc\"]},\"/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/IDiamondCut.sol\":{\"keccak256\":\"0xac9abc5bb15ca8ee2bded34ceef6fe49866658bd8fbb0638b7d7e99fb066c403\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3f0dfe4f383ed6cd8d974ef7a6e5664317cb21d05916c59861a9258cf3246dca\",\"dweb:/ipfs/QmXcuW6yjGGDjMLM5hZqEaLQJPHvEA3yRjcxAZVxQ5b9Bm\"]},\"/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol\":{\"keccak256\":\"0xb9dc1abf9448a3ae52352660defe9995c21b89ac6fdd8fc70a21545abc8ec898\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ef88837935bc8c578809c4c5e255c6addc928eeca6315f43da8e18b71575e5ec\",\"dweb:/ipfs/QmZfMnmuvTzwu8WqHxduVko6hZQoC5MYSwujSeKkUMQF9B\"]},\"/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/libraries/LibDiamond.sol\":{\"keccak256\":\"0xda58d04a89c4610908e1130c14b4ab87f8a41eaf70dae36ca24bfed9662ad1f7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d18a8fa6b9db7df7e9461fe060d9d129d076e513d234ac5eceb8937e76a074c7\",\"dweb:/ipfs/Qmd2695iTbmHixdnYWJgdKBcTm5VsnpL2J2MgLe7Qqv8tq\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50610375806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80638da5cb5b1461003b578063f2fde38b1461006f575b600080fd5b6100436100b3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b16004803603602081101561008557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100c2565b005b60006100bd6100d6565b905090565b6100ca610109565b6100d3816101a4565b50565b60006100e061027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b61011161027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101a2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101999061030e565b60405180910390fd5b565b60006101ae61027b565b905060008160030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050828260030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508273ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3505050565b6000807fc8fcad8db84d3cc18b4c41d551ea0ee66dd599cde068d998e57d5e09332c131c90508091505090565b60006102b560228361032e565b91507f4c69624469616d6f6e643a204d75737420626520636f6e7472616374206f776e60008301527f65720000000000000000000000000000000000000000000000000000000000006020830152604082019050919050565b60006020820190508181036000830152610327816102a8565b9050919050565b60008282526020820190509291505056fea2646970667358221220c3c5f19f64bbb540ba0905e596d54f5adcaf46c7eba8fa220fdea2879608feb864736f6c63430007060033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80638da5cb5b1461003b578063f2fde38b1461006f575b600080fd5b6100436100b3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b16004803603602081101561008557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100c2565b005b60006100bd6100d6565b905090565b6100ca610109565b6100d3816101a4565b50565b60006100e061027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b61011161027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101a2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101999061030e565b60405180910390fd5b565b60006101ae61027b565b905060008160030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050828260030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508273ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3505050565b6000807fc8fcad8db84d3cc18b4c41d551ea0ee66dd599cde068d998e57d5e09332c131c90508091505090565b60006102b560228361032e565b91507f4c69624469616d6f6e643a204d75737420626520636f6e7472616374206f776e60008301527f65720000000000000000000000000000000000000000000000000000000000006020830152604082019050919050565b60006020820190508181036000830152610327816102a8565b9050919050565b60008282526020820190509291505056fea2646970667358221220c3c5f19f64bbb540ba0905e596d54f5adcaf46c7eba8fa220fdea2879608feb864736f6c63430007060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol\":\"OwnershipFacet\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol\":{\"keccak256\":\"0x7732be6b5bd9c248482af0fd8615ea998e0bb4cb207bb8a3bc1eaa189f9a2517\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e553c0cd0bf2c5e6dbb3312f21596c291f58428640b23bd6e761da509591a543\",\"dweb:/ipfs/QmcbUdu5kLF2UQpfnbNSe2Gm9gbURZgwusdCvrtt5saVzc\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/interfaces/IDiamondCut.sol\":{\"keccak256\":\"0xac9abc5bb15ca8ee2bded34ceef6fe49866658bd8fbb0638b7d7e99fb066c403\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3f0dfe4f383ed6cd8d974ef7a6e5664317cb21d05916c59861a9258cf3246dca\",\"dweb:/ipfs/QmXcuW6yjGGDjMLM5hZqEaLQJPHvEA3yRjcxAZVxQ5b9Bm\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol\":{\"keccak256\":\"0xb9dc1abf9448a3ae52352660defe9995c21b89ac6fdd8fc70a21545abc8ec898\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ef88837935bc8c578809c4c5e255c6addc928eeca6315f43da8e18b71575e5ec\",\"dweb:/ipfs/QmZfMnmuvTzwu8WqHxduVko6hZQoC5MYSwujSeKkUMQF9B\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/libraries/LibDiamond.sol\":{\"keccak256\":\"0xda58d04a89c4610908e1130c14b4ab87f8a41eaf70dae36ca24bfed9662ad1f7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d18a8fa6b9db7df7e9461fe060d9d129d076e513d234ac5eceb8937e76a074c7\",\"dweb:/ipfs/Qmd2695iTbmHixdnYWJgdKBcTm5VsnpL2J2MgLe7Qqv8tq\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610375806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80638da5cb5b1461003b578063f2fde38b1461006f575b600080fd5b6100436100b3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b16004803603602081101561008557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100c2565b005b60006100bd6100d6565b905090565b6100ca610109565b6100d3816101a4565b50565b60006100e061027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b61011161027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101a2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101999061030e565b60405180910390fd5b565b60006101ae61027b565b905060008160030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050828260030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508273ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3505050565b6000807fc8fcad8db84d3cc18b4c41d551ea0ee66dd599cde068d998e57d5e09332c131c90508091505090565b60006102b560228361032e565b91507f4c69624469616d6f6e643a204d75737420626520636f6e7472616374206f776e60008301527f65720000000000000000000000000000000000000000000000000000000000006020830152604082019050919050565b60006020820190508181036000830152610327816102a8565b9050919050565b60008282526020820190509291505056fea26469706673582212201e3131cc90d329480caefaad0d40aabfc0444476f5702f56586c48e284702da264736f6c63430007060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80638da5cb5b1461003b578063f2fde38b1461006f575b600080fd5b6100436100b3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b16004803603602081101561008557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100c2565b005b60006100bd6100d6565b905090565b6100ca610109565b6100d3816101a4565b50565b60006100e061027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b61011161027b565b60030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146101a2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101999061030e565b60405180910390fd5b565b60006101ae61027b565b905060008160030160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050828260030160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508273ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3505050565b6000807fc8fcad8db84d3cc18b4c41d551ea0ee66dd599cde068d998e57d5e09332c131c90508091505090565b60006102b560228361032e565b91507f4c69624469616d6f6e643a204d75737420626520636f6e7472616374206f776e60008301527f65720000000000000000000000000000000000000000000000000000000000006020830152604082019050919050565b60006020820190508181036000830152610327816102a8565b9050919050565b60008282526020820190509291505056fea26469706673582212201e3131cc90d329480caefaad0d40aabfc0444476f5702f56586c48e284702da264736f6c63430007060033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [
@@ -494,18 +494,18 @@
   "sourceMap": "138:339:4:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "138:339:4:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;355:119;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;180:167;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;355:119;404:14;440:26;:24;:26::i;:::-;431:35;;355:119;:::o;180:167::-;255:35;:33;:35::i;:::-;301:38;329:9;301:27;:38::i;:::-;180:167;:::o;1215:138:14:-;1263:22;1315:16;:14;:16::i;:::-;:30;;;;;;;;;;;;1298:47;;1215:138;:::o;1361:158::-;1442:16;:14;:16::i;:::-;:30;;;;;;;;;;;;1428:44;;:10;:44;;;1420:91;;;;;;;;;;;;:::i;:::-;;;;;;;;;1361:158::o;938:269::-;1003:25;1031:16;:14;:16::i;:::-;1003:44;;1058:21;1082:2;:16;;;;;;;;;;;;1058:40;;1128:9;1109:2;:16;;;:28;;;;;;;;;;;;;;;;;;1189:9;1153:46;;1174:13;1153:46;;;;;;;;;;;;938:269;;;:::o;636:202::-;685:25;723:16;206:45;723:43;;812:8;801:19;;786:45;;:::o;7:366:17:-;;170:67;234:2;229:3;170:67;:::i;:::-;163:74;;267:34;263:1;258:3;254:11;247:55;333:4;328:2;323:3;319:12;312:26;364:2;359:3;355:12;348:19;;153:220;;;:::o;379:419::-;;583:2;572:9;568:18;560:26;;632:9;626:4;622:20;618:1;607:9;603:17;596:47;660:131;786:4;660:131;:::i;:::-;652:139;;550:248;;;:::o;804:169::-;;922:6;917:3;910:19;962:4;957:3;953:14;938:29;;900:73;;;;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.6;\r\n\r\nimport \"../libraries/LibDiamond.sol\";\r\nimport \"../interfaces/IERC173.sol\";\r\n\r\ncontract OwnershipFacet is IERC173 {\r\n    function transferOwnership(address _newOwner) external override {\r\n        LibDiamond.enforceIsContractOwner();\r\n        LibDiamond.setContractOwner(_newOwner);\r\n    }\r\n\r\n    function owner() external override view returns (address owner_) {\r\n        owner_ = LibDiamond.contractOwner();\r\n    }\r\n}\r\n",
-  "sourcePath": "E:/New Desktop/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol",
+  "sourcePath": "E:/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol",
   "ast": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol",
+    "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol",
     "exportedSymbols": {
       "IDiamondCut": [
-        1228
+        1351
       ],
       "IERC173": [
-        1296
+        1419
       ],
       "LibDiamond": [
-        2177
+        2176
       ],
       "OwnershipFacet": [
         671
@@ -527,23 +527,23 @@
         "src": "33:23:4"
       },
       {
-        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/libraries/LibDiamond.sol",
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/libraries/LibDiamond.sol",
         "file": "../libraries/LibDiamond.sol",
         "id": 636,
         "nodeType": "ImportDirective",
         "scope": 672,
-        "sourceUnit": 2178,
+        "sourceUnit": 2177,
         "src": "60:37:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol",
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol",
         "file": "../interfaces/IERC173.sol",
         "id": 637,
         "nodeType": "ImportDirective",
         "scope": 672,
-        "sourceUnit": 1297,
+        "sourceUnit": 1420,
         "src": "99:35:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -556,10 +556,10 @@
               "id": 638,
               "name": "IERC173",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1296,
+              "referencedDeclaration": 1419,
               "src": "165:7:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC173_$1296",
+                "typeIdentifier": "t_contract$_IERC173_$1419",
                 "typeString": "contract IERC173"
               }
             },
@@ -569,21 +569,21 @@
           }
         ],
         "contractDependencies": [
-          1296
+          1419
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 671,
         "linearizedBaseContracts": [
           671,
-          1296
+          1419
         ],
         "name": "OwnershipFacet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "baseFunctions": [
-              1295
+              1418
             ],
             "body": {
               "id": 656,
@@ -600,10 +600,10 @@
                         "name": "LibDiamond",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2177,
+                        "referencedDeclaration": 2176,
                         "src": "255:10:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2177_$",
+                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2176_$",
                           "typeString": "type(library LibDiamond)"
                         }
                       },
@@ -614,7 +614,7 @@
                       "lValueRequested": false,
                       "memberName": "enforceIsContractOwner",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1633,
+                      "referencedDeclaration": 1632,
                       "src": "255:33:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$__$",
@@ -668,10 +668,10 @@
                         "name": "LibDiamond",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2177,
+                        "referencedDeclaration": 2176,
                         "src": "301:10:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2177_$",
+                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2176_$",
                           "typeString": "type(library LibDiamond)"
                         }
                       },
@@ -682,7 +682,7 @@
                       "lValueRequested": false,
                       "memberName": "setContractOwner",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1607,
+                      "referencedDeclaration": 1606,
                       "src": "301:27:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
@@ -771,7 +771,7 @@
           },
           {
             "baseFunctions": [
-              1290
+              1413
             ],
             "body": {
               "id": 669,
@@ -808,10 +808,10 @@
                           "name": "LibDiamond",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2177,
+                          "referencedDeclaration": 2176,
                           "src": "440:10:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2177_$",
+                            "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2176_$",
                             "typeString": "type(library LibDiamond)"
                           }
                         },
@@ -822,7 +822,7 @@
                         "lValueRequested": false,
                         "memberName": "contractOwner",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1619,
+                        "referencedDeclaration": 1618,
                         "src": "440:24:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
@@ -923,16 +923,16 @@
     "src": "33:446:4"
   },
   "legacyAST": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol",
+    "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/facets/OwnershipFacet.sol",
     "exportedSymbols": {
       "IDiamondCut": [
-        1228
+        1351
       ],
       "IERC173": [
-        1296
+        1419
       ],
       "LibDiamond": [
-        2177
+        2176
       ],
       "OwnershipFacet": [
         671
@@ -954,23 +954,23 @@
         "src": "33:23:4"
       },
       {
-        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/libraries/LibDiamond.sol",
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/libraries/LibDiamond.sol",
         "file": "../libraries/LibDiamond.sol",
         "id": 636,
         "nodeType": "ImportDirective",
         "scope": 672,
-        "sourceUnit": 2178,
+        "sourceUnit": 2177,
         "src": "60:37:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/E/New Desktop/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol",
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC173.sol",
         "file": "../interfaces/IERC173.sol",
         "id": 637,
         "nodeType": "ImportDirective",
         "scope": 672,
-        "sourceUnit": 1297,
+        "sourceUnit": 1420,
         "src": "99:35:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -983,10 +983,10 @@
               "id": 638,
               "name": "IERC173",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1296,
+              "referencedDeclaration": 1419,
               "src": "165:7:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC173_$1296",
+                "typeIdentifier": "t_contract$_IERC173_$1419",
                 "typeString": "contract IERC173"
               }
             },
@@ -996,21 +996,21 @@
           }
         ],
         "contractDependencies": [
-          1296
+          1419
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 671,
         "linearizedBaseContracts": [
           671,
-          1296
+          1419
         ],
         "name": "OwnershipFacet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "baseFunctions": [
-              1295
+              1418
             ],
             "body": {
               "id": 656,
@@ -1027,10 +1027,10 @@
                         "name": "LibDiamond",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2177,
+                        "referencedDeclaration": 2176,
                         "src": "255:10:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2177_$",
+                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2176_$",
                           "typeString": "type(library LibDiamond)"
                         }
                       },
@@ -1041,7 +1041,7 @@
                       "lValueRequested": false,
                       "memberName": "enforceIsContractOwner",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1633,
+                      "referencedDeclaration": 1632,
                       "src": "255:33:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$__$",
@@ -1095,10 +1095,10 @@
                         "name": "LibDiamond",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2177,
+                        "referencedDeclaration": 2176,
                         "src": "301:10:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2177_$",
+                          "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2176_$",
                           "typeString": "type(library LibDiamond)"
                         }
                       },
@@ -1109,7 +1109,7 @@
                       "lValueRequested": false,
                       "memberName": "setContractOwner",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1607,
+                      "referencedDeclaration": 1606,
                       "src": "301:27:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
@@ -1198,7 +1198,7 @@
           },
           {
             "baseFunctions": [
-              1290
+              1413
             ],
             "body": {
               "id": 669,
@@ -1235,10 +1235,10 @@
                           "name": "LibDiamond",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2177,
+                          "referencedDeclaration": 2176,
                           "src": "440:10:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2177_$",
+                            "typeIdentifier": "t_type$_t_contract$_LibDiamond_$2176_$",
                             "typeString": "type(library LibDiamond)"
                           }
                         },
@@ -1249,7 +1249,7 @@
                         "lValueRequested": false,
                         "memberName": "contractOwner",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1619,
+                        "referencedDeclaration": 1618,
                         "src": "440:24:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
@@ -1354,32 +1354,6 @@
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
   "networks": {
-    "3": {
-      "events": {
-        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "previousOwner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "newOwner",
-              "type": "address"
-            }
-          ],
-          "name": "OwnershipTransferred",
-          "type": "event"
-        }
-      },
-      "links": {},
-      "address": "0xdb74E1b32cF6253b04A052D6BA6AE0F6e3f1AC20",
-      "transactionHash": "0xf4f4df9654e166e9fba204dcc5bb5e8922b1ecb916a1fe7a4a4b3d82595a7f3e"
-    },
     "4": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -1403,12 +1377,12 @@
         }
       },
       "links": {},
-      "address": "0xc0CE2e866F61C4BC777D2DD7ce7c9E81078DC207",
-      "transactionHash": "0x414a2e74e4132cf17b66abda140d0bda06aa07a3c900518c0337d88c7e2a4b38"
+      "address": "0x8C5F7128A0FC9839bB6d463FCe827Aba68d41544",
+      "transactionHash": "0x7da1e9aeeffff0fb747621e8445e5e8e70265da9cc51620c6b240a552d9ace4a"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-12T10:09:34.823Z",
+  "updatedAt": "2021-06-17T08:38:34.654Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

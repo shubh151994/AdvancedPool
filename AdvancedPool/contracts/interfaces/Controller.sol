@@ -3,8 +3,7 @@ pragma solidity ^0.7.6;
 
 
 interface Controller{
-    function stake(uint256 amount) external;
-    function updateGasUsed(uint256 gasUsed) external;
+    function updateGasUsed(uint256 gasUsed, address adminAddress) external;
     function defaultGas() external returns(uint256);
 }
 

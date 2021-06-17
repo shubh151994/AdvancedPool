@@ -35,6 +35,7 @@ contract ControllerStorageV1 {
         UniswapV2Router uniswapRouter;
         
         address controllerOwner;
+        address controllerSuperOwner;
         
         uint256 crvLockPercent;
         uint256 DENOMINATOR;

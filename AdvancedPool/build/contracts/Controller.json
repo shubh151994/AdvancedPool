@@ -5,21 +5,13 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "stake",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
           "name": "gasUsed",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "adminAddress",
+          "type": "address"
         }
       ],
       "name": "updateGasUsed",
@@ -41,7 +33,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"defaultGas\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"stake\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gasUsed\",\"type\":\"uint256\"}],\"name\":\"updateGasUsed\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol\":\"Controller\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol\":{\"keccak256\":\"0x69dc70d839367bb94cc19311d9d18942db0aa256c3b2897a1fd101f1f828831f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://782088a781dab8adf7d618a3c052049bb8a59be94c7999412c85d0d653d49eee\",\"dweb:/ipfs/QmZTTdV7zscXqQMQKtyNFPX7zicfFEukjpxWj5eC4iUihK\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"defaultGas\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"gasUsed\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"adminAddress\",\"type\":\"address\"}],\"name\":\"updateGasUsed\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol\":\"Controller\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol\":{\"keccak256\":\"0xd5d599d481f8809de7abc2d501d5bd940fc8afedc6c12a056f90dd9edf626621\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://8a1728e13c639103a5f684fb035fa5ca14ba33bd573de9728abb57722df4d556\",\"dweb:/ipfs/Qmbf2n15Bbi3F7L1LWsMtM7JYvgfXLVGSqVZeVdhJqxarf\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -49,21 +41,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\n\r\ninterface Controller{\r\n    function stake(uint256 amount) external;\r\n    function updateGasUsed(uint256 gasUsed) external;\r\n    function defaultGas() external returns(uint256);\r\n}\r\n\r\n\r\n",
-  "sourcePath": "E:\\New Desktop\\Projects\\AdvancedPool\\AdvancedPool\\contracts\\interfaces\\Controller.sol",
+  "source": "//SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\n\r\n\r\ninterface Controller{\r\n    function updateGasUsed(uint256 gasUsed, address adminAddress) external;\r\n    function defaultGas() external returns(uint256);\r\n}\r\n\r\n\r\n",
+  "sourcePath": "E:\\Projects\\AdvancedPool\\AdvancedPool\\contracts\\interfaces\\Controller.sol",
   "ast": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
+    "absolutePath": "/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
       "Controller": [
-        2191
+        2461
       ]
     },
-    "id": 2192,
+    "id": 2462,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2175,
+        "id": 2448,
         "literals": [
           "solidity",
           "^",
@@ -79,86 +71,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2191,
+        "id": 2461,
         "linearizedBaseContracts": [
-          2191
+          2461
         ],
         "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "a694fc3a",
-            "id": 2180,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "stake",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 2178,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2177,
-                  "mutability": "mutable",
-                  "name": "amount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2180,
-                  "src": "110:14:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2176,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "110:7:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "109:16:6"
-            },
-            "returnParameters": {
-              "id": 2179,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "134:0:6"
-            },
-            "scope": 2191,
-            "src": "95:40:6",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
-            "functionSelector": "57cfd501",
-            "id": 2185,
+            "functionSelector": "6c550682",
+            "id": 2455,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateGasUsed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2183,
+              "id": 2453,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2182,
+                  "id": 2450,
                   "mutability": "mutable",
                   "name": "gasUsed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2185,
-                  "src": "164:15:6",
+                  "scope": 2455,
+                  "src": "118:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -166,58 +105,85 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2181,
+                    "id": 2449,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "164:7:6",
+                    "src": "118:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2452,
+                  "mutability": "mutable",
+                  "name": "adminAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2455,
+                  "src": "135:20:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2451,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "135:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
                 }
               ],
-              "src": "163:17:6"
+              "src": "117:39:6"
             },
             "returnParameters": {
-              "id": 2184,
+              "id": 2454,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "189:0:6"
+              "src": "165:0:6"
             },
-            "scope": 2191,
-            "src": "141:49:6",
+            "scope": 2461,
+            "src": "95:71:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "84e9a901",
-            "id": 2190,
+            "id": 2460,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "defaultGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2186,
+              "id": 2456,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "215:2:6"
+              "src": "191:2:6"
             },
             "returnParameters": {
-              "id": 2189,
+              "id": 2459,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2188,
+                  "id": 2458,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2190,
-                  "src": "235:7:6",
+                  "scope": 2460,
+                  "src": "211:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -225,10 +191,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2187,
+                    "id": 2457,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "235:7:6",
+                    "src": "211:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -237,34 +203,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "234:9:6"
+              "src": "210:9:6"
             },
-            "scope": 2191,
-            "src": "196:48:6",
+            "scope": 2461,
+            "src": "172:48:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2192,
-        "src": "68:179:6"
+        "scope": 2462,
+        "src": "68:155:6"
       }
     ],
-    "src": "39:214:6"
+    "src": "39:190:6"
   },
   "legacyAST": {
-    "absolutePath": "/E/New Desktop/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
+    "absolutePath": "/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
       "Controller": [
-        2191
+        2461
       ]
     },
-    "id": 2192,
+    "id": 2462,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2175,
+        "id": 2448,
         "literals": [
           "solidity",
           "^",
@@ -280,86 +246,33 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2191,
+        "id": 2461,
         "linearizedBaseContracts": [
-          2191
+          2461
         ],
         "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "functionSelector": "a694fc3a",
-            "id": 2180,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "stake",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 2178,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2177,
-                  "mutability": "mutable",
-                  "name": "amount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 2180,
-                  "src": "110:14:6",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 2176,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "110:7:6",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "109:16:6"
-            },
-            "returnParameters": {
-              "id": 2179,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "134:0:6"
-            },
-            "scope": 2191,
-            "src": "95:40:6",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "external"
-          },
-          {
-            "functionSelector": "57cfd501",
-            "id": 2185,
+            "functionSelector": "6c550682",
+            "id": 2455,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateGasUsed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2183,
+              "id": 2453,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2182,
+                  "id": 2450,
                   "mutability": "mutable",
                   "name": "gasUsed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2185,
-                  "src": "164:15:6",
+                  "scope": 2455,
+                  "src": "118:15:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -367,58 +280,85 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2181,
+                    "id": 2449,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "164:7:6",
+                    "src": "118:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2452,
+                  "mutability": "mutable",
+                  "name": "adminAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2455,
+                  "src": "135:20:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2451,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "135:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
                 }
               ],
-              "src": "163:17:6"
+              "src": "117:39:6"
             },
             "returnParameters": {
-              "id": 2184,
+              "id": 2454,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "189:0:6"
+              "src": "165:0:6"
             },
-            "scope": 2191,
-            "src": "141:49:6",
+            "scope": 2461,
+            "src": "95:71:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "84e9a901",
-            "id": 2190,
+            "id": 2460,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "defaultGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2186,
+              "id": 2456,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "215:2:6"
+              "src": "191:2:6"
             },
             "returnParameters": {
-              "id": 2189,
+              "id": 2459,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2188,
+                  "id": 2458,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2190,
-                  "src": "235:7:6",
+                  "scope": 2460,
+                  "src": "211:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -426,10 +366,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2187,
+                    "id": 2457,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "235:7:6",
+                    "src": "211:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -438,20 +378,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "234:9:6"
+              "src": "210:9:6"
             },
-            "scope": 2191,
-            "src": "196:48:6",
+            "scope": 2461,
+            "src": "172:48:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2192,
-        "src": "68:179:6"
+        "scope": 2462,
+        "src": "68:155:6"
       }
     ],
-    "src": "39:214:6"
+    "src": "39:190:6"
   },
   "compiler": {
     "name": "solc",
@@ -459,7 +399,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-05-17T10:06:58.819Z",
+  "updatedAt": "2021-06-17T08:58:47.957Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

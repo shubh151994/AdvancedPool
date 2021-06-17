@@ -1,14 +1,6 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.7.6;
 
-
-interface Pool{
-    function add_liquidity(uint256[3] calldata, uint256) external;
-    function remove_liquidity_imbalance(uint256[3] calldata, uint256) external;
-    function calc_token_amount(uint256[3] memory, bool) external returns(uint256);
-    function remove_liquidity_one_coin(uint256 , int128, uint256) external;
-}
-
 interface Gauge {
     function deposit(uint256) external;
     function withdraw(uint256) external;
@@ -22,7 +14,7 @@ interface Minter {
 }
 
 interface FeeDistributor{
-    function claim() external;
+    function claim() external returns(uint256);
 }
 
 interface VotingEscrow{

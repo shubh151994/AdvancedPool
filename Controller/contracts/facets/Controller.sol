@@ -15,6 +15,12 @@ contract Controller is ControllerStorageV1 {
         _;
     }
 
+    modifier onlySuperOwner(){
+        ControllerStorage storage cs = controllerStorage();
+        require(cs.controllerSuperOwner == msg.sender, "Only super admin can call!!");
+        _;
+    }
+
     modifier onlyStrategy(){
         ControllerStorage storage cs = controllerStorage();
         require(cs.isStratgey[msg.sender], "Only strategy can call!!");
@@ -38,12 +44,12 @@ contract Controller is ControllerStorageV1 {
         VotingEscrow _votingEscrow,
         FeeDistributor _feeDistributor,
         UniswapV2Router _uniswapRouter,
-        address _controllerOwner,
+        address[] memory _owners,
         uint256 _crvLockPercent,
         IERC20 _adminFeeToken
     ) public{
         ControllerStorage storage cs = controllerStorage();
-        //require(!cs.initialized, 'Already initialized');
+        require(!cs.initialized, 'Already initialized');
         cs.depositStrategies = _depositStrategies;
 
         for(uint256 i = 0; i < cs.depositStrategies.length; i++){
@@ -58,7 +64,8 @@ contract Controller is ControllerStorageV1 {
         cs.votingEscrow = _votingEscrow;
         cs.feeDistributor = _feeDistributor;
         cs.uniswapRouter = _uniswapRouter; 
-        cs.controllerOwner = _controllerOwner;
+        cs.controllerOwner = _owners[0];
+        cs.controllerSuperOwner = _owners[1];
         cs.crvLockPercent = _crvLockPercent;
         cs.DENOMINATOR = 10000;
         cs.adminFeeToken = _adminFeeToken;
@@ -69,10 +76,11 @@ contract Controller is ControllerStorageV1 {
 
 /****CONTROLLER OWNER FUNCTIONS****/
 
-    function updateOwner(address newOwner) external onlyOwner() returns(bool){
+    function updateOwners(address newOwner, address newSuperOwner) external onlySuperOwner() returns(bool){
         ControllerStorage storage cs = controllerStorage();
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.controllerOwner = newOwner;
+        cs.controllerSuperOwner = newSuperOwner;
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
         return true;
     } 
@@ -102,6 +110,7 @@ contract Controller is ControllerStorageV1 {
         require(_value <= cs.availableCRVToLock, 'Insufficient CRV' );
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.availableCRVToLock = cs.availableCRVToLock.sub(_value);
+        cs.crvToken.approve(address(cs.votingEscrow), 0);
         cs.crvToken.approve(address(cs.votingEscrow), _value);
         VotingEscrow(cs.votingEscrow).create_lock(_value, _unlockTime);
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
@@ -123,6 +132,7 @@ contract Controller is ControllerStorageV1 {
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         require(_value <= cs.availableCRVToLock, 'Insufficient CRV' );
         cs.availableCRVToLock = cs.availableCRVToLock.sub(_value);
+        cs.crvToken.approve(address(cs.votingEscrow), 0);
         cs.crvToken.approve(address(cs.votingEscrow), _value);
         VotingEscrow(cs.votingEscrow).increase_amount(_value);
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].sub(gasleft().mul(tx.gasprice)); 
@@ -151,7 +161,7 @@ contract Controller is ControllerStorageV1 {
         return crvReceived;
     }
 
-    function updateLockPercentage(uint256 _newPercent) external onlyOwner() returns(bool){
+    function updateLockPercentage(uint256 _newPercent) external onlySuperOwner() returns(bool){
         ControllerStorage storage cs = controllerStorage();
         cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender].add((gasleft().add(cs.defaultGas)).mul(tx.gasprice));
         cs.crvLockPercent = _newPercent;
@@ -165,11 +175,19 @@ contract Controller is ControllerStorageV1 {
     function stake(uint256 amount) external onlyStrategy(){
         ControllerStorage storage cs = controllerStorage();
         cs.strategyLPTokens[msg.sender].transferFrom(msg.sender, address(this), amount);
+        cs.strategyLPTokens[msg.sender].approve(address(cs.strategyGauges[msg.sender]), 0);
         cs.strategyLPTokens[msg.sender].approve(address(cs.strategyGauges[msg.sender]), amount);
         cs.strategyGauges[msg.sender].deposit(amount);  
     }
     
-    function unstake() external onlyStrategy() returns(uint256){
+    function unstake(uint256 amount) external onlyStrategy() returns(uint256){
+        ControllerStorage storage cs = controllerStorage();
+        cs.strategyGauges[msg.sender].withdraw(amount);
+        cs.strategyLPTokens[msg.sender].transfer(msg.sender, amount);
+        return amount;
+    }
+
+   function unstakeAll() external onlyStrategy() returns(uint256){
         ControllerStorage storage cs = controllerStorage();
         uint256 unstakedAmount = cs.strategyGauges[msg.sender].balanceOf(address(this));
         cs.strategyGauges[msg.sender].withdraw(unstakedAmount);
@@ -190,9 +208,9 @@ contract Controller is ControllerStorageV1 {
         return crvReceived - crvToLock;
     }
 
-    function updateGasUsed(uint256 _gasUsed) public onlyStrategyOrPool() {
+    function updateGasUsed(uint256 _gasUsed, address adminAddress) public onlyStrategyOrPool() {
         ControllerStorage storage cs = controllerStorage();
-        cs.claimableGas[msg.sender] = cs.claimableGas[msg.sender] + _gasUsed;
+        cs.claimableGas[adminAddress] = cs.claimableGas[adminAddress] + _gasUsed;
     }
 
 /****OPEN FUNCTIONS****/
@@ -217,6 +235,7 @@ contract Controller is ControllerStorageV1 {
 
     function convertToCRV(uint256 amount) internal {
         ControllerStorage storage cs = controllerStorage();
+        cs.crvToken.approve(address(cs.uniswapRouter), 0);
         cs.crvToken.approve(address(cs.uniswapRouter), amount);
         address[] memory path = new address[](3);
         path[0] = address(cs.adminFeeToken);

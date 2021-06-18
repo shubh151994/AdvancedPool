@@ -11,7 +11,7 @@ contract Controller is ControllerStorageV1 {
 /****MODIFIERS****/
     modifier onlyOwner(){
         ControllerStorage storage cs = controllerStorage();
-        require(cs.controllerOwner == msg.sender, "Only controllerOwner can call!!");
+        require(cs.controllerOwner == msg.sender || cs.controllerSuperOwner == msg.sender, "Only admins can call!!");
         _;
     }
 

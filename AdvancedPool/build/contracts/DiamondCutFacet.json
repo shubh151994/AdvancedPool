@@ -14210,6 +14210,55 @@
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x8faa70878671ccd212d20771b795c50af8fd3ff6cf27f4bde57e5d4de0aeb673": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "facetAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum IDiamondCut.FacetCutAction",
+                  "name": "action",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes4[]",
+                  "name": "functionSelectors",
+                  "type": "bytes4[]"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct IDiamondCut.FacetCut[]",
+              "name": "_diamondCut",
+              "type": "tuple[]"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_init",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes",
+              "name": "_calldata",
+              "type": "bytes"
+            }
+          ],
+          "name": "DiamondCut",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xCfB804AF579b57Db1A6203660044BaA59eA20A65",
+      "transactionHash": "0x4629a58bb8d5f52012a24a936a441729f0cc7d687aca42759519bdf8f91fadd5"
+    },
     "4": {
       "events": {
         "0x8faa70878671ccd212d20771b795c50af8fd3ff6cf27f4bde57e5d4de0aeb673": {
@@ -14256,12 +14305,12 @@
         }
       },
       "links": {},
-      "address": "0xdf50658E9891c9a053aeF6755bd5619ceff6Ef3d",
-      "transactionHash": "0x581cca108ef2ff8ba5fee578e7bbae8ec56dab68c4fe4123d2144895f37f3517"
+      "address": "0xd1fabBEeaD1376e0eb37Da1a29A4183712288e54",
+      "transactionHash": "0xa5550d0989e06626cced72787a425b7957e91930ad4478bf32a815c09bc2e137"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-17T09:03:05.179Z",
+  "updatedAt": "2021-06-18T06:09:16.648Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

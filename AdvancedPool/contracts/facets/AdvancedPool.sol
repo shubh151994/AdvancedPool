@@ -14,7 +14,7 @@ contract AdvancedPool is PoolStorageV1 {
     
     modifier onlyOwner(){
         PoolStorage storage ps = poolStorage();
-        require(ps.owner == msg.sender, "Only admin can call!!");
+        require(ps.owner == msg.sender || ps.superOwner == msg.sender, "Only admin can call!!");
         _;
     }
     modifier onlySuperOwner(){

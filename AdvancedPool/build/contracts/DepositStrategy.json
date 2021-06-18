@@ -78,15 +78,15 @@
     "absolutePath": "/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        2488
+        2494
       ]
     },
-    "id": 2489,
+    "id": 2495,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2463,
+        "id": 2469,
         "literals": [
           "solidity",
           "^",
@@ -102,32 +102,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2488,
+        "id": 2494,
         "linearizedBaseContracts": [
-          2488
+          2494
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "e2bbb158",
-            "id": 2470,
+            "id": 2476,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2468,
+              "id": 2474,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2465,
+                  "id": 2471,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2470,
+                  "scope": 2476,
                   "src": "115:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -136,7 +136,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2464,
+                    "id": 2470,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "115:7:7",
@@ -149,11 +149,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2467,
+                  "id": 2473,
                   "mutability": "mutable",
                   "name": "minMintAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2470,
+                  "scope": 2476,
                   "src": "131:21:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -162,7 +162,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2466,
+                    "id": 2472,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "131:7:7",
@@ -177,12 +177,12 @@
               "src": "114:39:7"
             },
             "returnParameters": {
-              "id": 2469,
+              "id": 2475,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "162:0:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "98:65:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -190,23 +190,23 @@
           },
           {
             "functionSelector": "441a3e70",
-            "id": 2477,
+            "id": 2483,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2475,
+              "id": 2481,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2472,
+                  "id": 2478,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2477,
+                  "scope": 2483,
                   "src": "187:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -215,7 +215,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2471,
+                    "id": 2477,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "187:7:7",
@@ -228,11 +228,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2474,
+                  "id": 2480,
                   "mutability": "mutable",
                   "name": "maxBurnAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2477,
+                  "scope": 2483,
                   "src": "203:21:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -241,7 +241,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2473,
+                    "id": 2479,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "203:7:7",
@@ -256,12 +256,12 @@
               "src": "186:39:7"
             },
             "returnParameters": {
-              "id": 2476,
+              "id": 2482,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "234:0:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "169:66:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -269,23 +269,23 @@
           },
           {
             "functionSelector": "958e2d31",
-            "id": 2482,
+            "id": 2488,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2480,
+              "id": 2486,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2479,
+                  "id": 2485,
                   "mutability": "mutable",
                   "name": "minAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2482,
+                  "scope": 2488,
                   "src": "262:17:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -294,7 +294,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2478,
+                    "id": 2484,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "262:7:7",
@@ -309,12 +309,12 @@
               "src": "261:19:7"
             },
             "returnParameters": {
-              "id": 2481,
+              "id": 2487,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "289:0:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "241:49:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -322,29 +322,29 @@
           },
           {
             "functionSelector": "2fbd7082",
-            "id": 2487,
+            "id": 2493,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "claimAndConvertCRV",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2483,
+              "id": 2489,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "323:2:7"
             },
             "returnParameters": {
-              "id": 2486,
+              "id": 2492,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2485,
+                  "id": 2491,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2487,
+                  "scope": 2493,
                   "src": "343:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -353,7 +353,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2484,
+                    "id": 2490,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "343:7:7",
@@ -367,14 +367,14 @@
               ],
               "src": "342:9:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "296:56:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2489,
+        "scope": 2495,
         "src": "66:289:7"
       }
     ],
@@ -384,15 +384,15 @@
     "absolutePath": "/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/DepositStrategy.sol",
     "exportedSymbols": {
       "DepositStrategy": [
-        2488
+        2494
       ]
     },
-    "id": 2489,
+    "id": 2495,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2463,
+        "id": 2469,
         "literals": [
           "solidity",
           "^",
@@ -408,32 +408,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 2488,
+        "id": 2494,
         "linearizedBaseContracts": [
-          2488
+          2494
         ],
         "name": "DepositStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "e2bbb158",
-            "id": 2470,
+            "id": 2476,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2468,
+              "id": 2474,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2465,
+                  "id": 2471,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2470,
+                  "scope": 2476,
                   "src": "115:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -442,7 +442,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2464,
+                    "id": 2470,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "115:7:7",
@@ -455,11 +455,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2467,
+                  "id": 2473,
                   "mutability": "mutable",
                   "name": "minMintAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2470,
+                  "scope": 2476,
                   "src": "131:21:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -468,7 +468,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2466,
+                    "id": 2472,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "131:7:7",
@@ -483,12 +483,12 @@
               "src": "114:39:7"
             },
             "returnParameters": {
-              "id": 2469,
+              "id": 2475,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "162:0:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "98:65:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -496,23 +496,23 @@
           },
           {
             "functionSelector": "441a3e70",
-            "id": 2477,
+            "id": 2483,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2475,
+              "id": 2481,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2472,
+                  "id": 2478,
                   "mutability": "mutable",
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2477,
+                  "scope": 2483,
                   "src": "187:14:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -521,7 +521,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2471,
+                    "id": 2477,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "187:7:7",
@@ -534,11 +534,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2474,
+                  "id": 2480,
                   "mutability": "mutable",
                   "name": "maxBurnAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2477,
+                  "scope": 2483,
                   "src": "203:21:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -547,7 +547,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2473,
+                    "id": 2479,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "203:7:7",
@@ -562,12 +562,12 @@
               "src": "186:39:7"
             },
             "returnParameters": {
-              "id": 2476,
+              "id": 2482,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "234:0:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "169:66:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -575,23 +575,23 @@
           },
           {
             "functionSelector": "958e2d31",
-            "id": 2482,
+            "id": 2488,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdrawAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2480,
+              "id": 2486,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2479,
+                  "id": 2485,
                   "mutability": "mutable",
                   "name": "minAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2482,
+                  "scope": 2488,
                   "src": "262:17:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -600,7 +600,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2478,
+                    "id": 2484,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "262:7:7",
@@ -615,12 +615,12 @@
               "src": "261:19:7"
             },
             "returnParameters": {
-              "id": 2481,
+              "id": 2487,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "289:0:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "241:49:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -628,29 +628,29 @@
           },
           {
             "functionSelector": "2fbd7082",
-            "id": 2487,
+            "id": 2493,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "claimAndConvertCRV",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2483,
+              "id": 2489,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "323:2:7"
             },
             "returnParameters": {
-              "id": 2486,
+              "id": 2492,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2485,
+                  "id": 2491,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2487,
+                  "scope": 2493,
                   "src": "343:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -659,7 +659,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2484,
+                    "id": 2490,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "343:7:7",
@@ -673,14 +673,14 @@
               ],
               "src": "342:9:7"
             },
-            "scope": 2488,
+            "scope": 2494,
             "src": "296:56:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2489,
+        "scope": 2495,
         "src": "66:289:7"
       }
     ],
@@ -692,7 +692,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-17T08:58:47.959Z",
+  "updatedAt": "2021-06-18T06:11:15.648Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

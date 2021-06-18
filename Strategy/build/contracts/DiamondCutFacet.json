@@ -14210,6 +14210,97 @@
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x8faa70878671ccd212d20771b795c50af8fd3ff6cf27f4bde57e5d4de0aeb673": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "facetAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum IDiamondCut.FacetCutAction",
+                  "name": "action",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes4[]",
+                  "name": "functionSelectors",
+                  "type": "bytes4[]"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct IDiamondCut.FacetCut[]",
+              "name": "_diamondCut",
+              "type": "tuple[]"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_init",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes",
+              "name": "_calldata",
+              "type": "bytes"
+            }
+          ],
+          "name": "DiamondCut",
+          "type": "event"
+        },
+        "0xe785b7d46d252880dc19457b2c8b06b2de37c69d645338fdd151c21279e60633": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "facetAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum IDiamondCut.FacetCutAction",
+                  "name": "action",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes4[]",
+                  "name": "functionSelectors",
+                  "type": "bytes4[]"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct IDiamondCut.FacetCut[]",
+              "name": "_diamondCut",
+              "type": "tuple[]"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_init",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes",
+              "name": "_calldata",
+              "type": "bytes"
+            }
+          ],
+          "name": "DiamondCut",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xB15A1555122232ac650D8ddcd77c3A7582B20947",
+      "transactionHash": "0xed4c58380bb966195c34e5a32414a625aed0e624d7a5b232ff1725d120b823f6"
+    },
     "4": {
       "events": {
         "0x8faa70878671ccd212d20771b795c50af8fd3ff6cf27f4bde57e5d4de0aeb673": {
@@ -14256,12 +14347,12 @@
         }
       },
       "links": {},
-      "address": "0x5AA52cD61FB9495249aB915fC63AbFC76831089A",
-      "transactionHash": "0x3376d10aaaaa57aff5c61990dd470e4caf5b5f4d22727dd166e00fbb11f295c4"
+      "address": "0x9EE3ac97755a03b7e478CaDCA983F202b5Ab27F6",
+      "transactionHash": "0x212ab272734d564820a1f05c9e1e6d5bea228feac30a386cafaaee879e3f6790"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-17T08:38:34.639Z",
+  "updatedAt": "2021-06-18T06:57:10.590Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

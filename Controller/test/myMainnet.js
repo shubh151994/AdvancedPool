@@ -3,14 +3,14 @@
 /* global contract artifacts web3 before it assert */
 
 const Web3 = require('web3');
-const config = require('./../../config.js');
-const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
+const config = require('../../config.js');
+const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.mainnet));
 const TX = require('ethereumjs-tx').Transaction;
 
-const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
+const privateKey = Buffer.from(config.privateKey.mainnet,'hex');
 
-const DiamondContractAddress = "0xf20149EfEe7a4f709755c96AaDa9b8AFf1e3ca9c";
-const deployerAddress = config.publicKey.rinkeby;
+const DiamondContractAddress = "0x3530b6ee53ed128c871612B59340f1192457e834";
+const deployerAddress = config.publicKey.mainnet;
 
 const CutABI =   [
   {
@@ -476,7 +476,7 @@ const ControllerAbi =[
     "constant": true
   }
 ]
-const ControllerAddr = "0x030382492f581Eb4fca760db2F89b01E23afCcE4";
+const ControllerAddr = "0xBb22D318e43AA978469850F88d7255E2e7a2d9EF";
 const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 
@@ -494,13 +494,13 @@ const transact = async (data, value) => {
            var txData = {
                nonce: web3.utils.toHex(count),
                gasLimit: web3.utils.toHex(3000000),
-               gasPrice: 10000000000,
+               gasPrice: 15000000000,
                to: DiamondContractAddress,
                from: deployerAddress,
                data: data, 
                value: value
            }
-           var transaction = new TX(txData,{chain:'rinkeby', hardfork:'petersburg'});
+           var transaction = new TX(txData,{chain:'mainnet', hardfork:'petersburg'});
            transaction.sign(privateKey);
            var serialisedTransaction = transaction.serialize().toString('hex');
    
@@ -527,55 +527,40 @@ function getSelectors (abi) {
     return selectors
 }
 
-// FUNCTION TO ADD FACET
-async function addFacet(){
-  try{
-  console.log("adding facet")
-  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract(ControllerAbi, ControllerAddr)
+// // FUNCTION TO ADD FACET
+// async function addFacet(){
+//   try{
+//   console.log("adding facet")
+//   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+//   const Part1Call = new web3.eth.Contract(ControllerAbi, ControllerAddr)
  
-  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  selectorspart1.push('0x00000000');
-  console.log("selectors",selectorspart1)
-  const functCall = await facetCutCall.methods.diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
-  const receipt = await transact(functCall, 0 )
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
+//   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+//   selectorspart1.push('0x00000000');
+//   console.log("selectors",selectorspart1)
+//   const functCall = await facetCutCall.methods.diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+//   const receipt = await transact(functCall, 0 )
+//   console.log(receipt)
+//   } catch(e) {
+//       console.log('in catch2')
+//       throw new Error(e);
+//   }
 
-};
+// };
 
-async function claim(){
-  try{
-  
-  console.log("initializing controller")
-  const diamondCall = new web3.eth.Contract(ControllerAbi, DiamondContractAddress);
-  const functCall = await diamondCall.methods
-      .claimAndConvertAdminFees().encodeABI();
-  const receipt = await transact(functCall, 0)
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
 async function initializeController(){
   try{
-  const strategires = ["0x64DD59A9CE549C5925befe4DD1c9894c316F7648"]
-  const pool = ["0x7ADFF52984c6aAdfC70445E993443387c12eBFB9"]
-  const gauges = ["0xF0C904b796a913Ae483E6fd6e0b36dF527849784"];
-  const curveStrategyLPTOken = ["0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"]
-  const minter = "0xAde9c3e4F7E7D97F0aD2f3a68c8E65524C789078"
-  const crvToken = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
-  const veCRV = "0xe1187A7aD69Af79d9706E2f118a89e1438225825"
-  const feeDistributor = "0x140fCf94762Fe2C64D998F6CD7812Ef3e7877Fb2"
+  const strategires = ["0xF63BcdBB1CB19010774f261d986633FB8096416D"]
+  const pool = ["0xb8c3Bd6392F61Ad3278aEed7dC93c6cF7d807aB7"]
+  const gauges = ["0xF5194c3325202F456c95c1Cf0cA36f8475C1949F"];
+  const curveStrategyLPTOken = ["0x5282a4eF67D9C33135340fB3289cc1711c13638C"]
+  const minter = "0xd061D61a4d941c39E5453435B6345Dc261C2fcE0"
+  const crvToken = "0xD533a949740bb3306d119CC777fa900bA034cd52"
+  const veCRV = "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2"
+  const feeDistributor = "0xA464e6DCda8AC41e03616F95f4BC98a13b8922Dc"
   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-  const controllerOwners = [config.publicKey.rinkeby,config.publicKey.rinkeby]
-  const crvLockPercent = "2000"
-  const adminFeeToken = "0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"
+  const controllerOwners = ['0x4a1eA4E24D2bbb48bEB5AA0F3d47fa4c3D5714F6','0xc9C9399E18190b7536e1aED60ba1D8318c3f3DE6']
+  const crvLockPercent = "5000"
+  const adminFeeToken = "0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490"
   
   console.log("initializing controller")
   const diamondCall = new web3.eth.Contract(ControllerAbi, DiamondContractAddress);
@@ -603,4 +588,4 @@ async function initializeController(){
 
 };
 
-claim()
+initializeController()

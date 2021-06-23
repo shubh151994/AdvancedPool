@@ -12,6 +12,7 @@ interface CurveToken:
 N_COINS: constant(int128) = 3  # <- change
 
 coins: public(address[N_COINS])
+virtual_price: public(uint256)
 
 token: CurveToken
 
@@ -39,7 +40,7 @@ def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256, _use_unde
                 ),
                 max_outsize=32,
             )  # dev: failed transfer       
-    self.token.mint(msg.sender, 100000000000000000000)
+    self.token.mint(msg.sender, min_mint_amount)
     return min_mint_amount
 
 @external
@@ -83,3 +84,14 @@ def updatetoken(
     _pool_token: address
 ):
     self.token = CurveToken(_pool_token)
+
+@external
+def updateVirtualPrice(
+    _virtual_price: uint256
+):
+    self.virtual_price = _virtual_price
+
+@view
+@external
+def get_virtual_price() -> uint256:
+    return self.virtual_price

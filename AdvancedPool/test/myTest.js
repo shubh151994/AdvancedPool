@@ -9,7 +9,7 @@ const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x7ADFF52984c6aAdfC70445E993443387c12eBFB9";
+const DiamondContractAddress = "0x2045bDB5F154d38DEAF3853916edfeFC97B04DbC";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -749,7 +749,7 @@ const AdvancedPoolABI =  [
     "constant": true
   }
 ]
-const AdvancePoolAddr = "0xbF090e87A11cBfbf86879291f9058963d8558672";
+const AdvancePoolAddr = "0xFAE81846865eD78B1e606AdEE603A743d0ed8dEC";
 const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 const FacetCutAction = {
@@ -822,7 +822,7 @@ async function addFacet(){
 async function initializeAdvancedPool(){
   try{
   const coin = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
-  const poolToken = "0x2D406Fbe74ebdDDF207D551e005Db221dC212F73"
+  const poolToken = "0x24baDb743703C0Cf37d0412Ad84f7808e354DabB"
   const minLiq = 2000
   const maxLiq = 4000
   const withFee = 50
@@ -1245,35 +1245,6 @@ async function userDepositedBalance(){
   }
 };
 
-async function addFacet2(){
-  try{
-  console.log("1111111111")
-  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract( [
-    {
-      "inputs": [],
-      "name": "getYield",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ], "0x36fEFbd26079ed16206D19B29fceb3128edc6Ac8")
- 
-  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  
-  console.log("33333333333333333",selectorspart1)
-  const functCall = await facetCutCall.methods
-      .diamondCut([ ["0x36fEFbd26079ed16206D19B29fceb3128edc6Ac8", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0 )
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
-
 async function ethfees(){
   try{
     console.log("1111111111")
@@ -1289,4 +1260,474 @@ async function ethfees(){
 
 };
 
-initializeAdvancedPool()
+
+async function updatePools(){
+  try{
+  console.log("1111111111")
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  console.log("33333333333333333",selectorspart1)
+  const functCall = await facetCutCall.methods
+      .diamondCut([ ["0x36fEFbd26079ed16206D19B29fceb3128edc6Ac8", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+      console.log("444444444444444444444")
+  const receipt = await transact(functCall, 0 )
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+};
+
+
+
+async function addFacet2(){
+  try{
+  console.log("entry to add facet")
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  const functCall = await facetCutCall.methods
+      .diamondCut([["0xfAbAcD702163d49973dea6d9bF79d356828DDd7F",1,['0xa694fc3a','0x2e17de78','0x7039206b','0x4b366863','0x4076245f','0xfc0a497e','0xdaccaf63','0xc3c9f52b','0x5b404bad','0x8a98cdd4','0xe4255342','0x8c0ff5b7','0x46caf2ae','0x077622a2','0xb4ad5e08','0xfe135c0e','0x7260cc76','0x269fa128','0xf6153ccd','0x31dd132e']]], zeroAddress, '0x').encodeABI();
+  const receipt = await transact(functCall, 0 )
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+}
+
+async function getFunctions(){
+  try{
+    const abi = [
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolDeposit",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolWithdrawal",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "userDeposits",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "userWithdrawal",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "stake",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "unstake",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "minMintAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "addToStrategy",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "maxBurnAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "removeFromStrategy",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "minAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "removeAllFromStrategy",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_minLiquidity",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_maxLiquidity",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_maxWithdrawalAllowed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxBurnOrMinMint",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateLiquidityParam",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "contract DepositStrategy",
+            "name": "_newStrategy",
+            "type": "address"
+          }
+        ],
+        "name": "updateStrategy",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amountOfStableCoins",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculatePoolTokens",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "stableCoinPrice",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amountOfPoolToken",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculateStableCoins",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "poolTokenPrice",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "maxWithdrawal",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "currentLiquidity",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "idealAmount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "maxLiquidityAllowedInPool",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "amountToDeposit",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "minLiquidityToMaintainInPool",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "amountToWithdraw",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "totalDeposit",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "strategyDeposit",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      }
+    ]
+  console.log("entry to add facet")
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  const Part1Call = new web3.eth.Contract(abi, "0xfAbAcD702163d49973dea6d9bF79d356828DDd7F")
+  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+  console.log("selectors",selectorspart1)
+  return 
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+};
+
+
+addFacet2()

@@ -476,7 +476,7 @@ const ControllerAbi =[
     "constant": true
   }
 ]
-const ControllerAddr = "0x030382492f581Eb4fca760db2F89b01E23afCcE4";
+const ControllerAddr = "0x1E84F21930982e0C6E294345Aa7F2c4F512AFb1e";
 const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 
@@ -537,7 +537,7 @@ async function addFacet(){
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
   selectorspart1.push('0x00000000');
   console.log("selectors",selectorspart1)
-  const functCall = await facetCutCall.methods.diamondCut([[ControllerAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+  const functCall = await facetCutCall.methods.diamondCut([[ControllerAddr, FacetCutAction.Replace, selectorspart1 ]], zeroAddress, '0x').encodeABI();
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
   } catch(e) {
@@ -565,7 +565,7 @@ async function claim(){
 async function initializeController(){
   try{
   const strategires = ["0x64DD59A9CE549C5925befe4DD1c9894c316F7648"]
-  const pool = ["0x7ADFF52984c6aAdfC70445E993443387c12eBFB9"]
+  const pool = ["0x2045bDB5F154d38DEAF3853916edfeFC97B04DbC"]
   const gauges = ["0xF0C904b796a913Ae483E6fd6e0b36dF527849784"];
   const curveStrategyLPTOken = ["0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"]
   const minter = "0xAde9c3e4F7E7D97F0aD2f3a68c8E65524C789078"
@@ -603,4 +603,40 @@ async function initializeController(){
 
 };
 
-claim()
+
+async function addStakedAmount(){
+  try{
+  console.log("adding facet")
+  const abi = [
+    {
+      "inputs": [],
+      "name": "stakedAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ]
+  const addr = "0x66be58B4A46FD0d9f404c82644733A300Eb0e159"
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  const Part1Call = new web3.eth.Contract(abi, addr)
+ 
+  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+  console.log("selectors",selectorspart1)
+  const functCall = await facetCutCall.methods.diamondCut([[addr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+  const receipt = await transact(functCall, 0 )
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+};
+
+addStakedAmount()

@@ -209,7 +209,7 @@ const StrategyABI = [
   }
 ]
 
-const StrategyAddr = "0x4C04AA25d5926217BB95bE16a8c9c87CCB5e07e0";
+const StrategyAddr = "0x9009D0A5D8E73B62080EB0C16C60C4b0EC0a3Fc9";
 const zeroAddress = '0x0000000000000000000000000000000000000000'
 
 const FacetCutAction = {
@@ -259,16 +259,46 @@ function getSelectors (abi) {
 }
 
 // FUNCTION TO ADD FACET
-async function addFacet(){
+async function addStakedAmount(){
   try{
   console.log("adding facet")
+  const abi =[
+    {
+      "inputs": [],
+      "name": "depositedAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "curveLPTokenPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ]
+  const addr = "0x242Efa5a0c06871D9c86746Ab4A4e93Caafc3495"
   const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  const Part1Call = new web3.eth.Contract(StrategyABI, StrategyAddr)
+  const Part1Call = new web3.eth.Contract(abi, addr)
  
   let selectorspart1 = getSelectors(Part1Call._jsonInterface);
-  
   console.log("selectors",selectorspart1)
-  const functCall = await facetCutCall.methods.diamondCut([ [StrategyAddr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+  const functCall = await facetCutCall.methods.diamondCut([[addr, FacetCutAction.Replace, selectorspart1 ]], zeroAddress, '0x').encodeABI();
   const receipt = await transact(functCall, 0 )
   console.log(receipt)
   } catch(e) {
@@ -280,12 +310,12 @@ async function addFacet(){
 
 async function initializeStrategy(){
   try{
-  const ironBank = "0x3A593D7eD107Db98CbCb043C6Fb08928B6BbAb2C"
+  const ironBank = "0xa9cBC7A80cf8Dac80ccc4ff7c6cb25A43e343b94"
   const ironBankToken = "0x8AEb59e352F2bCBb9e5D45aeF7265Ede0cae73E5"
   const crvToken = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
   const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-  const pool = "0x7ADFF52984c6aAdfC70445E993443387c12eBFB9"
+  const pool = "0x2045bDB5F154d38DEAF3853916edfeFC97B04DbC"
   const controller = "0xf20149EfEe7a4f709755c96AaDa9b8AFf1e3ca9c"
   const coinIndex = 1
   
@@ -347,4 +377,4 @@ async function addFacet2(){
 
 };
 
-initializeStrategy()
+addStakedAmount()

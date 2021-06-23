@@ -7,4 +7,5 @@ interface Controller{
     function unstake(uint256 amount) external returns(uint256);
     function unstakeAll() external returns(uint256);
     function claimCRV() external;
+    function stakedAmount() external view returns(uint256);
 }

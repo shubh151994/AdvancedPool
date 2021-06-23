@@ -1,0 +1,2100 @@
+{
+  "contractName": "Strategy2",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "depositedAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "curveLPTokenPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"curveLPTokenPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"depositedAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Projects/AdvancedPool/Strategy/contracts/facets/Strategy2.sol\":\"Strategy2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Projects/AdvancedPool/Strategy/contracts/facets/Strategy2.sol\":{\"keccak256\":\"0x891b3807d84ea387c5bf2b1c61953582d4a7f364779ab64a6d5c397f92d2aefb\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://9b241d28ec303eaff399a093ed3184a1f4461d4f1ac3ba5df68c55d9aead3b97\",\"dweb:/ipfs/QmZRNv7rLkqhWq4jyb3cwD6qXn1jTPhcqg7Z4PH1YcNMCG\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/interfaces/Controller.sol\":{\"keccak256\":\"0x4e8c27ce23d1982f1a76dcc18534408156a530d1a814b95902b90932f247dacf\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://d0deae0880c073aaa86feb7d4021bbd6d9c3fac9d62a86311442dce37faa1637\",\"dweb:/ipfs/QmRUBAK6gZzHeQqh4c73yZ13XMJmYmMQs2wCxpY9BZtMnw\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/interfaces/CurvePool.sol\":{\"keccak256\":\"0x9bfac58dcf189bcf8c70b4885362419d40d32172185188a2881e641cd81d7c65\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://37677c6c838ee9afb811a0598b427f2f46ab989bbb06388b857b79d2670dcae8\",\"dweb:/ipfs/QmUiDNLbBp9Q8VuGx24S4VbqdHYT5ZELi6zU1iN23iSKYJ\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/interfaces/IERC20.sol\":{\"keccak256\":\"0xa1b6638cca4f679f9945b9ed2e670dbf1dce6ab58f71aa92d11563b03c350787\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://0b274d13550ec46cefe23819f5d7e6d6535a343cce9eb324907937a3fabf02df\",\"dweb:/ipfs/QmR8nJXCohjayBKvuaupn92pSxGQUuHVn6tJJZ3yVeravt\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/interfaces/UniswapRouter.sol\":{\"keccak256\":\"0xca52f35702aa0d612828474c02cb4469233c1cb4865ecf268c294bfa0a6a9556\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://f25c931932e4104d99d6738aeccedb9699d4a0602357589983d6efb9585afe8f\",\"dweb:/ipfs/QmZeg95R6VLWnLzXmGh89GuSKMFRAmez7RnnDzBNXXuRPz\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/libraries/SafeMath.sol\":{\"keccak256\":\"0x127498b7bbef003b1f6ebda3d3f9f5f65fc7c1cb0e2463301797f28de304dfd5\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://73828136b611ac79407c6071ce1be24fc00e255430b2f14ec342ca9aa8621652\",\"dweb:/ipfs/QmSKCZxpFChox35prPnUBHKkBfYamYDqBAcWZVcBbTb4rs\"]},\"/E/Projects/AdvancedPool/Strategy/contracts/storage/StrategyStorage.sol\":{\"keccak256\":\"0x9e0a1513e102e4658c6bbf5786c39964d981032a2e1ba3abb6203852fd2e4f98\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://a1c20b209ab9dbe8da1dc457864a1c8827af5d35ff47dc4297112952848ac7eb\",\"dweb:/ipfs/QmVYb2PAVPAnYysyoj3NCRG4cqU3k6hx1cr5sHwtX9FxC3\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061046f806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80631d01364c1461003b578063b6a2839a14610059575b600080fd5b610043610077565b6040518082815260200191505060405180910390f35b610061610354565b6040518082815260200191505060405180910390f35b60008061008261040c565b905060008160080160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663373d61326040518163ffffffff1660e01b815260040160206040518083038186803b1580156100f057600080fd5b505afa158015610104573d6000803e3d6000fd5b505050506040513d602081101561011a57600080fd5b810190808051906020019092919050505090508160010182600a01546003811061014057fe5b0160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663313ce5676040518163ffffffff1660e01b815260040160206040518083038186803b1580156101a757600080fd5b505afa1580156101bb573d6000803e3d6000fd5b505050506040513d60208110156101d157600080fd5b81019080805190602001909291905050508260050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663313ce5676040518163ffffffff1660e01b815260040160206040518083038186803b15801561024c57600080fd5b505afa158015610260573d6000803e3d6000fd5b505050506040513d602081101561027657600080fd5b810190808051906020019092919050505003600a0a8260050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663313ce5676040518163ffffffff1660e01b815260040160206040518083038186803b1580156102f557600080fd5b505afa158015610309573d6000803e3d6000fd5b505050506040513d602081101561031f57600080fd5b8101908080519060200190929190505050600a0a8261033c610354565b028161034457fe5b048161034c57fe5b049250505090565b60008061035f61040c565b90508060060160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663bb7b8b806040518163ffffffff1660e01b815260040160206040518083038186803b1580156103cb57600080fd5b505afa1580156103df573d6000803e3d6000fd5b505050506040513d60208110156103f557600080fd5b810190808051906020019092919050505091505090565b6000807fa506df5f541d029605b005e2b87f8940c5564e1681adf4fd4a0c5e76b5d54ac99050809150509056fea26469706673582212203f0c92a2551a68dc4e0e1d98ca6050ee16adabc1818a61ad0ed2741141ed849164736f6c63430007060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80631d01364c1461003b578063b6a2839a14610059575b600080fd5b610043610077565b6040518082815260200191505060405180910390f35b610061610354565b6040518082815260200191505060405180910390f35b60008061008261040c565b905060008160080160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663373d61326040518163ffffffff1660e01b815260040160206040518083038186803b1580156100f057600080fd5b505afa158015610104573d6000803e3d6000fd5b505050506040513d602081101561011a57600080fd5b810190808051906020019092919050505090508160010182600a01546003811061014057fe5b0160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663313ce5676040518163ffffffff1660e01b815260040160206040518083038186803b1580156101a757600080fd5b505afa1580156101bb573d6000803e3d6000fd5b505050506040513d60208110156101d157600080fd5b81019080805190602001909291905050508260050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663313ce5676040518163ffffffff1660e01b815260040160206040518083038186803b15801561024c57600080fd5b505afa158015610260573d6000803e3d6000fd5b505050506040513d602081101561027657600080fd5b810190808051906020019092919050505003600a0a8260050160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663313ce5676040518163ffffffff1660e01b815260040160206040518083038186803b1580156102f557600080fd5b505afa158015610309573d6000803e3d6000fd5b505050506040513d602081101561031f57600080fd5b8101908080519060200190929190505050600a0a8261033c610354565b028161034457fe5b048161034c57fe5b049250505090565b60008061035f61040c565b90508060060160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663bb7b8b806040518163ffffffff1660e01b815260040160206040518083038186803b1580156103cb57600080fd5b505afa1580156103df573d6000803e3d6000fd5b505050506040513d60208110156103f557600080fd5b810190808051906020019092919050505091505090565b6000807fa506df5f541d029605b005e2b87f8940c5564e1681adf4fd4a0c5e76b5d54ac99050809150509056fea26469706673582212203f0c92a2551a68dc4e0e1d98ca6050ee16adabc1818a61ad0ed2741141ed849164736f6c63430007060033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "146:643:6:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "146:643:6:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;258:348;;;:::i;:::-;;;;;;;;;;;;;;;;;;;614:172;;;:::i;:::-;;;;;;;;;;;;;;;;;;;258:348;305:7;324:26;353:17;:15;:17::i;:::-;324:46;;381:20;404:2;:13;;;;;;;;;;;;:26;;;:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;381:51;;563:2;:8;;572:2;:12;;;563:22;;;;;;;;;;;;;;;;;;:31;;;:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;532:2;:17;;;;;;;;;;;;:26;;;:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:64;527:2;:70;493:2;:17;;;;;;;;;;;;:26;;;:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;489:2;:32;473:12;451:19;:17;:19::i;:::-;:34;:71;;;;;;450:148;;;;;;443:155;;;;258:348;:::o;614:172::-;663:7;682:26;711:17;:15;:17::i;:::-;682:46;;746:2;:12;;;;;;;;;;;;:30;;;:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;739:39;;;614:172;:::o;783:205:17:-;833:26;872:16;352:46;872:44;;962:8;951:19;;936:45;;:::o",
+  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.7.6;\r\nimport \"../storage/StrategyStorage.sol\";\r\nimport \"../libraries/SafeMath.sol\";\r\n\r\ncontract Strategy2 is StrategyStorageV1 {\r\n    \r\n    using SafeMath for uint256;\r\n\r\n/****VIEW FUNTION****/\r\n    function depositedAmount() public view returns(uint256){\r\n        StrategyStorage storage ss = strategyStorage();\r\n        uint256 stakedAmount = ss.controller.stakedAmount();\r\n        return (curveLPTokenPrice() * stakedAmount / (10**ss.curvePoolToken.decimals())) / (10**(ss.curvePoolToken.decimals() - ss.coins[ss.coinIndex].decimals()));\r\n    }\r\n\r\n    function curveLPTokenPrice() public view returns(uint256){\r\n        StrategyStorage storage ss = strategyStorage();\r\n        return ss.curvePool.get_virtual_price();\r\n    }\r\n}",
+  "sourcePath": "E:/Projects/AdvancedPool/Strategy/contracts/facets/Strategy2.sol",
+  "ast": {
+    "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/facets/Strategy2.sol",
+    "exportedSymbols": {
+      "Controller": [
+        1347
+      ],
+      "CurvePool": [
+        1394
+      ],
+      "IERC20": [
+        1576
+      ],
+      "SafeMath": [
+        2504
+      ],
+      "Strategy2": [
+        1319
+      ],
+      "StrategyStorageV1": [
+        2552
+      ],
+      "UniswapV2Router": [
+        1612
+      ]
+    },
+    "id": 1320,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1246,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:23:6"
+      },
+      {
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/storage/StrategyStorage.sol",
+        "file": "../storage/StrategyStorage.sol",
+        "id": 1247,
+        "nodeType": "ImportDirective",
+        "scope": 1320,
+        "sourceUnit": 2553,
+        "src": "65:40:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/libraries/SafeMath.sol",
+        "file": "../libraries/SafeMath.sol",
+        "id": 1248,
+        "nodeType": "ImportDirective",
+        "scope": 1320,
+        "sourceUnit": 2505,
+        "src": "107:35:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 1249,
+              "name": "StrategyStorageV1",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2552,
+              "src": "168:17:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_StrategyStorageV1_$2552",
+                "typeString": "contract StrategyStorageV1"
+              }
+            },
+            "id": 1250,
+            "nodeType": "InheritanceSpecifier",
+            "src": "168:17:6"
+          }
+        ],
+        "contractDependencies": [
+          2552
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1319,
+        "linearizedBaseContracts": [
+          1319,
+          2552
+        ],
+        "name": "Strategy2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 1253,
+            "libraryName": {
+              "id": 1251,
+              "name": "SafeMath",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2504,
+              "src": "205:8:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SafeMath_$2504",
+                "typeString": "library SafeMath"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "199:27:6",
+            "typeName": {
+              "id": 1252,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "218:7:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "body": {
+              "id": 1301,
+              "nodeType": "Block",
+              "src": "313:293:6",
+              "statements": [
+                {
+                  "assignments": [
+                    1259
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1259,
+                      "mutability": "mutable",
+                      "name": "ss",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1301,
+                      "src": "324:26:6",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                        "typeString": "struct StrategyStorageV1.StrategyStorage"
+                      },
+                      "typeName": {
+                        "id": 1258,
+                        "name": "StrategyStorage",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 2540,
+                        "src": "324:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                          "typeString": "struct StrategyStorageV1.StrategyStorage"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1262,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 1260,
+                      "name": "strategyStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2551,
+                      "src": "353:15:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_StrategyStorage_$2540_storage_ptr_$",
+                        "typeString": "function () pure returns (struct StrategyStorageV1.StrategyStorage storage pointer)"
+                      }
+                    },
+                    "id": 1261,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "353:17:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                      "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "324:46:6"
+                },
+                {
+                  "assignments": [
+                    1264
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1264,
+                      "mutability": "mutable",
+                      "name": "stakedAmount",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1301,
+                      "src": "381:20:6",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 1263,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "381:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1269,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "expression": {
+                          "id": 1265,
+                          "name": "ss",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1259,
+                          "src": "404:2:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                          }
+                        },
+                        "id": 1266,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "controller",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 2535,
+                        "src": "404:13:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_Controller_$1347",
+                          "typeString": "contract Controller"
+                        }
+                      },
+                      "id": 1267,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "stakedAmount",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1346,
+                      "src": "404:26:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view external returns (uint256)"
+                      }
+                    },
+                    "id": 1268,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "404:28:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "381:51:6"
+                },
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1299,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "components": [
+                        {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 1281,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "commonType": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            "id": 1273,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftExpression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "id": 1270,
+                                "name": "curveLPTokenPrice",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1318,
+                                "src": "451:17:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                                  "typeString": "function () view returns (uint256)"
+                                }
+                              },
+                              "id": 1271,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "451:19:6",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "nodeType": "BinaryOperation",
+                            "operator": "*",
+                            "rightExpression": {
+                              "id": 1272,
+                              "name": "stakedAmount",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1264,
+                              "src": "473:12:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "src": "451:34:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "/",
+                          "rightExpression": {
+                            "components": [
+                              {
+                                "commonType": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                "id": 1279,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftExpression": {
+                                  "hexValue": "3130",
+                                  "id": 1274,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "kind": "number",
+                                  "lValueRequested": false,
+                                  "nodeType": "Literal",
+                                  "src": "489:2:6",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_rational_10_by_1",
+                                    "typeString": "int_const 10"
+                                  },
+                                  "value": "10"
+                                },
+                                "nodeType": "BinaryOperation",
+                                "operator": "**",
+                                "rightExpression": {
+                                  "arguments": [],
+                                  "expression": {
+                                    "argumentTypes": [],
+                                    "expression": {
+                                      "expression": {
+                                        "id": 1275,
+                                        "name": "ss",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 1259,
+                                        "src": "493:2:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                          "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                        }
+                                      },
+                                      "id": 1276,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "memberName": "curvePoolToken",
+                                      "nodeType": "MemberAccess",
+                                      "referencedDeclaration": 2529,
+                                      "src": "493:17:6",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_IERC20_$1576",
+                                        "typeString": "contract IERC20"
+                                      }
+                                    },
+                                    "id": 1277,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "decimals",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 1511,
+                                    "src": "493:26:6",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                                      "typeString": "function () view external returns (uint256)"
+                                    }
+                                  },
+                                  "id": 1278,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "kind": "functionCall",
+                                  "lValueRequested": false,
+                                  "names": [],
+                                  "nodeType": "FunctionCall",
+                                  "src": "493:28:6",
+                                  "tryCall": false,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "src": "489:32:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              }
+                            ],
+                            "id": 1280,
+                            "isConstant": false,
+                            "isInlineArray": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "TupleExpression",
+                            "src": "488:34:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "451:71:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 1282,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "TupleExpression",
+                      "src": "450:73:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "/",
+                    "rightExpression": {
+                      "components": [
+                        {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 1297,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "hexValue": "3130",
+                            "id": 1283,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "527:2:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_10_by_1",
+                              "typeString": "int_const 10"
+                            },
+                            "value": "10"
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "**",
+                          "rightExpression": {
+                            "components": [
+                              {
+                                "commonType": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                "id": 1295,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftExpression": {
+                                  "arguments": [],
+                                  "expression": {
+                                    "argumentTypes": [],
+                                    "expression": {
+                                      "expression": {
+                                        "id": 1284,
+                                        "name": "ss",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 1259,
+                                        "src": "532:2:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                          "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                        }
+                                      },
+                                      "id": 1285,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "memberName": "curvePoolToken",
+                                      "nodeType": "MemberAccess",
+                                      "referencedDeclaration": 2529,
+                                      "src": "532:17:6",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_IERC20_$1576",
+                                        "typeString": "contract IERC20"
+                                      }
+                                    },
+                                    "id": 1286,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "decimals",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 1511,
+                                    "src": "532:26:6",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                                      "typeString": "function () view external returns (uint256)"
+                                    }
+                                  },
+                                  "id": 1287,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "kind": "functionCall",
+                                  "lValueRequested": false,
+                                  "names": [],
+                                  "nodeType": "FunctionCall",
+                                  "src": "532:28:6",
+                                  "tryCall": false,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "nodeType": "BinaryOperation",
+                                "operator": "-",
+                                "rightExpression": {
+                                  "arguments": [],
+                                  "expression": {
+                                    "argumentTypes": [],
+                                    "expression": {
+                                      "baseExpression": {
+                                        "expression": {
+                                          "id": 1288,
+                                          "name": "ss",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 1259,
+                                          "src": "563:2:6",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                          }
+                                        },
+                                        "id": 1289,
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "memberName": "coins",
+                                        "nodeType": "MemberAccess",
+                                        "referencedDeclaration": 2525,
+                                        "src": "563:8:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_contract$_IERC20_$1576_$3_storage",
+                                          "typeString": "contract IERC20[3] storage ref"
+                                        }
+                                      },
+                                      "id": 1292,
+                                      "indexExpression": {
+                                        "expression": {
+                                          "id": 1290,
+                                          "name": "ss",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 1259,
+                                          "src": "572:2:6",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                          }
+                                        },
+                                        "id": 1291,
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "memberName": "coinIndex",
+                                        "nodeType": "MemberAccess",
+                                        "referencedDeclaration": 2539,
+                                        "src": "572:12:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "563:22:6",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_IERC20_$1576",
+                                        "typeString": "contract IERC20"
+                                      }
+                                    },
+                                    "id": 1293,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "decimals",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 1511,
+                                    "src": "563:31:6",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                                      "typeString": "function () view external returns (uint256)"
+                                    }
+                                  },
+                                  "id": 1294,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "kind": "functionCall",
+                                  "lValueRequested": false,
+                                  "names": [],
+                                  "nodeType": "FunctionCall",
+                                  "src": "563:33:6",
+                                  "tryCall": false,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "src": "532:64:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              }
+                            ],
+                            "id": 1296,
+                            "isConstant": false,
+                            "isInlineArray": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "TupleExpression",
+                            "src": "531:66:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "527:70:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 1298,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "TupleExpression",
+                      "src": "526:72:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "450:148:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1257,
+                  "id": 1300,
+                  "nodeType": "Return",
+                  "src": "443:155:6"
+                }
+              ]
+            },
+            "functionSelector": "1d01364c",
+            "id": 1302,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "depositedAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1254,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "282:2:6"
+            },
+            "returnParameters": {
+              "id": 1257,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1256,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1302,
+                  "src": "305:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1255,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "305:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "304:9:6"
+            },
+            "scope": 1319,
+            "src": "258:348:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1317,
+              "nodeType": "Block",
+              "src": "671:115:6",
+              "statements": [
+                {
+                  "assignments": [
+                    1308
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1308,
+                      "mutability": "mutable",
+                      "name": "ss",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1317,
+                      "src": "682:26:6",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                        "typeString": "struct StrategyStorageV1.StrategyStorage"
+                      },
+                      "typeName": {
+                        "id": 1307,
+                        "name": "StrategyStorage",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 2540,
+                        "src": "682:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                          "typeString": "struct StrategyStorageV1.StrategyStorage"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1311,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 1309,
+                      "name": "strategyStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2551,
+                      "src": "711:15:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_StrategyStorage_$2540_storage_ptr_$",
+                        "typeString": "function () pure returns (struct StrategyStorageV1.StrategyStorage storage pointer)"
+                      }
+                    },
+                    "id": 1310,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "711:17:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                      "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "682:46:6"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "expression": {
+                          "id": 1312,
+                          "name": "ss",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1308,
+                          "src": "746:2:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                          }
+                        },
+                        "id": 1313,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "curvePool",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 2531,
+                        "src": "746:12:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_CurvePool_$1394",
+                          "typeString": "contract CurvePool"
+                        }
+                      },
+                      "id": 1314,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "get_virtual_price",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1393,
+                      "src": "746:30:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view external returns (uint256)"
+                      }
+                    },
+                    "id": 1315,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "746:32:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1306,
+                  "id": 1316,
+                  "nodeType": "Return",
+                  "src": "739:39:6"
+                }
+              ]
+            },
+            "functionSelector": "b6a2839a",
+            "id": 1318,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "curveLPTokenPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1303,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "640:2:6"
+            },
+            "returnParameters": {
+              "id": 1306,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1305,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1318,
+                  "src": "663:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1304,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "663:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "662:9:6"
+            },
+            "scope": 1319,
+            "src": "614:172:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1320,
+        "src": "146:643:6"
+      }
+    ],
+    "src": "40:749:6"
+  },
+  "legacyAST": {
+    "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/facets/Strategy2.sol",
+    "exportedSymbols": {
+      "Controller": [
+        1347
+      ],
+      "CurvePool": [
+        1394
+      ],
+      "IERC20": [
+        1576
+      ],
+      "SafeMath": [
+        2504
+      ],
+      "Strategy2": [
+        1319
+      ],
+      "StrategyStorageV1": [
+        2552
+      ],
+      "UniswapV2Router": [
+        1612
+      ]
+    },
+    "id": 1320,
+    "license": "UNLICENSED",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1246,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "40:23:6"
+      },
+      {
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/storage/StrategyStorage.sol",
+        "file": "../storage/StrategyStorage.sol",
+        "id": 1247,
+        "nodeType": "ImportDirective",
+        "scope": 1320,
+        "sourceUnit": 2553,
+        "src": "65:40:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/E/Projects/AdvancedPool/Strategy/contracts/libraries/SafeMath.sol",
+        "file": "../libraries/SafeMath.sol",
+        "id": 1248,
+        "nodeType": "ImportDirective",
+        "scope": 1320,
+        "sourceUnit": 2505,
+        "src": "107:35:6",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 1249,
+              "name": "StrategyStorageV1",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2552,
+              "src": "168:17:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_StrategyStorageV1_$2552",
+                "typeString": "contract StrategyStorageV1"
+              }
+            },
+            "id": 1250,
+            "nodeType": "InheritanceSpecifier",
+            "src": "168:17:6"
+          }
+        ],
+        "contractDependencies": [
+          2552
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1319,
+        "linearizedBaseContracts": [
+          1319,
+          2552
+        ],
+        "name": "Strategy2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 1253,
+            "libraryName": {
+              "id": 1251,
+              "name": "SafeMath",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 2504,
+              "src": "205:8:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_SafeMath_$2504",
+                "typeString": "library SafeMath"
+              }
+            },
+            "nodeType": "UsingForDirective",
+            "src": "199:27:6",
+            "typeName": {
+              "id": 1252,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "218:7:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "body": {
+              "id": 1301,
+              "nodeType": "Block",
+              "src": "313:293:6",
+              "statements": [
+                {
+                  "assignments": [
+                    1259
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1259,
+                      "mutability": "mutable",
+                      "name": "ss",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1301,
+                      "src": "324:26:6",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                        "typeString": "struct StrategyStorageV1.StrategyStorage"
+                      },
+                      "typeName": {
+                        "id": 1258,
+                        "name": "StrategyStorage",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 2540,
+                        "src": "324:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                          "typeString": "struct StrategyStorageV1.StrategyStorage"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1262,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 1260,
+                      "name": "strategyStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2551,
+                      "src": "353:15:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_StrategyStorage_$2540_storage_ptr_$",
+                        "typeString": "function () pure returns (struct StrategyStorageV1.StrategyStorage storage pointer)"
+                      }
+                    },
+                    "id": 1261,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "353:17:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                      "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "324:46:6"
+                },
+                {
+                  "assignments": [
+                    1264
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1264,
+                      "mutability": "mutable",
+                      "name": "stakedAmount",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1301,
+                      "src": "381:20:6",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 1263,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "381:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1269,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "expression": {
+                          "id": 1265,
+                          "name": "ss",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1259,
+                          "src": "404:2:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                          }
+                        },
+                        "id": 1266,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "controller",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 2535,
+                        "src": "404:13:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_Controller_$1347",
+                          "typeString": "contract Controller"
+                        }
+                      },
+                      "id": 1267,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "stakedAmount",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1346,
+                      "src": "404:26:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view external returns (uint256)"
+                      }
+                    },
+                    "id": 1268,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "404:28:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "381:51:6"
+                },
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1299,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "components": [
+                        {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 1281,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "commonType": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            },
+                            "id": 1273,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftExpression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "id": 1270,
+                                "name": "curveLPTokenPrice",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 1318,
+                                "src": "451:17:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                                  "typeString": "function () view returns (uint256)"
+                                }
+                              },
+                              "id": 1271,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "451:19:6",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "nodeType": "BinaryOperation",
+                            "operator": "*",
+                            "rightExpression": {
+                              "id": 1272,
+                              "name": "stakedAmount",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 1264,
+                              "src": "473:12:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "src": "451:34:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "/",
+                          "rightExpression": {
+                            "components": [
+                              {
+                                "commonType": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                "id": 1279,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftExpression": {
+                                  "hexValue": "3130",
+                                  "id": 1274,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "kind": "number",
+                                  "lValueRequested": false,
+                                  "nodeType": "Literal",
+                                  "src": "489:2:6",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_rational_10_by_1",
+                                    "typeString": "int_const 10"
+                                  },
+                                  "value": "10"
+                                },
+                                "nodeType": "BinaryOperation",
+                                "operator": "**",
+                                "rightExpression": {
+                                  "arguments": [],
+                                  "expression": {
+                                    "argumentTypes": [],
+                                    "expression": {
+                                      "expression": {
+                                        "id": 1275,
+                                        "name": "ss",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 1259,
+                                        "src": "493:2:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                          "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                        }
+                                      },
+                                      "id": 1276,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "memberName": "curvePoolToken",
+                                      "nodeType": "MemberAccess",
+                                      "referencedDeclaration": 2529,
+                                      "src": "493:17:6",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_IERC20_$1576",
+                                        "typeString": "contract IERC20"
+                                      }
+                                    },
+                                    "id": 1277,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "decimals",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 1511,
+                                    "src": "493:26:6",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                                      "typeString": "function () view external returns (uint256)"
+                                    }
+                                  },
+                                  "id": 1278,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "kind": "functionCall",
+                                  "lValueRequested": false,
+                                  "names": [],
+                                  "nodeType": "FunctionCall",
+                                  "src": "493:28:6",
+                                  "tryCall": false,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "src": "489:32:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              }
+                            ],
+                            "id": 1280,
+                            "isConstant": false,
+                            "isInlineArray": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "TupleExpression",
+                            "src": "488:34:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "451:71:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 1282,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "TupleExpression",
+                      "src": "450:73:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "/",
+                    "rightExpression": {
+                      "components": [
+                        {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 1297,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "hexValue": "3130",
+                            "id": 1283,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "527:2:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_10_by_1",
+                              "typeString": "int_const 10"
+                            },
+                            "value": "10"
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "**",
+                          "rightExpression": {
+                            "components": [
+                              {
+                                "commonType": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                "id": 1295,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftExpression": {
+                                  "arguments": [],
+                                  "expression": {
+                                    "argumentTypes": [],
+                                    "expression": {
+                                      "expression": {
+                                        "id": 1284,
+                                        "name": "ss",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 1259,
+                                        "src": "532:2:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                          "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                        }
+                                      },
+                                      "id": 1285,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "memberName": "curvePoolToken",
+                                      "nodeType": "MemberAccess",
+                                      "referencedDeclaration": 2529,
+                                      "src": "532:17:6",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_IERC20_$1576",
+                                        "typeString": "contract IERC20"
+                                      }
+                                    },
+                                    "id": 1286,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "decimals",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 1511,
+                                    "src": "532:26:6",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                                      "typeString": "function () view external returns (uint256)"
+                                    }
+                                  },
+                                  "id": 1287,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "kind": "functionCall",
+                                  "lValueRequested": false,
+                                  "names": [],
+                                  "nodeType": "FunctionCall",
+                                  "src": "532:28:6",
+                                  "tryCall": false,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "nodeType": "BinaryOperation",
+                                "operator": "-",
+                                "rightExpression": {
+                                  "arguments": [],
+                                  "expression": {
+                                    "argumentTypes": [],
+                                    "expression": {
+                                      "baseExpression": {
+                                        "expression": {
+                                          "id": 1288,
+                                          "name": "ss",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 1259,
+                                          "src": "563:2:6",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                          }
+                                        },
+                                        "id": 1289,
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "memberName": "coins",
+                                        "nodeType": "MemberAccess",
+                                        "referencedDeclaration": 2525,
+                                        "src": "563:8:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_contract$_IERC20_$1576_$3_storage",
+                                          "typeString": "contract IERC20[3] storage ref"
+                                        }
+                                      },
+                                      "id": 1292,
+                                      "indexExpression": {
+                                        "expression": {
+                                          "id": 1290,
+                                          "name": "ss",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 1259,
+                                          "src": "572:2:6",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                                          }
+                                        },
+                                        "id": 1291,
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "memberName": "coinIndex",
+                                        "nodeType": "MemberAccess",
+                                        "referencedDeclaration": 2539,
+                                        "src": "572:12:6",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_uint256",
+                                          "typeString": "uint256"
+                                        }
+                                      },
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "nodeType": "IndexAccess",
+                                      "src": "563:22:6",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_IERC20_$1576",
+                                        "typeString": "contract IERC20"
+                                      }
+                                    },
+                                    "id": 1293,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberName": "decimals",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 1511,
+                                    "src": "563:31:6",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                                      "typeString": "function () view external returns (uint256)"
+                                    }
+                                  },
+                                  "id": 1294,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "kind": "functionCall",
+                                  "lValueRequested": false,
+                                  "names": [],
+                                  "nodeType": "FunctionCall",
+                                  "src": "563:33:6",
+                                  "tryCall": false,
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  }
+                                },
+                                "src": "532:64:6",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              }
+                            ],
+                            "id": 1296,
+                            "isConstant": false,
+                            "isInlineArray": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "TupleExpression",
+                            "src": "531:66:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "527:70:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "id": 1298,
+                      "isConstant": false,
+                      "isInlineArray": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "TupleExpression",
+                      "src": "526:72:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "450:148:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1257,
+                  "id": 1300,
+                  "nodeType": "Return",
+                  "src": "443:155:6"
+                }
+              ]
+            },
+            "functionSelector": "1d01364c",
+            "id": 1302,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "depositedAmount",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1254,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "282:2:6"
+            },
+            "returnParameters": {
+              "id": 1257,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1256,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1302,
+                  "src": "305:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1255,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "305:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "304:9:6"
+            },
+            "scope": 1319,
+            "src": "258:348:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1317,
+              "nodeType": "Block",
+              "src": "671:115:6",
+              "statements": [
+                {
+                  "assignments": [
+                    1308
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1308,
+                      "mutability": "mutable",
+                      "name": "ss",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1317,
+                      "src": "682:26:6",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                        "typeString": "struct StrategyStorageV1.StrategyStorage"
+                      },
+                      "typeName": {
+                        "id": 1307,
+                        "name": "StrategyStorage",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 2540,
+                        "src": "682:15:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                          "typeString": "struct StrategyStorageV1.StrategyStorage"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1311,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 1309,
+                      "name": "strategyStorage",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 2551,
+                      "src": "711:15:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_StrategyStorage_$2540_storage_ptr_$",
+                        "typeString": "function () pure returns (struct StrategyStorageV1.StrategyStorage storage pointer)"
+                      }
+                    },
+                    "id": 1310,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "711:17:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                      "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "682:46:6"
+                },
+                {
+                  "expression": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "expression": {
+                          "id": 1312,
+                          "name": "ss",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1308,
+                          "src": "746:2:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_StrategyStorage_$2540_storage_ptr",
+                            "typeString": "struct StrategyStorageV1.StrategyStorage storage pointer"
+                          }
+                        },
+                        "id": 1313,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "curvePool",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 2531,
+                        "src": "746:12:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_CurvePool_$1394",
+                          "typeString": "contract CurvePool"
+                        }
+                      },
+                      "id": 1314,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "get_virtual_price",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1393,
+                      "src": "746:30:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
+                        "typeString": "function () view external returns (uint256)"
+                      }
+                    },
+                    "id": 1315,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "746:32:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1306,
+                  "id": 1316,
+                  "nodeType": "Return",
+                  "src": "739:39:6"
+                }
+              ]
+            },
+            "functionSelector": "b6a2839a",
+            "id": 1318,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "curveLPTokenPrice",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1303,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "640:2:6"
+            },
+            "returnParameters": {
+              "id": 1306,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1305,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1318,
+                  "src": "663:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1304,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "663:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "662:9:6"
+            },
+            "scope": 1319,
+            "src": "614:172:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1320,
+        "src": "146:643:6"
+      }
+    ],
+    "src": "40:749:6"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x242Efa5a0c06871D9c86746Ab4A4e93Caafc3495",
+      "transactionHash": "0x5eaf7dcbdf73153f5ea5130913463bfc39b685ecd6fea80890160f684c7c2abe"
+    }
+  },
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2021-06-23T13:55:44.546Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

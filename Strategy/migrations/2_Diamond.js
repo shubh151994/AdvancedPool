@@ -5,7 +5,7 @@ const Diamond = artifacts.require('Diamond')
 const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 const OwnershipFacet = artifacts.require('OwnershipFacet')
-const Strategy = artifacts.require('Strategy')
+const Strategy2 = artifacts.require('Strategy2')
 
 const FacetCutAction = {
   Add: 0,
@@ -42,7 +42,7 @@ function getSelectors (contract) {
 
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
-  deployer.deploy(Strategy).then(() => {
-    console.log(Strategy.address)
+  deployer.deploy(Strategy2).then(() => {
+    console.log(Strategy2.address)
   })
 }

@@ -547,45 +547,81 @@
 
 // // };
 
-// async function initializeController(){
-//   try{
-//   const strategires = ["0xF63BcdBB1CB19010774f261d986633FB8096416D"]
-//   const pool = ["0xb8c3Bd6392F61Ad3278aEed7dC93c6cF7d807aB7"]
-//   const gauges = ["0xF5194c3325202F456c95c1Cf0cA36f8475C1949F"];
-//   const curveStrategyLPTOken = ["0x5282a4eF67D9C33135340fB3289cc1711c13638C"]
-//   const minter = "0xd061D61a4d941c39E5453435B6345Dc261C2fcE0"
-//   const crvToken = "0xD533a949740bb3306d119CC777fa900bA034cd52"
-//   const veCRV = "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2"
-//   const feeDistributor = "0xA464e6DCda8AC41e03616F95f4BC98a13b8922Dc"
-//   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-//   const controllerOwners = ['0x4a1eA4E24D2bbb48bEB5AA0F3d47fa4c3D5714F6','0xc9C9399E18190b7536e1aED60ba1D8318c3f3DE6']
-//   const crvLockPercent = "5000"
-//   const adminFeeToken = "0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490"
+// // async function initializeController(){
+// //   try{
+// //   const strategires = ["0xF63BcdBB1CB19010774f261d986633FB8096416D"]
+// //   const pool = ["0xb8c3Bd6392F61Ad3278aEed7dC93c6cF7d807aB7"]
+// //   const gauges = ["0xF5194c3325202F456c95c1Cf0cA36f8475C1949F"];
+// //   const curveStrategyLPTOken = ["0x5282a4eF67D9C33135340fB3289cc1711c13638C"]
+// //   const minter = "0xd061D61a4d941c39E5453435B6345Dc261C2fcE0"
+// //   const crvToken = "0xD533a949740bb3306d119CC777fa900bA034cd52"
+// //   const veCRV = "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2"
+// //   const feeDistributor = "0xA464e6DCda8AC41e03616F95f4BC98a13b8922Dc"
+// //   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+// //   const controllerOwners = ['0x4a1eA4E24D2bbb48bEB5AA0F3d47fa4c3D5714F6','0xc9C9399E18190b7536e1aED60ba1D8318c3f3DE6']
+// //   const crvLockPercent = "5000"
+// //   const adminFeeToken = "0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490"
   
-//   console.log("initializing controller")
-//   const diamondCall = new web3.eth.Contract(ControllerAbi, DiamondContractAddress);
-//   const functCall = await diamondCall.methods
-//       .initialize(
-//         strategires, 
-//         pool,
-//         gauges,
-//         curveStrategyLPTOken, 
-//         minter,
-//         crvToken,
-//         veCRV,
-//         feeDistributor,
-//         uniswap,
-//         controllerOwners,
-//         crvLockPercent,
-//         adminFeeToken
-//       ).encodeABI();
-//   const receipt = await transact(functCall, 0)
-//   console.log(receipt)
-//   } catch(e) {
-//       console.log('in catch2')
-//       throw new Error(e);
-//   }
+// //   console.log("initializing controller")
+// //   const diamondCall = new web3.eth.Contract(ControllerAbi, DiamondContractAddress);
+// //   const functCall = await diamondCall.methods
+// //       .initialize(
+// //         strategires, 
+// //         pool,
+// //         gauges,
+// //         curveStrategyLPTOken, 
+// //         minter,
+// //         crvToken,
+// //         veCRV,
+// //         feeDistributor,
+// //         uniswap,
+// //         controllerOwners,
+// //         crvLockPercent,
+// //         adminFeeToken
+// //       ).encodeABI();
+// //   const receipt = await transact(functCall, 0)
+// //   console.log(receipt)
+// //   } catch(e) {
+// //       console.log('in catch2')
+// //       throw new Error(e);
+// //   }
 
-// };
+// // };
 
-// initializeController()
+// async function addStakedAmount(){
+//     try{
+//     console.log("adding facet")
+//     const abi = [
+//       {
+//         "inputs": [],
+//         "name": "stakedAmount",
+//         "outputs": [
+//           {
+//             "internalType": "uint256",
+//             "name": "",
+//             "type": "uint256"
+//           }
+//         ],
+//         "stateMutability": "view",
+//         "type": "function",
+//         "constant": true
+//       }
+//     ]
+//     const addr = "0x581c57BB9fabbd33B116B675A116c4D9da0e0D3F"
+//     const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+//     const Part1Call = new web3.eth.Contract(abi, addr)
+   
+//     let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+//     console.log("selectors",selectorspart1)
+//     const functCall = await facetCutCall.methods.diamondCut([[addr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+//     const receipt = await transact(functCall, 0 )
+//     console.log(receipt)
+//     } catch(e) {
+//         console.log('in catch2')
+//         throw new Error(e);
+//     }
+  
+//   };
+  
+
+//   addStakedAmount()

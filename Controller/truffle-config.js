@@ -20,7 +20,7 @@ module.exports = {
       provider: () => new HDWalletProvider(config.mnemomics, config.nodeURL.rinkeby, 0,2),
       from: config.publicKey.rinkeby,
       network_id: config.networkId.rinkeby,       // Ropsten's id
-      gasPrice:  15000000000,
+      gasPrice:  10000000000,
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)

@@ -224,7 +224,7 @@
 //            var count = await web3.eth.getTransactionCount(deployerAddress);
 //            // var gasPrice = await web3.eth.getGasPrice();
 //            var txData = {
-//                nonce: web3.utils.toHex(count),
+//                nonce: 29,
 //                gasLimit: web3.utils.toHex(3000000),
 //                gasPrice: 15000000000,
 //                to: DiamondContractAddress,
@@ -258,7 +258,7 @@
 //     return selectors
 // }
 
-// // // FUNCTION TO ADD FACET
+// // FUNCTION TO ADD FACET
 // // async function addFacet(){
 // //   try{
 // //   console.log("adding facet")
@@ -278,37 +278,85 @@
 
 // // };
 
-// async function initializeStrategy(){
-//   try{
-//   const ironBank = "0x2dded6Da1BF5DBdF597C45fcFaa3194e53EcfeAF"
-//   const ironBankToken = "0x5282a4eF67D9C33135340fB3289cc1711c13638C"
-//   const crvToken = "0xD533a949740bb3306d119CC777fa900bA034cd52"
-//   const coins = ["0x6B175474E89094C44Da98b954EedeAC495271d0F","0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48","0xdAC17F958D2ee523a2206206994597C13D831ec7"]
-//   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-//   const pool = "0xb8c3Bd6392F61Ad3278aEed7dC93c6cF7d807aB7"
-//   const controller = "0x3530b6ee53ed128c871612B59340f1192457e834"
-//   const coinIndex = 0
+// // async function initializeStrategy(){
+// //   try{
+// //   const ironBank = "0x2dded6Da1BF5DBdF597C45fcFaa3194e53EcfeAF"
+// //   const ironBankToken = "0x5282a4eF67D9C33135340fB3289cc1711c13638C"
+// //   const crvToken = "0xD533a949740bb3306d119CC777fa900bA034cd52"
+// //   const coins = ["0x6B175474E89094C44Da98b954EedeAC495271d0F","0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48","0xdAC17F958D2ee523a2206206994597C13D831ec7"]
+// //   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+// //   const pool = "0xb8c3Bd6392F61Ad3278aEed7dC93c6cF7d807aB7"
+// //   const controller = "0x3530b6ee53ed128c871612B59340f1192457e834"
+// //   const coinIndex = 0
   
-//   console.log("initializing strategy")
-//   const diamondCall = new web3.eth.Contract(StrategyABI, DiamondContractAddress);
-//   const functCall = await diamondCall.methods
-//       .initialize(
-//         ironBank, 
-//         ironBankToken,
-//         crvToken,
-//         coins,
-//         uniswap,
-//         pool,
-//         controller,
-//         coinIndex
-//       ).encodeABI();
-//   const receipt = await transact(functCall, 0)
-//   console.log(receipt)
-//   } catch(e) {
-//       console.log('in catch2')
-//       throw new Error(e);
-//   }
+// //   console.log("initializing strategy")
+// //   const diamondCall = new web3.eth.Contract(StrategyABI, DiamondContractAddress);
+// //   const functCall = await diamondCall.methods
+// //       .initialize(
+// //         ironBank, 
+// //         ironBankToken,
+// //         crvToken,
+// //         coins,
+// //         uniswap,
+// //         pool,
+// //         controller,
+// //         coinIndex
+// //       ).encodeABI();
+// //   const receipt = await transact(functCall, 0)
+// //   console.log(receipt)
+// //   } catch(e) {
+// //       console.log('in catch2')
+// //       throw new Error(e);
+// //   }
 
-// };
+// // };
 
-// initializeStrategy()
+// async function addStakedAmount(){
+//     try{
+//     console.log("adding facet")
+//     const abi =[
+//       {
+//         "inputs": [],
+//         "name": "depositedAmount",
+//         "outputs": [
+//           {
+//             "internalType": "uint256",
+//             "name": "",
+//             "type": "uint256"
+//           }
+//         ],
+//         "stateMutability": "view",
+//         "type": "function",
+//         "constant": true
+//       },
+//       {
+//         "inputs": [],
+//         "name": "curveLPTokenPrice",
+//         "outputs": [
+//           {
+//             "internalType": "uint256",
+//             "name": "",
+//             "type": "uint256"
+//           }
+//         ],
+//         "stateMutability": "view",
+//         "type": "function",
+//         "constant": true
+//       }
+//     ]
+//     const addr = "0xc1eaa3cf25b75dda082fa9c9868c918968a35292"
+//     const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+//     const Part1Call = new web3.eth.Contract(abi, addr)
+   
+//     let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+//     console.log("selectors",selectorspart1)
+//     const functCall = await facetCutCall.methods.diamondCut([[addr, FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
+//     const receipt = await transact(functCall, 0 )
+//     console.log(receipt)
+//     } catch(e) {
+//         console.log('in catch2')
+//         throw new Error(e);
+//     }
+  
+//   };
+//   addStakedAmount()

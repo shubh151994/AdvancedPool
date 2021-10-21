@@ -545,7 +545,7 @@ async function addFacet(){
       throw new Error(e);
   }
 
-};
+}; 
 
 async function claim(){
   try{
@@ -603,6 +603,36 @@ async function initializeController(){
 
 };
 
+async function getFunctions(){
+  try{
+    const abi = [
+      {
+        "inputs": [],
+        "name": "stakedAmount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      }
+    ]
+    const addre = '0x6b193E05A076992a1BC54D876bCE44F5c1B92fAc'
+  console.log("entry to add facet")
+  const Part1Call = new web3.eth.Contract(abi, addre)
+  let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+  console.log("selectors",selectorspart1)
+  return 
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+};
+
 
 async function addStakedAmount(){
   try{
@@ -639,4 +669,24 @@ async function addStakedAmount(){
 
 };
 
-addStakedAmount()
+async function addFacet2(){
+  try{
+  console.log("adding facet")
+  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
+  // const Part1Call = new web3.eth.Contract(ControllerAbi, ControllerAddr)
+ 
+  // let selectorspart1 = getSelectors(Part1Call._jsonInterface);
+  // selectorspart1.push('0x00000000');
+  // console.log("selectors",selectorspart1)
+  const functCall = await facetCutCall.methods.diamondCut([["0x6b193E05A076992a1BC54D876bCE44F5c1B92fAc", FacetCutAction.Replace, ['0xa694fc3a','0x2e17de78','0x35322f37','0x48f8f6d9','0x373d6132'] ],
+    ["0x6b193E05A076992a1BC54D876bCE44F5c1B92fAc", FacetCutAction.Add, [ '0xe0342ca6', '0xeef6b53e', '0xe89f13ce' ]]], zeroAddress, '0x').encodeABI();
+  const receipt = await transact(functCall, 0 )
+  console.log(receipt)
+  } catch(e) {
+      console.log('in catch2')
+      throw new Error(e);
+  }
+
+}; 
+
+addFacet2()

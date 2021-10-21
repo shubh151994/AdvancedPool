@@ -3,13 +3,13 @@
 /* global contract artifacts web3 before it assert */
 
 const Web3 = require('web3');
-const config = require('./../../config.js');
+const config = require('../../config.js');
 const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
 const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0x6A970Ec999e9c35bEFddfA36E4eD6C09eA3A8cee";
+const DiamondContractAddress = "0x8A8BE79d217EdF91d4939184312F8997598D2d56";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -315,7 +315,7 @@ async function initializeStrategy(){
   const crvToken = "0x34Be66A99E634D9E5ed4E2552Adc5892B0699f14"
   const coins = ["0x66f58Db4aA308EB6C17F5e23dB7a075D65c90577","0x92D97AB672F71e029DfbC18f01E615c3637b1c95","0x0CF6bc00DCeF87983C641BF850fa11Aa3811Cd62"]
   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-  const pool = "0xb65A6E00166d26911362bbd258761cA501863E18"
+  const pool = "0x222bE15ED0840A52361AFE945F0e110535f2FbE7"
   const controller = "0xf20149EfEe7a4f709755c96AaDa9b8AFf1e3ca9c"
   const coinIndex = 1
   

@@ -1,11 +1,11 @@
 /* eslint-disable prefer-const */
 /* global artifacts */
 const config = require("./../../config.js");
-const Diamond = artifacts.require('Diamond')
-const DiamondCutFacet = artifacts.require('DiamondCutFacet')
-const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
-const OwnershipFacet = artifacts.require('OwnershipFacet')
-const Controller2 = artifacts.require('Controller2')
+// const Diamond = artifacts.require('Diamond')
+// const DiamondCutFacet = artifacts.require('DiamondCutFacet')
+// const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
+// const OwnershipFacet = artifacts.require('OwnershipFacet')
+const Controller3 = artifacts.require('Controller3')
 
 const FacetCutAction = {
   Add: 0,
@@ -36,13 +36,13 @@ function getSelectors (contract) {
 //       [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
 //       [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
 //     ]
-//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.mainnet])
+//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.rinkeby])
 //   })
 // }
 
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
-  deployer.deploy(Controller2).then(() => {
-    console.log(Controller2.address)
+  deployer.deploy(Controller3).then(() => {
+    console.log(Controller3.address)
   })
 }

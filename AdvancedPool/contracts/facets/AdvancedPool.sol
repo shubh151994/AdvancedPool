@@ -109,7 +109,7 @@ contract AdvancedPool is PoolStorageV1 {
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         uint256 amount = amountToDeposit();
         require(amount > 0, "Nothing to deposit");
-        ps.strategyDeposit = ps.strategyDeposit.add(amount);
+        ps.poolBalance = ps.poolBalance - amount;
         ps.coin.approve(address(ps.depositStrategy), 0);
         ps.coin.approve(address(ps.depositStrategy), amount);
         ps.depositStrategy.deposit(amount, minMintAmount);
@@ -124,7 +124,7 @@ contract AdvancedPool is PoolStorageV1 {
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         uint256 amount = amountToWithdraw();
         require(amount > 0 , "Nothing to withdraw");
-        ps.strategyDeposit = ps.strategyDeposit.sub(amount);
+        ps.poolBalance = ps.poolBalance + amount;
         ps.depositStrategy.withdraw(amount, maxBurnAmount);
         emit poolWithdrawal(msg.sender, address(ps.depositStrategy), amount);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
@@ -135,10 +135,13 @@ contract AdvancedPool is PoolStorageV1 {
     function removeAllFromStrategy(uint256 minAmount) public notLocked() onlySuperOwner(){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
-        require(ps.strategyDeposit > 0 , "Nothing to withdraw");
-        ps.strategyDeposit = 0;
+        require(strategyDeposit() > 0 , "Nothing to withdraw");
+        uint256 oldBalance = ps.coin.balanceOf(address(this));
         ps.depositStrategy.withdrawAll(minAmount);
-        emit poolWithdrawal(msg.sender, address(ps.depositStrategy), ps.coin.balanceOf(address(this)));
+        uint256 newBalance = ps.coin.balanceOf(address(this));
+        uint256 tokenReceived = newBalance - oldBalance;
+        ps.poolBalance = ps.poolBalance + tokenReceived;
+        emit poolWithdrawal(msg.sender, address(ps.depositStrategy), tokenReceived);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
         ps.controller.updateGasUsed(gasUsed, msg.sender); 
     }
@@ -204,7 +207,7 @@ contract AdvancedPool is PoolStorageV1 {
     function updateStrategy(DepositStrategy _newStrategy) public onlySuperOwner(){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
-        require(ps.strategyDeposit == 0, 'Withdraw all funds first');
+        require(strategyDeposit() == 0, 'Withdraw all funds first');
         ps.depositStrategy = _newStrategy;
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
         ps.controller.updateGasUsed(gasUsed, msg.sender);
@@ -226,7 +229,6 @@ contract AdvancedPool is PoolStorageV1 {
         ps.controller.updateGasUsed(gasUsed, msg.sender);
     }
 
-
 /****OTHER FUNCTIONS****/
 
     function calculatePoolTokens(uint256 amountOfStableCoins) public view returns(uint256){
@@ -236,7 +238,7 @@ contract AdvancedPool is PoolStorageV1 {
 
     function stableCoinPrice() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? 10**ps.coin.decimals() : ((10**ps.coin.decimals()) * ps.poolToken.totalSupply())/ps.poolBalance;
+        return (ps.poolToken.totalSupply() == 0 || totalDeposit() == 0) ? 10**ps.coin.decimals() : ((10**ps.coin.decimals()) * ps.poolToken.totalSupply())/totalDeposit();
     }
     
     function calculateStableCoins(uint256 amountOfPoolToken) public view returns(uint256){
@@ -247,7 +249,7 @@ contract AdvancedPool is PoolStorageV1 {
 
     function poolTokenPrice() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? 10**ps.poolToken.decimals() : ((10**ps.poolToken.decimals())*ps.poolBalance)/ps.poolToken.totalSupply();
+        return (ps.poolToken.totalSupply() == 0 || totalDeposit() == 0) ? 10**ps.poolToken.decimals() : ((10**ps.poolToken.decimals())*totalDeposit())/ps.poolToken.totalSupply();
     }
     
     function maxWithdrawal() public view returns(uint256){
@@ -257,17 +259,17 @@ contract AdvancedPool is PoolStorageV1 {
 
     function currentLiquidity() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.poolBalance - ps.strategyDeposit;
+        return ps.poolBalance;
     }
    
     function idealAmount() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return (ps.poolBalance * (ps.minLiquidity.add(ps.maxLiquidity))) / (2 * ps.DENOMINATOR);
+        return (totalDeposit() * (ps.minLiquidity.add(ps.maxLiquidity))) / (2 * ps.DENOMINATOR);
     }
      
     function maxLiquidityAllowedInPool() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.poolBalance * ps.maxLiquidity / ps.DENOMINATOR;
+        return totalDeposit() * ps.maxLiquidity / ps.DENOMINATOR;
     }
 
     function amountToDeposit() public view returns(uint256){
@@ -276,12 +278,11 @@ contract AdvancedPool is PoolStorageV1 {
     
     function minLiquidityToMaintainInPool() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.poolBalance * ps.minLiquidity / ps.DENOMINATOR;
+        return totalDeposit() * ps.minLiquidity / ps.DENOMINATOR;
     }
    
     function amountToWithdraw() public view returns(uint256){
-        PoolStorage storage ps = poolStorage();
-        return currentLiquidity() > minLiquidityToMaintainInPool() || ps.strategyDeposit == 0 || ps.strategyDeposit < idealAmount() - currentLiquidity() ? 0 : idealAmount() - currentLiquidity();
+        return currentLiquidity() > minLiquidityToMaintainInPool() || strategyDeposit() == 0 || strategyDeposit() < idealAmount() - currentLiquidity() ? 0 : idealAmount() - currentLiquidity();
     }
 
     function lockStatus() public view returns(bool){
@@ -291,12 +292,12 @@ contract AdvancedPool is PoolStorageV1 {
 
     function totalDeposit() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.poolBalance;
+        return ps.poolBalance + strategyDeposit();
     }
 
     function strategyDeposit() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.strategyDeposit;
+        return ps.depositStrategy.depositedAmount();
     }
        
     function feesCollected() public view returns(uint256){
@@ -319,6 +320,11 @@ contract AdvancedPool is PoolStorageV1 {
         return (ps.owner, ps.superOwner);
     }
 
+    function poolToken() public view returns(address){
+        PoolStorage storage ps = poolStorage();
+        return address(ps.poolToken);
+    }
+    
     receive() external payable {
     }
 }

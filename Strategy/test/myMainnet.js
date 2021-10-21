@@ -9,7 +9,7 @@
 
 // const privateKey = Buffer.from(config.privateKey.mainnet,'hex');
 
-// const DiamondContractAddress = "0xF63BcdBB1CB19010774f261d986633FB8096416D";
+// const DiamondContractAddress = "0xf321962e27B22BDF0d34b5BdbC016ACba1166810";
 // const deployerAddress = config.publicKey.mainnet;
 
 // const CutABI =   [
@@ -224,7 +224,7 @@
 //            var count = await web3.eth.getTransactionCount(deployerAddress);
 //            // var gasPrice = await web3.eth.getGasPrice();
 //            var txData = {
-//                nonce: 29,
+//                nonce: web3.utils.toHex(count),
 //                gasLimit: web3.utils.toHex(3000000),
 //                gasPrice: 15000000000,
 //                to: DiamondContractAddress,
@@ -285,9 +285,9 @@
 // //   const crvToken = "0xD533a949740bb3306d119CC777fa900bA034cd52"
 // //   const coins = ["0x6B175474E89094C44Da98b954EedeAC495271d0F","0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48","0xdAC17F958D2ee523a2206206994597C13D831ec7"]
 // //   const uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
-// //   const pool = "0xb8c3Bd6392F61Ad3278aEed7dC93c6cF7d807aB7"
+// //   const pool = "0xE3a6c116BeE3aA23431dBE35d9182338cA4e6bfc"
 // //   const controller = "0x3530b6ee53ed128c871612B59340f1192457e834"
-// //   const coinIndex = 0
+// //   const coinIndex = 1
   
 // //   console.log("initializing strategy")
 // //   const diamondCall = new web3.eth.Contract(StrategyABI, DiamondContractAddress);

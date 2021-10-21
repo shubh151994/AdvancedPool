@@ -14253,11 +14253,53 @@
           ],
           "name": "DiamondCut",
           "type": "event"
+        },
+        "0xe785b7d46d252880dc19457b2c8b06b2de37c69d645338fdd151c21279e60633": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "facetAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum IDiamondCut.FacetCutAction",
+                  "name": "action",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes4[]",
+                  "name": "functionSelectors",
+                  "type": "bytes4[]"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct IDiamondCut.FacetCut[]",
+              "name": "_diamondCut",
+              "type": "tuple[]"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_init",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes",
+              "name": "_calldata",
+              "type": "bytes"
+            }
+          ],
+          "name": "DiamondCut",
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0xCfB804AF579b57Db1A6203660044BaA59eA20A65",
-      "transactionHash": "0x4629a58bb8d5f52012a24a936a441729f0cc7d687aca42759519bdf8f91fadd5"
+      "address": "0x9b2ca29F99F9D11246D6ad36DF2b49b884570698",
+      "transactionHash": "0xfada75b6c66be0ad78d4ca46d584ad5ad5b4639cff3dd48ed2b15b5d105aff25"
     },
     "4": {
       "events": {
@@ -14347,12 +14389,12 @@
         }
       },
       "links": {},
-      "address": "0xd1fabBEeaD1376e0eb37Da1a29A4183712288e54",
-      "transactionHash": "0xa5550d0989e06626cced72787a425b7957e91930ad4478bf32a815c09bc2e137"
+      "address": "0xf8D83AbEDf23C4947fAE0e1356FDBcd8d0803d82",
+      "transactionHash": "0x0974e337ff7b4d455dfa55009d0012f45d6cfc7c26c624a13e2e255d49226476"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-23T16:15:02.843Z",
+  "updatedAt": "2021-08-18T05:19:31.585Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

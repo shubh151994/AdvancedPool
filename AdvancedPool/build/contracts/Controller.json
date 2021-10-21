@@ -47,15 +47,15 @@
     "absolutePath": "/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
       "Controller": [
-        3642
+        2823
       ]
     },
-    "id": 3643,
+    "id": 2824,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3629,
+        "id": 2810,
         "literals": [
           "solidity",
           "^",
@@ -71,32 +71,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 3642,
+        "id": 2823,
         "linearizedBaseContracts": [
-          3642
+          2823
         ],
         "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "6c550682",
-            "id": 3636,
+            "id": 2817,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateGasUsed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3634,
+              "id": 2815,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3631,
+                  "id": 2812,
                   "mutability": "mutable",
                   "name": "gasUsed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3636,
+                  "scope": 2817,
                   "src": "118:15:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -105,7 +105,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3630,
+                    "id": 2811,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "118:7:7",
@@ -118,11 +118,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3633,
+                  "id": 2814,
                   "mutability": "mutable",
                   "name": "adminAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3636,
+                  "scope": 2817,
                   "src": "135:20:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -131,7 +131,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3632,
+                    "id": 2813,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "135:7:7",
@@ -147,12 +147,12 @@
               "src": "117:39:7"
             },
             "returnParameters": {
-              "id": 3635,
+              "id": 2816,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "165:0:7"
             },
-            "scope": 3642,
+            "scope": 2823,
             "src": "95:71:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -160,29 +160,29 @@
           },
           {
             "functionSelector": "84e9a901",
-            "id": 3641,
+            "id": 2822,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "defaultGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3637,
+              "id": 2818,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "191:2:7"
             },
             "returnParameters": {
-              "id": 3640,
+              "id": 2821,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3639,
+                  "id": 2820,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3641,
+                  "scope": 2822,
                   "src": "211:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -191,7 +191,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3638,
+                    "id": 2819,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "211:7:7",
@@ -205,14 +205,14 @@
               ],
               "src": "210:9:7"
             },
-            "scope": 3642,
+            "scope": 2823,
             "src": "172:48:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3643,
+        "scope": 2824,
         "src": "68:155:7"
       }
     ],
@@ -222,15 +222,15 @@
     "absolutePath": "/E/Projects/AdvancedPool/AdvancedPool/contracts/interfaces/Controller.sol",
     "exportedSymbols": {
       "Controller": [
-        3642
+        2823
       ]
     },
-    "id": 3643,
+    "id": 2824,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3629,
+        "id": 2810,
         "literals": [
           "solidity",
           "^",
@@ -246,32 +246,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 3642,
+        "id": 2823,
         "linearizedBaseContracts": [
-          3642
+          2823
         ],
         "name": "Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "6c550682",
-            "id": 3636,
+            "id": 2817,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateGasUsed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3634,
+              "id": 2815,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3631,
+                  "id": 2812,
                   "mutability": "mutable",
                   "name": "gasUsed",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3636,
+                  "scope": 2817,
                   "src": "118:15:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -280,7 +280,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3630,
+                    "id": 2811,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "118:7:7",
@@ -293,11 +293,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3633,
+                  "id": 2814,
                   "mutability": "mutable",
                   "name": "adminAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3636,
+                  "scope": 2817,
                   "src": "135:20:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -306,7 +306,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3632,
+                    "id": 2813,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "135:7:7",
@@ -322,12 +322,12 @@
               "src": "117:39:7"
             },
             "returnParameters": {
-              "id": 3635,
+              "id": 2816,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "165:0:7"
             },
-            "scope": 3642,
+            "scope": 2823,
             "src": "95:71:7",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -335,29 +335,29 @@
           },
           {
             "functionSelector": "84e9a901",
-            "id": 3641,
+            "id": 2822,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "defaultGas",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3637,
+              "id": 2818,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "191:2:7"
             },
             "returnParameters": {
-              "id": 3640,
+              "id": 2821,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3639,
+                  "id": 2820,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3641,
+                  "scope": 2822,
                   "src": "211:7:7",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -366,7 +366,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3638,
+                    "id": 2819,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "211:7:7",
@@ -380,14 +380,14 @@
               ],
               "src": "210:9:7"
             },
-            "scope": 3642,
+            "scope": 2823,
             "src": "172:48:7",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3643,
+        "scope": 2824,
         "src": "68:155:7"
       }
     ],
@@ -399,7 +399,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-06-23T16:36:20.081Z",
+  "updatedAt": "2021-10-20T15:59:23.252Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

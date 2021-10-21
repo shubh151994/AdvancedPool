@@ -45,6 +45,8 @@ contract ControllerStorageV1 {
         mapping(address => uint256) claimableGas;    
         mapping(address => uint256) ethReceived;
         mapping(address => bool) isPool;
+        mapping(address => uint256) strategyDeposits;
+        mapping(address => uint256) claimableCRV;
     }
 
     function controllerStorage() internal pure returns (ControllerStorage storage cs) {

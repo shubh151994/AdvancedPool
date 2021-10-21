@@ -1,30 +1,30 @@
-/* eslint-disable prefer-const */
-/* global artifacts */
+// /* eslint-disable prefer-const */
+// /* global artifacts */
 
 const config = require("./../../config.js");
 // const Diamond = artifacts.require('Diamond')
 // const DiamondCutFacet = artifacts.require('DiamondCutFacet')
 // const DiamondLoupeFacet = artifacts.require('DiamondLoupeFacet')
 // const OwnershipFacet = artifacts.require('OwnershipFacet')
-const AdvancedPool2 = artifacts.require('AdvancedPool2')
+const AdvancedPool3 = artifacts.require('AdvancedPool3')
 
 
-const FacetCutAction = {
-  Add: 0,
-  Replace: 1,
-  Remove: 2
-}
-function getSelectors (contract) {
-  const selectors = contract.abi.reduce((acc, val) => {
-    if (val.type === 'function') {
-      acc.push(val.signature)
-      return acc
-    } else {
-      return acc
-    }
-  }, [])
-  return selectors
-}
+// const FacetCutAction = {
+//   Add: 0,
+//   Replace: 1,
+//   Remove: 2
+// }
+// function getSelectors (contract) {
+//   const selectors = contract.abi.reduce((acc, val) => {
+//     if (val.type === 'function') {
+//       acc.push(val.signature)
+//       return acc
+//     } else {
+//       return acc
+//     }
+//   }, [])
+//   return selectors
+// }
 
 // module.exports = function (deployer, network, accounts) {
 //   console.log(accounts[0],"accounts");
@@ -38,13 +38,13 @@ function getSelectors (contract) {
 //       [DiamondLoupeFacet.address, FacetCutAction.Add, getSelectors(DiamondLoupeFacet)],
 //       [OwnershipFacet.address, FacetCutAction.Add, getSelectors(OwnershipFacet)]
 //     ]
-//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.mainnet])
+//     return deployer.deploy(Diamond, diamondCut, [config.publicKey.rinkeby])
 //   })
 // }
 
 module.exports = function (deployer, network, accounts) {
   console.log(accounts[0],"accounts");
-  deployer.deploy(AdvancedPool2).then(() => {
-    console.log(AdvancedPool2.address)
+  deployer.deploy(AdvancedPool3).then(() => {
+    console.log(AdvancedPool3.address)
   })
 }

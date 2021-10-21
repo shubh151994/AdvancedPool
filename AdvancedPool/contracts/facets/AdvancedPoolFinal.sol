@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 import "../storage/PoolStorage.sol";
 
-contract AdvancedPool2 is PoolStorageV1 {
+contract AdvancedPool is PoolStorageV1 {
     
 /****VARIABLES*****/
     using SafeMath for uint256;
@@ -33,6 +33,40 @@ contract AdvancedPool2 is PoolStorageV1 {
     event userWithdrawal(address user,uint256 amount);
     event poolDeposit(address user, address pool, uint256 amount);
     event poolWithdrawal(address user, address pool, uint256 amount);
+    
+
+/****CONSTRUCTOR****/
+    function initialize(
+        IERC20 _coin,
+        IERC20 _poolToken, 
+        uint256 _minLiquidity, 
+        uint256 _maxLiquidity, 
+        uint256 _withdrawFees, 
+        uint256 _depositFees,
+        uint256 _maxWithdrawalAllowed,
+        address[] memory _owners,
+        DepositStrategy _depositStrategy,
+        UniswapV2Router02 _uniswapRouter,
+        Controller _controller
+    ) public {
+        PoolStorage storage ps = poolStorage();
+        require(!ps.initialized, 'Already initialized');
+        ps.owner = _owners[0];
+        ps.superOwner = _owners[1];
+        ps.DENOMINATOR = 10000;
+        ps.coin = _coin;
+        ps.poolToken = _poolToken;
+        ps.minLiquidity = _minLiquidity;
+        ps.maxLiquidity = _maxLiquidity;
+        ps.withdrawFees = _withdrawFees;
+        ps.depositFees = _depositFees;
+        ps.depositStrategy = _depositStrategy;
+        ps.maxWithdrawalAllowed = _maxWithdrawalAllowed;
+        ps.uniswapRouter = _uniswapRouter;
+        ps.controller = _controller;
+        ps.initialized = true;
+    }
+    
 
 /*****USERS FUNCTIONS****/
 
@@ -131,11 +165,66 @@ contract AdvancedPool2 is PoolStorageV1 {
         return true;
     }
     
+    function updateFees(uint256 _depositFees, uint256 _withdrawFees) external onlySuperOwner() returns(bool){
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        ps.withdrawFees = _withdrawFees;
+        ps.depositFees = _depositFees;
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+        return true;
+    }
+    
+    function changeLockStatus() external onlyOwner() returns(bool){
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        ps.locked = !ps.locked;
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+        return ps.locked;
+    }
+    
+    function updateOwners(address newOwner, address newSuperOwner) external onlySuperOwner() returns(bool){
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        ps.owner = newOwner;
+        ps.superOwner = newSuperOwner;
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+        return true;
+    } 
+
+    function getYield() public onlyOwner(){
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        uint256 tokenReceived = ps.depositStrategy.claimAndConvertCRV();
+        ps.poolBalance = ps.poolBalance.add(tokenReceived);
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+    }
+    
+    
     function updateStrategy(DepositStrategy _newStrategy) public onlySuperOwner(){
         PoolStorage storage ps = poolStorage();
         uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
         require(strategyDeposit() == 0, 'Withdraw all funds first');
         ps.depositStrategy = _newStrategy;
+        uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
+        ps.controller.updateGasUsed(gasUsed, msg.sender);
+    }
+
+    function convertFeesToETH() external onlyOwner() {
+        PoolStorage storage ps = poolStorage();
+        uint256 gasAtBegining = (gasleft().add(ps.controller.defaultGas())).mul(tx.gasprice);
+        address[] memory path = new address[](2);
+        uint256 amountToSwap = ps.feesCollected;
+        ps.feesCollected = 0;
+        ps.coin.approve(address(ps.uniswapRouter), 0);
+        ps.coin.approve(address(ps.uniswapRouter), amountToSwap);
+        path[0] = address(ps.coin);
+        path[1] = ps.uniswapRouter.WETH();
+        uint256 amountOutMin = 0;
+        ps.uniswapRouter.swapExactTokensForETH(amountToSwap, amountOutMin, path, address(ps.controller), block.timestamp + 100000);
         uint256 gasUsed = gasAtBegining.sub(gasleft().mul(tx.gasprice)); 
         ps.controller.updateGasUsed(gasUsed, msg.sender);
     }
@@ -160,12 +249,12 @@ contract AdvancedPool2 is PoolStorageV1 {
 
     function poolTokenPrice() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return (ps.poolToken.totalSupply() == 0 || ps.poolBalance == 0) ? 10**ps.poolToken.decimals() : ((10**ps.poolToken.decimals())*ps.poolBalance)/ps.poolToken.totalSupply();
+        return (ps.poolToken.totalSupply() == 0 || totalDeposit() == 0) ? 10**ps.poolToken.decimals() : ((10**ps.poolToken.decimals())*totalDeposit())/ps.poolToken.totalSupply();
     }
     
     function maxWithdrawal() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return minLiquidityToMaintainInPool()/2 < ps.maxWithdrawalAllowed ? minLiquidityToMaintainInPool()/2 : ps.maxWithdrawalAllowed;
+        return currentLiquidity() - minLiquidityToMaintainInPool()/2 < ps.maxWithdrawalAllowed ? currentLiquidity() - minLiquidityToMaintainInPool()/2 : ps.maxWithdrawalAllowed;
     }
 
     function currentLiquidity() public view returns(uint256){
@@ -189,11 +278,16 @@ contract AdvancedPool2 is PoolStorageV1 {
     
     function minLiquidityToMaintainInPool() public view returns(uint256){
         PoolStorage storage ps = poolStorage();
-        return ps.poolBalance * ps.minLiquidity / ps.DENOMINATOR;
+        return totalDeposit() * ps.minLiquidity / ps.DENOMINATOR;
     }
    
     function amountToWithdraw() public view returns(uint256){
         return currentLiquidity() > minLiquidityToMaintainInPool() || strategyDeposit() == 0 || strategyDeposit() < idealAmount() - currentLiquidity() ? 0 : idealAmount() - currentLiquidity();
+    }
+
+    function lockStatus() public view returns(bool){
+        PoolStorage storage ps = poolStorage();
+        return ps.locked;
     }
 
     function totalDeposit() public view returns(uint256){
@@ -205,5 +299,32 @@ contract AdvancedPool2 is PoolStorageV1 {
         PoolStorage storage ps = poolStorage();
         return ps.depositStrategy.depositedAmount();
     }
+       
+    function feesCollected() public view returns(uint256){
+        PoolStorage storage ps = poolStorage();
+        return ps.feesCollected;
+    }
 
+    function currentFees() public view returns(uint256, uint256){
+        PoolStorage storage ps = poolStorage();
+        return (ps.depositFees, ps.withdrawFees);
+    }
+
+    function currentLiquidityParams() public view returns(uint256, uint256, uint256){
+        PoolStorage storage ps = poolStorage();
+        return (ps.minLiquidity, ps.maxLiquidity, ps.maxWithdrawalAllowed);
+    }
+
+    function owners() public view returns(address, address){
+        PoolStorage storage ps = poolStorage();
+        return (ps.owner, ps.superOwner);
+    }
+
+    function poolToken() public view returns(address){
+        PoolStorage storage ps = poolStorage();
+        return address(ps.poolToken);
+    }
+    
+    receive() external payable {
+    }
 }

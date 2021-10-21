@@ -3,13 +3,13 @@
 /* global contract artifacts web3 before it assert */
 
 const Web3 = require('web3');
-const config = require('./../../config.js');
+const config = require('../../config.js');
 const web3 = new Web3(new Web3.providers.HttpProvider(config.nodeURL.rinkeby));
 const TX = require('ethereumjs-tx').Transaction;
 
 const privateKey = Buffer.from(config.privateKey.rinkeby,'hex');
 
-const DiamondContractAddress = "0xb65A6E00166d26911362bbd258761cA501863E18";
+const DiamondContractAddress = "0x222bE15ED0840A52361AFE945F0e110535f2FbE7";
 const deployerAddress = config.publicKey.rinkeby;
 
 const CutABI =   [
@@ -822,14 +822,14 @@ async function addFacet(){
 async function initializeAdvancedPool(){
   try{
   const coin = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
-  const poolToken = "0x4C65E4Aa51d24eeaD767e4266E3f2e534D819419"
+  const poolToken = "0xf0eB215fA3F0F96AC14AeE027806d59966f73141"
   const minLiq = 2000
   const maxLiq = 4000
   const withFee = 50
   const depFee = 50
   const maxWithdrawalAllowed = 25000000000
   const owners = [config.publicKey.rinkeby,config.publicKey.rinkeby]
-  const depStrategies = "0x6A970Ec999e9c35bEFddfA36E4eD6C09eA3A8cee"
+  const depStrategies = "0x8A8BE79d217EdF91d4939184312F8997598D2d56"
   const UniswapV2Router02 = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
   const controller = "0xf20149EfEe7a4f709755c96AaDa9b8AFf1e3ca9c"
   
@@ -892,391 +892,7 @@ async function removeFromStrategy(){
 
 };
 
-const poolAddress = DiamondContractAddress;
-const poolAbi = AdvancedPoolABI;
-const tokenAbi = [
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "_bridgeContractAddress",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "bridgeContractAddress",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "burn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "mint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ownerAddress",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "sender",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "recipient",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_bridgeContractAddress",
-				"type": "address"
-			}
-		],
-		"name": "updateBridgeContractAddress",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]
 
-const poolTokenAbi =tokenAbi ;
-const poolTokenAddress = "0x8A76eADe0fAf10A33FE63f78C828d583a4f19EdE"
-const usdcAddress = "0x92D97AB672F71e029DfbC18f01E615c3637b1c95"
-async function userDepositedBalance(){
-  try{
-    const poolTokenCall = new web3.eth.Contract(poolTokenAbi, poolTokenAddress)
-    const poolTokenBalance = await poolTokenCall.methods.balanceOf(config.publicKey.rinkeby).call();
-    const poolCall = new web3.eth.Contract(poolAbi, poolAddress)
-    const data = await poolCall.methods.calculatePoolTokens(poolTokenBalance).call();
-    const decimals = await poolTokenCall.methods.decimals().call();
-    console.log("data", data/Math.pow(10, decimals))
-    return data/Math.pow(10, decimals)
-  } catch(e) {
-      throw new Error(e);
-  }
-};
-
-async function ethfees(){
-  try{
-    console.log("1111111111")
-    const bridgeCall = new web3.eth.Contract(AdvancedPoolABI, DiamondContractAddress);
-    const functCall = await bridgeCall.methods.convertFeesToETH().encodeABI();
-    console.log("444444444444444444444")
-    const receipt = await transact(functCall, 0)
-    console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
-
-
-async function updatePools(){
-  try{
-  console.log("1111111111")
-  const facetCutCall = new web3.eth.Contract(CutABI, DiamondContractAddress);
-  console.log("33333333333333333",selectorspart1)
-  const functCall = await facetCutCall.methods
-      .diamondCut([ ["0x36fEFbd26079ed16206D19B29fceb3128edc6Ac8", FacetCutAction.Add, selectorspart1 ]], zeroAddress, '0x').encodeABI();
-      console.log("444444444444444444444")
-  const receipt = await transact(functCall, 0 )
-  console.log(receipt)
-  } catch(e) {
-      console.log('in catch2')
-      throw new Error(e);
-  }
-
-};
 
 
 
@@ -1308,6 +924,75 @@ async function getFunctions(){
           },
           {
             "indexed": false,
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolDeposit",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "poolWithdrawal",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "userDeposits",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
             "internalType": "uint256",
             "name": "amount",
             "type": "uint256"
@@ -1315,6 +1000,25 @@ async function getFunctions(){
         ],
         "name": "userWithdrawal",
         "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "stake",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
         "inputs": [
@@ -1332,6 +1036,104 @@ async function getFunctions(){
             "type": "uint256"
           }
         ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "minMintAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "addToStrategy",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "maxBurnAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "removeFromStrategy",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "minAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "removeAllFromStrategy",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_minLiquidity",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_maxLiquidity",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_maxWithdrawalAllowed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxBurnOrMinMint",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateLiquidityParam",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "contract DepositStrategy",
+            "name": "_newStrategy",
+            "type": "address"
+          }
+        ],
+        "name": "updateStrategy",
+        "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
       },
@@ -1358,6 +1160,40 @@ async function getFunctions(){
       {
         "inputs": [],
         "name": "stableCoinPrice",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "amountOfPoolToken",
+            "type": "uint256"
+          }
+        ],
+        "name": "calculateStableCoins",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "poolTokenPrice",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1399,7 +1235,63 @@ async function getFunctions(){
       },
       {
         "inputs": [],
+        "name": "idealAmount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "maxLiquidityAllowedInPool",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "amountToDeposit",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
         "name": "minLiquidityToMaintainInPool",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [],
+        "name": "amountToWithdraw",
         "outputs": [
           {
             "internalType": "uint256",
@@ -1454,4 +1346,4 @@ async function getFunctions(){
 };
 
 
-getFunctions()
+initializeAdvancedPool()
